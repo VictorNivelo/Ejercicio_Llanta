@@ -6,6 +6,7 @@ package Vista;
 
 import Controlador.PersonaControlador;
 import Controlador.Tda.listas.ListaDinamica;
+import Modelo.Cuenta;
 import Modelo.Persona;
 import Modelo.Rol;
 import Vista.Arreglos.Tabla.ModeloTablaPersona;
@@ -23,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
-    private PersonaControlador personaControl = new PersonaControlador(26);
+    private PersonaControlador personaControl = new PersonaControlador(25);
     private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
@@ -53,6 +54,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         txtNumeroIdentificacion.setText("");
         cbxRol.setSelectedIndex(-1);
         cbxTipoIdentificacion.setSelectedIndex(-1);
+        txtCorreo.setText("");
+        txtContrasena.setText("");
         personaControl.setPersona(null);
         CargarTabla();
 
@@ -65,12 +68,21 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
     private void Guardar(){
         if(Validar()){
+            String Correo = txtCorreo.getText();
+            String Contraseña = txtContrasena.getText();
+            Boolean EstadoCuenta = true;
+            Integer IdPersona = ListaD.getLongitud()+1;
+            
+            Cuenta CuentaUsuario = new Cuenta(IdPersona, Correo, Contraseña, EstadoCuenta);
+            
+            personaControl.getPersona().setPersonaCuenta(CuentaUsuario);
+//            personaControl.getPersona().setPersonaCuenta(personaControl.getPersona().getPersonaCuenta().setCorreo(txtCorreo.getText()));
             personaControl.getPersona().setTipoDNI(cbxTipoIdentificacion.getSelectedItem().toString());
             personaControl.getPersona().setDNI(txtNumeroIdentificacion.getText());
             personaControl.getPersona().setNombre(txtNombre.getText());
             personaControl.getPersona().setApellido(txtApellido.getText());
             personaControl.getPersona().setDireccion(txtDireccion.getText());
-            personaControl.getPersona().setRol(UtilVista.ObtenerRolControlador(cbxRol));
+            personaControl.getPersona().setRolPersona(UtilVista.ObtenerRolControlador(cbxRol));
             
             if(personaControl.Guardar()){
                 JOptionPane.showMessageDialog(null, "Datos guardados", "Informacion", JOptionPane.INFORMATION_MESSAGE);
@@ -209,7 +221,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +365,14 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             String DireccionP = txtDireccion.getText();
             Rol rol = UtilVista.ObtenerRolControlador(cbxRol);
             
-            Persona personaGuardar = new Persona(IdPersona, TipoDNIP, NumeroDNIP, NombreP, ApellidoP, DireccionP, rol);
+            String Correo = txtCorreo.getText();
+            String Contraseña = txtContrasena.getText();
+            Boolean EstadoCuenta = true;
+            
+            Cuenta CuentaUsuario = new Cuenta(IdPersona, Correo, Contraseña, EstadoCuenta);
+            
+            
+            Persona personaGuardar = new Persona(IdPersona, TipoDNIP, NumeroDNIP, NombreP, ApellidoP, DireccionP, CuentaUsuario, rol);
             
             ListaD.Agregar(personaGuardar);
             

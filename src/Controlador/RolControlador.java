@@ -28,5 +28,4 @@ public class RolControlador {
         this.roles = roles;
     }
     
-    
 }

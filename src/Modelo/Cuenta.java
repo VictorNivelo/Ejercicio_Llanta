@@ -10,9 +10,16 @@ package Modelo;
  */
 public class Cuenta {
     private Integer id_Cuenta;
-    private String Cuenta;
+    private String Correo;
     private String Contrasena;
     private Boolean Estado_Cuenta;
+
+    public Cuenta(Integer id_Cuenta, String Cuenta, String Contrasena, Boolean Estado_Cuenta) {
+        this.id_Cuenta = id_Cuenta;
+        this.Correo = Cuenta;
+        this.Contrasena = Contrasena;
+        this.Estado_Cuenta = Estado_Cuenta;
+    }
 
     public Integer getId_Cuenta() {
         return id_Cuenta;
@@ -22,12 +29,12 @@ public class Cuenta {
         this.id_Cuenta = id_Cuenta;
     }
 
-    public String getCuenta() {
-        return Cuenta;
+    public String getCorreo() {
+        return Correo;
     }
 
-    public void setCuenta(String Cuenta) {
-        this.Cuenta = Cuenta;
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
     }
 
     public String getContrasena() {
@@ -45,6 +52,5 @@ public class Cuenta {
     public void setEstado_Cuenta(Boolean Estado_Cuenta) {
         this.Estado_Cuenta = Estado_Cuenta;
     }
-    
     
 }

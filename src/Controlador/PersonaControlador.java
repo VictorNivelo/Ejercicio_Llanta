@@ -13,9 +13,10 @@ import Modelo.Persona;
 public class PersonaControlador {
     private Persona persona;
     private Persona[] MatrizPersona;
-    
-    public PersonaControlador(Integer tamanio) {
-        this.MatrizPersona = new Persona[tamanio+1];
+
+    public PersonaControlador(Integer tamano) {
+            this.MatrizPersona = new Persona[tamano];
+        
     }
     
     //metodo que permite guardar
@@ -67,7 +68,7 @@ public class PersonaControlador {
 
     public Persona getPersona() {
         if (persona == null) {
-            persona = new Persona(null,null,null,null,null,null,null);
+            persona = new Persona(null,null,null,null,null,null,null,null);
         }
         return persona;
     }
@@ -84,11 +85,4 @@ public class PersonaControlador {
         this.MatrizPersona = MatrizPersona;
     }
     
-    
-    
-//    @Override
-//    public String toString() {
-//        return "Id_Persona: "+ getPersona().getId_Persona() + "Tipo DNI: "+ getPersona().getTipoDNI()+"Numero DNI: " + getPersona().getDNI() + " Nombres: " + getPersona().getNombre()+ " Apellido: " + getPersona().getApellido()+"Direccion: "+ getPersona().getDireccion();
-//    }
-      
 }

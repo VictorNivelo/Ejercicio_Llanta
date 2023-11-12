@@ -15,18 +15,20 @@ public class Persona {
     private String Nombre;
     private String Apellido;
     private String Direccion;
-    private Rol Rol;
+    private Cuenta PersonaCuenta;
+    private Rol RolPersona;
 
-    public Persona(Integer Id_Persona, String TipoDNI, String DNI, String Nombre, String Apellido, String Direccion, Rol id_rol) {
+    public Persona(Integer Id_Persona, String TipoDNI, String DNI, String Nombre, String Apellido, String Direccion, Cuenta PersonaCuenta, Rol RolPersona) {
         this.Id_Persona = Id_Persona;
         this.TipoDNI = TipoDNI;
         this.DNI = DNI;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Direccion = Direccion;
-        this.Rol = id_rol;
+        this.PersonaCuenta = PersonaCuenta;
+        this.RolPersona = RolPersona;
     }
-
+    
     public Integer getId_Persona() {
         return Id_Persona;
     }
@@ -75,17 +77,25 @@ public class Persona {
         this.Direccion = Direccion;
     }
 
-    public Rol getRol() {
-        return Rol;
+    public Cuenta getPersonaCuenta() {
+        return PersonaCuenta;
     }
 
-    public void setRol(Rol Rol) {
-        this.Rol = Rol;
+    public void setPersonaCuenta(Cuenta PersonaCuenta) {
+        this.PersonaCuenta = PersonaCuenta;
     }
 
+    public Rol getRolPersona() {
+        return RolPersona;
+    }
+
+    public void setRolPersona(Rol RolPersona) {
+        this.RolPersona = RolPersona;
+    }
+    
     @Override
     public String toString() {
-        return "Id Persona: " + Id_Persona + ", Rol: " + Rol + ", Tipo DNI: " + TipoDNI + ", Numero DNI: " + DNI + ", Nombre: " + Nombre + ", Apellido: " + Apellido + ", Direccion: " + Direccion +"\n";
+        return "Id Persona: " + Id_Persona + ", Rol: " + RolPersona + ", Tipo DNI: " + TipoDNI + ", Numero DNI: " + DNI + ", Nombre: " + Nombre + ", Apellido: " + Apellido + ", Direccion: " + Direccion +", Correo: "+ PersonaCuenta.getCorreo()+", Contraseña: "+ PersonaCuenta.getContrasena()+", Estado de cuenta: "+ PersonaCuenta.getEstado_Cuenta()+"\n";
     }
     
 }

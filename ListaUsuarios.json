@@ -5,9 +5,15 @@
       "TipoDNI": "Cedula",
       "DNI": "1",
       "Nombre": "a",
-      "Apellido": "a",
-      "Direccion": "a",
-      "Rol": {
+      "Apellido": "b",
+      "Direccion": "c",
+      "PersonaCuenta": {
+        "id_Cuenta": 1,
+        "Correo": "a@b.com",
+        "Contrasena": "holamundo",
+        "Estado_Cuenta": true
+      },
+      "RolPersona": {
         "id_rol": 1,
         "Nombre_rol": "Administrador",
         "Descripcion_rol": "Es un admininistrador"
@@ -18,10 +24,16 @@
         "Id_Persona": 2,
         "TipoDNI": "Cedula",
         "DNI": "2",
-        "Nombre": "b",
-        "Apellido": "b",
-        "Direccion": "b",
-        "Rol": {
+        "Nombre": "d",
+        "Apellido": "e",
+        "Direccion": "f",
+        "PersonaCuenta": {
+          "id_Cuenta": 2,
+          "Correo": "d@e.com",
+          "Contrasena": "adiosmundo",
+          "Estado_Cuenta": true
+        },
+        "RolPersona": {
           "id_rol": 2,
           "Nombre_rol": "Cajero",
           "Descripcion_rol": "Es un empleado"
@@ -32,10 +44,16 @@
           "Id_Persona": 3,
           "TipoDNI": "Pasaporte",
           "DNI": "3",
-          "Nombre": "x",
-          "Apellido": "x",
-          "Direccion": "x",
-          "Rol": {
+          "Nombre": "g",
+          "Apellido": "h",
+          "Direccion": "i",
+          "PersonaCuenta": {
+            "id_Cuenta": 3,
+            "Correo": "g@i.com",
+            "Contrasena": "mundo",
+            "Estado_Cuenta": true
+          },
+          "RolPersona": {
             "id_rol": 3,
             "Nombre_rol": "Cliente",
             "Descripcion_rol": "Es un usuario"
@@ -49,10 +67,16 @@
       "Id_Persona": 3,
       "TipoDNI": "Pasaporte",
       "DNI": "3",
-      "Nombre": "x",
-      "Apellido": "x",
-      "Direccion": "x",
-      "Rol": {
+      "Nombre": "g",
+      "Apellido": "h",
+      "Direccion": "i",
+      "PersonaCuenta": {
+        "id_Cuenta": 3,
+        "Correo": "g@i.com",
+        "Contrasena": "mundo",
+        "Estado_Cuenta": true
+      },
+      "RolPersona": {
         "id_rol": 3,
         "Nombre_rol": "Cliente",
         "Descripcion_rol": "Es un usuario"
