@@ -1,0 +1,63 @@
+{
+  "cabezera": {
+    "info": {
+      "Id_Persona": 1,
+      "TipoDNI": "Cedula",
+      "DNI": "1",
+      "Nombre": "a",
+      "Apellido": "a",
+      "Direccion": "a",
+      "Rol": {
+        "id_rol": 1,
+        "Nombre_rol": "Administrador",
+        "Descripcion_rol": "Es un admininistrador"
+      }
+    },
+    "Siguiente": {
+      "info": {
+        "Id_Persona": 2,
+        "TipoDNI": "Cedula",
+        "DNI": "2",
+        "Nombre": "b",
+        "Apellido": "b",
+        "Direccion": "b",
+        "Rol": {
+          "id_rol": 2,
+          "Nombre_rol": "Cajero",
+          "Descripcion_rol": "Es un empleado"
+        }
+      },
+      "Siguiente": {
+        "info": {
+          "Id_Persona": 3,
+          "TipoDNI": "Pasaporte",
+          "DNI": "3",
+          "Nombre": "x",
+          "Apellido": "x",
+          "Direccion": "x",
+          "Rol": {
+            "id_rol": 3,
+            "Nombre_rol": "Cliente",
+            "Descripcion_rol": "Es un usuario"
+          }
+        }
+      }
+    }
+  },
+  "ultimo": {
+    "info": {
+      "Id_Persona": 3,
+      "TipoDNI": "Pasaporte",
+      "DNI": "3",
+      "Nombre": "x",
+      "Apellido": "x",
+      "Direccion": "x",
+      "Rol": {
+        "id_rol": 3,
+        "Nombre_rol": "Cliente",
+        "Descripcion_rol": "Es un usuario"
+      }
+    }
+  },
+  "Longitud": 3
+}
