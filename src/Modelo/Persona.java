@@ -95,7 +95,7 @@ public class Persona {
     
     @Override
     public String toString() {
-        return "Id Persona: " + Id_Persona + ", Rol: " + RolPersona + ", Tipo DNI: " + TipoDNI + ", Numero DNI: " + DNI + ", Nombre: " + Nombre + ", Apellido: " + Apellido + ", Direccion: " + Direccion +", Correo: "+ PersonaCuenta.getCorreo()+", Contraseña: "+ PersonaCuenta.getContrasena()+", Estado de cuenta: "+ PersonaCuenta.getEstado_Cuenta()+"\n";
+        return "Id Persona: " + Id_Persona + ", Rol: " + RolPersona + ", Tipo DNI: " + TipoDNI + ", Numero DNI: " + DNI + ", Nombre: " + Nombre + ", Apellido: " + Apellido + ", Direccion: " + Direccion +", Correo: "+ PersonaCuenta.getCorreo()+", Contraseña: "+ PersonaCuenta.getContrasena()+", Estado de cuenta: "+ PersonaCuenta.getEstadoCuenta()+"\n";
     }
     
 }

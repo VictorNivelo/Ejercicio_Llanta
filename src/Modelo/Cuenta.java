@@ -12,15 +12,15 @@ public class Cuenta {
     private Integer id_Cuenta;
     private String Correo;
     private String Contrasena;
-    private Boolean Estado_Cuenta;
+    private Boolean EstadoCuenta;
 
-    public Cuenta(Integer id_Cuenta, String Cuenta, String Contrasena, Boolean Estado_Cuenta) {
+    public Cuenta(Integer id_Cuenta, String Correo, String Contrasena, Boolean EstadoCuenta) {
         this.id_Cuenta = id_Cuenta;
-        this.Correo = Cuenta;
+        this.Correo = Correo;
         this.Contrasena = Contrasena;
-        this.Estado_Cuenta = Estado_Cuenta;
+        this.EstadoCuenta = EstadoCuenta;
     }
-
+    
     public Integer getId_Cuenta() {
         return id_Cuenta;
     }
@@ -45,12 +45,12 @@ public class Cuenta {
         this.Contrasena = Contrasena;
     }
 
-    public Boolean getEstado_Cuenta() {
-        return Estado_Cuenta;
+    public Boolean getEstadoCuenta() {
+        return EstadoCuenta;
     }
 
-    public void setEstado_Cuenta(Boolean Estado_Cuenta) {
-        this.Estado_Cuenta = Estado_Cuenta;
+    public void setEstadoCuenta(Boolean EstadoCuenta) {
+        this.EstadoCuenta = EstadoCuenta;
     }
     
 }

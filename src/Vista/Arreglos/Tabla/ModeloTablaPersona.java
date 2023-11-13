@@ -58,7 +58,7 @@ public class ModeloTablaPersona extends AbstractTableModel {
             case 7:
                 return (p != null) ? p.getPersonaCuenta().getCorreo() : "";
             case 8:
-                return (p != null) ? p.getPersonaCuenta().getEstado_Cuenta(): "";
+                return (p != null) ? p.getPersonaCuenta().getEstadoCuenta(): "";
                 
             default:
                 return null;

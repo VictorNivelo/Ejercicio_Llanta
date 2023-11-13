@@ -5,10 +5,8 @@
 package Vista;
 
 import Controlador.PersonaControlador;
+import Controlador.Tda.listas.Exepciones.EstaVacia;
 import Controlador.Tda.listas.ListaDinamica;
-import Modelo.Cuenta;
-import Modelo.Persona;
-import Modelo.Rol;
 import Vista.Arreglos.Tabla.ModeloTablaPersona;
 import Vista.Arreglos.Util.UtilVista;
 import com.google.gson.Gson;
@@ -17,6 +15,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import javax.swing.JOptionPane;
+import Modelo.Cuenta;
+import Modelo.Persona;
+import Modelo.Rol;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +39,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     /**
      * Creates new form VistaRegistrarUsuario
      */
-    public VistaRegistrarUsuario() {
+    public VistaRegistrarUsuario(){
         initComponents();
         this.setLocationRelativeTo(null);   
         UtilVista.CargarComboRoles(cbxRol);
@@ -45,6 +52,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         cbxRol.setSelectedIndex(-1);
         tblUsuarios.setModel(mtp);
         tblUsuarios.updateUI();
+        
     }
     
     private void Limpiar() {
@@ -76,7 +84,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             Cuenta CuentaUsuario = new Cuenta(IdPersona, Correo, Contraseña, EstadoCuenta);
             
             personaControl.getPersona().setPersonaCuenta(CuentaUsuario);
-//            personaControl.getPersona().setPersonaCuenta(personaControl.getPersona().getPersonaCuenta().setCorreo(txtCorreo.getText()));
             personaControl.getPersona().setTipoDNI(cbxTipoIdentificacion.getSelectedItem().toString());
             personaControl.getPersona().setDNI(txtNumeroIdentificacion.getText());
             personaControl.getPersona().setNombre(txtNombre.getText());
@@ -110,7 +117,65 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    private static ListaDinamica<Persona> cargarListaDesdeJson(String archivoJson) throws EstaVacia{
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivoJson))) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+            java.lang.reflect.Type listaType = new TypeToken<ListaDinamica<Persona>>() {}.getType();
+
+            ListaDinamica<Persona> listaPersonas = gson.fromJson(reader, listaType);
+
+            return listaPersonas;
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+//    public void CargarDatosCitasAtender() throws EstaVacia{
+//        ListaDinamica<Persona> pas = new ListaDinamica<>();
+//        Gson gson = new Gson();
+//
+//        FileReader reader;
+//
+//        try {reader = new FileReader("ListaUsuarios.json");
+//            ListaDinamica<Persona> listaPacientesCargada = gson.fromJson(reader, new TypeToken<ListaDinamica<Persona>>() {}.getType());
+//            
+//            for (int i = 0; i < listaPacientesCargada.getLongitud(); i++) {
+//                Persona paciente = (Persona) listaPacientesCargada.ObtenerInfo(i);
+//                pas.Agregar(paciente);
+//            }
+//            
+//        } 
+//        catch (FileNotFoundException e) {
+//            System.out.println(e);
+//        }
+//
+//        for (int i = pas.getLongitud() - 1; i >= 0; i--) {
+//            Persona persona = (Persona) pas.ObtenerInfo(i);
+//
+//            Object[] fila = {
+//                persona.getId_Persona(),
+//                persona.getRolPersona().getNombre_rol(),
+//                persona.getTipoDNI(),
+//                persona.getDNI(),
+//                persona.getNombre(),
+//                persona.getApellido(),
+//                persona.getDireccion(),
+//                persona.getPersonaCuenta().getCorreo(),
+//                persona.getPersonaCuenta().getEstadoCuenta()
+//            };
+//
+//            mtp.setPersonas(fila);
+//
+//            mtp.fireTableRowsInserted(mtp.getRowCount() - 1, mtp.getRowCount() - 1);
+//            
+//            tblUsuarios.setModel(mtp);
+//            tblUsuarios.updateUI();
+//        }
+//    }
 //    
 //    private static void guardarDatosJson(String json) {
 //        try (FileWriter fileWriter = new FileWriter("ListaUsuarios.json")) {
@@ -330,10 +395,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
-//        abler presentar = new abler();
-//        presentar.setVisible(true);
-//        this.setVisible(false);
+        
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnRegistrarNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNuevoUsuarioActionPerformed

@@ -5,10 +5,8 @@
 package Vista.Arreglos.Util;
 
 import Controlador.RolControlador;
-import Modelo.Cuenta;
 import Modelo.Rol;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 
 /**
  *
@@ -29,6 +27,5 @@ public class UtilVista {
     public static Rol ObtenerRolControlador(JComboBox cbx){
         return (Rol)cbx.getSelectedItem();
     }
-    
     
 }
