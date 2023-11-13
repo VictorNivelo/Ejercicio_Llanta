@@ -134,6 +134,26 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         }
     }
     
+    public void cargar() {
+        try {
+            Gson json = new Gson();
+            FileReader fr = new FileReader("ListaUsuarios" + ".json");
+            StringBuilder jsons = new StringBuilder();
+            int valor = fr.read();
+            while (valor != -1) {
+                jsons.append((char) valor);
+                valor = fr.read();
+            }
+            Persona[] aux = json.fromJson(jsons.toString(), Persona[].class);
+            for (int i = aux.length - 1; i >= 0; i--) {
+                ListaD.AgregarCabeza(aux[i]);
+            }
+        } 
+        catch (Exception e) {
+            System.out.println("No se encontraron objetos guardados en el json!");
+        }
+    }
+    
 //    public void CargarDatosCitasAtender() throws EstaVacia{
 //        ListaDinamica<Persona> pas = new ListaDinamica<>();
 //        Gson gson = new Gson();

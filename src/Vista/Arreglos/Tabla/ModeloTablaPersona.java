@@ -4,6 +4,7 @@
  */
 package Vista.Arreglos.Tabla;
 
+import Controlador.Tda.listas.ListaDinamica;
 import Modelo.Persona;
 import javax.swing.table.AbstractTableModel;
 
@@ -14,7 +15,16 @@ import javax.swing.table.AbstractTableModel;
 public class ModeloTablaPersona extends AbstractTableModel {
 
     private Persona personas[];
+//    private ListaDinamica<Persona> personas;
 
+//    public ListaDinamica<Persona> getPersonas() {
+//        return personas;
+//    }
+//
+//    public void setPersonas(ListaDinamica<Persona> personas) {
+//        this.personas = personas;
+//    }
+//    
     public Persona[] getPersonas() {
         return personas;
     }

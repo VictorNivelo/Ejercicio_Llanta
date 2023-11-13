@@ -29,7 +29,7 @@ public class ListaDinamica<E> {
         AgregarFinal(info);
     }
     
-    private void AgregarCabeza(E info){
+    public void AgregarCabeza(E info){
         Nodo<E> Ayuda ;
         if(EstaVacio()){
             Ayuda = new Nodo<>(info);
@@ -65,9 +65,36 @@ public class ListaDinamica<E> {
     private E ObtenerPrimero() throws EstaVacia{
         if(EstaVacio()){
             throw new EstaVacia("La lista esta vacia");
-        }
+    }
         return cabezera.getInfo();
     }
+    
+//    public E ObtenerPrimero(Integer pos) throws EstaVacia{
+//        
+//        if (!EstaVacio()) {
+//            E info = null;
+//            if (pos >= 0 && pos < Longitud) {
+//                if (pos == 0) {
+//                    info = cabezera.getInfo();
+//                } 
+//                else {
+//                    Nodo<E> ayuda = cabezera;
+//                    for (int i = 0; i < pos; i++) {
+//                        ayuda = ayuda.getSiguiente();
+//                    }
+//                    info = ayuda.getInfo();
+//                }
+//
+//            } 
+//            else {
+//                throw new EstaVacia("La lista esta vacia");
+//            }
+//            return cabezera.getInfo();
+//        } 
+//        else {
+//            throw new EstaVacia("La lista esta vacia");
+//        }
+//    }
     
     private E ObtenerUltimo() throws EstaVacia{
         if(EstaVacio()){
