@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import Modelo.Cuenta;
 import Modelo.Persona;
 import Modelo.Rol;
-import java.io.File;
 import java.io.FileReader;
 
 
@@ -26,7 +25,7 @@ import java.io.FileReader;
  */
 public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
-    private PersonaControlador personaControl = new PersonaControlador(10);
+    private PersonaControlador personaControl = new PersonaControlador(26);
     private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
@@ -298,7 +297,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +340,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 911, Short.MAX_VALUE)
                         .addComponent(btnRegistrarNuevoUsuario)))
                 .addContainerGap())
         );
@@ -449,6 +448,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             String NombreP = txtNombre.getText();
             String ApellidoP = txtApellido.getText();
             String DireccionP = txtDireccion.getText();
+            
             Rol rol = UtilVista.ObtenerRolControlador(cbxRol);
             
             String Correo = txtCorreo.getText();
@@ -466,14 +466,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             guardarListaEnJson(ListaD, "ListaUsuarios.json");
             
             System.out.println(ListaD);
-
             
-
         }
-        
-//        VistaAlmacen abrir = new VistaAlmacen();
-//        abrir.setVisible(true);
-//        this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarNuevoUsuarioActionPerformed
 
     private void txtNumeroIdentificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroIdentificacionKeyTyped

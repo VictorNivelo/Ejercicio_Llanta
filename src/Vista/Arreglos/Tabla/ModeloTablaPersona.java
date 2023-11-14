@@ -95,9 +95,9 @@ public class ModeloTablaPersona extends AbstractTableModel {
             case 1: 
                 return "Tipo de rol";
             case 2:
-                return "Tipo identificacion";
+                return "Tipo DNI";
             case 3:
-                return "Numero identidicacion";
+                return "Numero DNI";
             case 4:
                 return "Nombre";
             case 5:
