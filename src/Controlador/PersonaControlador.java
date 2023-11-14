@@ -13,6 +13,9 @@ import Modelo.Persona;
 public class PersonaControlador {
     private Persona persona;
     private Persona[] MatrizPersona;
+    
+    public PersonaControlador(){
+    }
 
     public PersonaControlador(Integer tamano) {
             this.MatrizPersona = new Persona[tamano];
@@ -68,7 +71,7 @@ public class PersonaControlador {
 
     public Persona getPersona() {
         if (persona == null) {
-            persona = new Persona(null,null,null,null,null,null,null,null);
+            persona = new Persona();
         }
         return persona;
     }

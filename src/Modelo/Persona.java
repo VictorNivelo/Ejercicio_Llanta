@@ -17,7 +17,11 @@ public class Persona {
     private String Direccion;
     private Cuenta PersonaCuenta;
     private Rol RolPersona;
-
+    
+    public Persona(){
+        
+    }
+    
     public Persona(Integer Id_Persona, String TipoDNI, String DNI, String Nombre, String Apellido, String Direccion, Cuenta PersonaCuenta, Rol RolPersona) {
         this.Id_Persona = Id_Persona;
         this.TipoDNI = TipoDNI;

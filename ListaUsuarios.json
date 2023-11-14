@@ -4,13 +4,13 @@
       "Id_Persona": 1,
       "TipoDNI": "Cedula",
       "DNI": "1",
-      "Nombre": "a",
-      "Apellido": "a",
-      "Direccion": "a",
+      "Nombre": "q",
+      "Apellido": "q",
+      "Direccion": "q",
       "PersonaCuenta": {
         "id_Cuenta": 1,
-        "Correo": "a@b.com",
-        "Contrasena": "holamundo",
+        "Correo": "q",
+        "Contrasena": "q",
         "EstadoCuenta": true
       },
       "RolPersona": {
@@ -23,14 +23,14 @@
       "info": {
         "Id_Persona": 2,
         "TipoDNI": "Cedula",
-        "DNI": "2",
-        "Nombre": "b",
-        "Apellido": "b",
-        "Direccion": "b",
+        "DNI": "222",
+        "Nombre": "s",
+        "Apellido": "s",
+        "Direccion": "s",
         "PersonaCuenta": {
           "id_Cuenta": 2,
-          "Correo": "b@b.com",
-          "Contrasena": "adiosmundo",
+          "Correo": "s",
+          "Contrasena": "s",
           "EstadoCuenta": true
         },
         "RolPersona": {
@@ -38,92 +38,29 @@
           "Nombre_rol": "Cajero",
           "Descripcion_rol": "Es un empleado"
         }
-      },
-      "Siguiente": {
-        "info": {
-          "Id_Persona": 3,
-          "TipoDNI": "Pasaporte",
-          "DNI": "3",
-          "Nombre": "c",
-          "Apellido": "c",
-          "Direccion": "c",
-          "PersonaCuenta": {
-            "id_Cuenta": 3,
-            "Correo": "c@c.com",
-            "Contrasena": "cmundo",
-            "EstadoCuenta": true
-          },
-          "RolPersona": {
-            "id_rol": 3,
-            "Nombre_rol": "Cliente",
-            "Descripcion_rol": "Es un usuario"
-          }
-        },
-        "Siguiente": {
-          "info": {
-            "Id_Persona": 4,
-            "TipoDNI": "Cedula",
-            "DNI": "4",
-            "Nombre": "d",
-            "Apellido": "d",
-            "Direccion": "d",
-            "PersonaCuenta": {
-              "id_Cuenta": 4,
-              "Correo": "d@d.com",
-              "Contrasena": "dmundo",
-              "EstadoCuenta": true
-            },
-            "RolPersona": {
-              "id_rol": 3,
-              "Nombre_rol": "Cliente",
-              "Descripcion_rol": "Es un usuario"
-            }
-          },
-          "Siguiente": {
-            "info": {
-              "Id_Persona": 5,
-              "TipoDNI": "Cedula",
-              "DNI": "5",
-              "Nombre": "e",
-              "Apellido": "e",
-              "Direccion": "e",
-              "PersonaCuenta": {
-                "id_Cuenta": 5,
-                "Correo": "e@e.com",
-                "Contrasena": "emundo",
-                "EstadoCuenta": true
-              },
-              "RolPersona": {
-                "id_rol": 3,
-                "Nombre_rol": "Cliente",
-                "Descripcion_rol": "Es un usuario"
-              }
-            }
-          }
-        }
       }
     }
   },
   "ultimo": {
     "info": {
-      "Id_Persona": 5,
+      "Id_Persona": 2,
       "TipoDNI": "Cedula",
-      "DNI": "5",
-      "Nombre": "e",
-      "Apellido": "e",
-      "Direccion": "e",
+      "DNI": "222",
+      "Nombre": "s",
+      "Apellido": "s",
+      "Direccion": "s",
       "PersonaCuenta": {
-        "id_Cuenta": 5,
-        "Correo": "e@e.com",
-        "Contrasena": "emundo",
+        "id_Cuenta": 2,
+        "Correo": "s",
+        "Contrasena": "s",
         "EstadoCuenta": true
       },
       "RolPersona": {
-        "id_rol": 3,
-        "Nombre_rol": "Cliente",
-        "Descripcion_rol": "Es un usuario"
+        "id_rol": 2,
+        "Nombre_rol": "Cajero",
+        "Descripcion_rol": "Es un empleado"
       }
     }
   },
-  "Longitud": 5
+  "Longitud": 2
 }

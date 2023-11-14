@@ -4,7 +4,6 @@
  */
 package Vista.Arreglos.Tabla;
 
-import Controlador.Tda.listas.ListaDinamica;
 import Modelo.Persona;
 import javax.swing.table.AbstractTableModel;
 

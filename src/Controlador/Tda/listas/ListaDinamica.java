@@ -45,7 +45,7 @@ public class ListaDinamica<E> {
         }
     }
     
-    private void AgregarFinal(E info){
+    public void AgregarFinal(E info){
         Nodo<E> Ayuda;
         if(EstaVacio()){
             AgregarCabeza(info);
@@ -130,7 +130,7 @@ public class ListaDinamica<E> {
             return Buscar;
         }
     }
-    
+       
     public void Agregar (E info, Integer indice)throws EstaVacia{
         if(EstaVacio() || indice == 0){
             AgregarCabeza(info);

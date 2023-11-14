@@ -5,7 +5,6 @@
 package Vista;
 
 import Controlador.PersonaControlador;
-import Controlador.Tda.listas.Exepciones.EstaVacia;
 import Controlador.Tda.listas.ListaDinamica;
 import Vista.Arreglos.Tabla.ModeloTablaPersona;
 import Vista.Arreglos.Util.UtilVista;
@@ -20,10 +19,9 @@ import Modelo.Persona;
 import Modelo.Rol;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.Reader;
+
 
 /**
  *
@@ -31,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
-    private PersonaControlador personaControl = new PersonaControlador(25);
+    private PersonaControlador personaControl = new PersonaControlador(26);
     private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
@@ -43,16 +41,18 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);   
         UtilVista.CargarComboRoles(cbxRol);
+        cargarPersonasDesdeJSON("ListaUsuarios.json");
         CargarTabla();
     }
     
-    private void CargarTabla(){
+    private void CargarTabla() {
+        
         mtp.setPersonas(personaControl.getMatrizPersona());
         cbxTipoIdentificacion.setSelectedIndex(-1);
         cbxRol.setSelectedIndex(-1);
         tblUsuarios.setModel(mtp);
         tblUsuarios.updateUI();
-        
+
     }
     
     private void Limpiar() {
@@ -108,6 +108,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         Limpiar();
     }
     
+    
+    
     private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
         try (Writer writer = new FileWriter(archivoJson)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -117,36 +119,40 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-    private static ListaDinamica<Persona> cargarListaDesdeJson(String archivoJson) throws EstaVacia{
-        try (BufferedReader reader = new BufferedReader(new FileReader(archivoJson))) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-            java.lang.reflect.Type listaType = new TypeToken<ListaDinamica<Persona>>() {}.getType();
+    private ListaDinamica<Persona> cargarPersonasDesdeJSON(String archivoJson) {
+        ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-            ListaDinamica<Persona> listaPersonas = gson.fromJson(reader, listaType);
-
-            return listaPersonas;
+        try (Reader reader = new BufferedReader(new FileReader(archivoJson))) {
+            java.lang.reflect.Type tipoLista = new TypeToken<ListaDinamica<Persona>>() {}.getType();
+            
+            listaPersonas = gson.fromJson(reader, tipoLista);
+            
+            System.out.println("" + listaPersonas);
         } 
         catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
+        return listaPersonas;
     }
     
-    public void cargar() {
+    private void cargar() {
         try {
             Gson json = new Gson();
-            FileReader fr = new FileReader("ListaUsuarios" + ".json");
+            FileReader fr = new FileReader("ListaUsuarios.json");
             StringBuilder jsons = new StringBuilder();
             int valor = fr.read();
+            
             while (valor != -1) {
                 jsons.append((char) valor);
                 valor = fr.read();
             }
+            
             Persona[] aux = json.fromJson(jsons.toString(), Persona[].class);
+            
             for (int i = aux.length - 1; i >= 0; i--) {
-                ListaD.AgregarCabeza(aux[i]);
+                ListaD.Agregar(aux[i]);
             }
         } 
         catch (Exception e) {
@@ -154,60 +160,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         }
     }
     
-//    public void CargarDatosCitasAtender() throws EstaVacia{
-//        ListaDinamica<Persona> pas = new ListaDinamica<>();
-//        Gson gson = new Gson();
-//
-//        FileReader reader;
-//
-//        try {reader = new FileReader("ListaUsuarios.json");
-//            ListaDinamica<Persona> listaPacientesCargada = gson.fromJson(reader, new TypeToken<ListaDinamica<Persona>>() {}.getType());
-//            
-//            for (int i = 0; i < listaPacientesCargada.getLongitud(); i++) {
-//                Persona paciente = (Persona) listaPacientesCargada.ObtenerInfo(i);
-//                pas.Agregar(paciente);
-//            }
-//            
-//        } 
-//        catch (FileNotFoundException e) {
-//            System.out.println(e);
-//        }
-//
-//        for (int i = pas.getLongitud() - 1; i >= 0; i--) {
-//            Persona persona = (Persona) pas.ObtenerInfo(i);
-//
-//            Object[] fila = {
-//                persona.getId_Persona(),
-//                persona.getRolPersona().getNombre_rol(),
-//                persona.getTipoDNI(),
-//                persona.getDNI(),
-//                persona.getNombre(),
-//                persona.getApellido(),
-//                persona.getDireccion(),
-//                persona.getPersonaCuenta().getCorreo(),
-//                persona.getPersonaCuenta().getEstadoCuenta()
-//            };
-//
-//            mtp.setPersonas(fila);
-//
-//            mtp.fireTableRowsInserted(mtp.getRowCount() - 1, mtp.getRowCount() - 1);
-//            
-//            tblUsuarios.setModel(mtp);
-//            tblUsuarios.updateUI();
-//        }
-//    }
-//    
-//    private static void guardarDatosJson(String json) {
-//        try (FileWriter fileWriter = new FileWriter("ListaUsuarios.json")) {
-//            fileWriter.write(json);
-//        } 
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    
-
-    /**
+   /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
@@ -415,7 +368,13 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        
+//        cargarPersonasDesdeJSON("ListaUsuarios.json");
+//        try {
+//            cargarListaDesdeJson("ListaUsuarios.json");
+//        } 
+//        catch (EstaVacia ex) {
+//            Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnRegistrarNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNuevoUsuarioActionPerformed
