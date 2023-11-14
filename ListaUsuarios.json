@@ -29,7 +29,7 @@
       "id_Cuenta": 2,
       "Correo": "s",
       "Contrasena": "s",
-      "EstadoCuenta": true
+      "EstadoCuenta": false
     },
     "RolPersona": {
       "id_rol": 3,

@@ -44,6 +44,18 @@ public class ModeloTablaPersona extends AbstractTableModel {
         return 9;
     }
 
+    private String EstadoCuenta(int i) {
+        
+        Persona p = personas[i];
+        
+        if (p.getPersonaCuenta().getEstadoCuenta()) {
+            return "Activa";
+        } 
+        else {
+            return "Inactiva";
+        }
+    }
+
     @Override
     public Object getValueAt(int i, int i1) {
         
@@ -67,7 +79,7 @@ public class ModeloTablaPersona extends AbstractTableModel {
             case 7:
                 return (p != null) ? p.getPersonaCuenta().getCorreo() : "";
             case 8:
-                return (p != null) ? p.getPersonaCuenta().getEstadoCuenta(): "";
+                return (p != null) ? EstadoCuenta(i): "";
                 
             default:
                 return null;
