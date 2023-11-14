@@ -158,6 +158,18 @@ public class ListaDinamica<E> {
 
         return lista;
     }
+    
+    public Object[] CovertirEnArreglo() {
+        Object[] Arreglos = new Object[Longitud];
+        Nodo<E> actual = cabezera;
+
+        for (int i = 0; i < Longitud; i++) {
+            Arreglos[i] = actual.getInfo();
+            actual = actual.getSiguiente();
+        }
+
+        return Arreglos;
+    }
 
     @Override
     public String toString() {

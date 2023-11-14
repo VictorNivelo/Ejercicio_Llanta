@@ -12,15 +12,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import javax.swing.JOptionPane;
 import Modelo.Cuenta;
 import Modelo.Persona;
 import Modelo.Rol;
-import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-import java.io.Reader;
 
 
 /**
@@ -29,7 +26,7 @@ import java.io.Reader;
  */
 public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
-    private PersonaControlador personaControl = new PersonaControlador(26);
+    private PersonaControlador personaControl = new PersonaControlador(10);
     private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
@@ -108,57 +105,99 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         Limpiar();
     }
     
-    
-    
     private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
-        try (Writer writer = new FileWriter(archivoJson)) {
+
+        try (FileWriter ListaUsuarios = new FileWriter(archivoJson)) {
+            
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(listaPersonas, writer);
+
+            Object[] personasArray = listaPersonas.CovertirEnArreglo();
+            gson.toJson(personasArray, ListaUsuarios);
+
+            System.out.println("Datos guardados correctamente en " + archivoJson);
         } 
         catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private ListaDinamica<Persona> cargarPersonasDesdeJSON(String archivoJson) {
-        ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try (Reader reader = new BufferedReader(new FileReader(archivoJson))) {
-            java.lang.reflect.Type tipoLista = new TypeToken<ListaDinamica<Persona>>() {}.getType();
+//    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
+//        try (Writer writer = new FileWriter(archivoJson)) {
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//            gson.toJson(listaPersonas, writer);
+//        } 
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public ListaDinamica<Persona> cargarPersonasDesdeJSON(String rutaArchivo) {
+        
+        try (FileReader ListaUsuariosGuardada = new FileReader(rutaArchivo)) {
             
-            listaPersonas = gson.fromJson(reader, tipoLista);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+            Persona[] personasArray = gson.fromJson(ListaUsuariosGuardada, Persona[].class);
+
+            ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
+
+            for (Persona persona : personasArray) {
+                listaPersonas.AgregarFinal(persona);
+            }
+
+            System.out.println(listaPersonas);
             
-            System.out.println("" + listaPersonas);
+            personaControl.setMatrizPersona(personasArray);
+            
+            return listaPersonas;
         } 
         catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return listaPersonas;
+        
     }
     
-    private void cargar() {
-        try {
-            Gson json = new Gson();
-            FileReader fr = new FileReader("ListaUsuarios.json");
-            StringBuilder jsons = new StringBuilder();
-            int valor = fr.read();
-            
-            while (valor != -1) {
-                jsons.append((char) valor);
-                valor = fr.read();
-            }
-            
-            Persona[] aux = json.fromJson(jsons.toString(), Persona[].class);
-            
-            for (int i = aux.length - 1; i >= 0; i--) {
-                ListaD.Agregar(aux[i]);
-            }
-        } 
-        catch (Exception e) {
-            System.out.println("No se encontraron objetos guardados en el json!");
-        }
-    }
+//    private ListaDinamica<Persona> cargarPersonasDesdeJSON(String archivoJson) {
+//        ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//        try (Reader reader = new BufferedReader(new FileReader(archivoJson))) {
+//            java.lang.reflect.Type tipoLista = new TypeToken<ListaDinamica<Persona>>() {}.getType();
+//            
+//            listaPersonas = gson.fromJson(reader, tipoLista);
+//            
+//            System.out.println("" + listaPersonas);
+//        } 
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return listaPersonas;
+//    }
+    
+//    private void cargar() {
+//        try {
+//            Gson json = new Gson();
+//            FileReader fr = new FileReader("ListaUsuarios.json");
+//            StringBuilder jsons = new StringBuilder();
+//            int valor = fr.read();
+//            
+//            while (valor != -1) {
+//                jsons.append((char) valor);
+//                valor = fr.read();
+//            }
+//            
+//            Persona[] aux = json.fromJson(jsons.toString(), Persona[].class);
+//            
+//            for (int i = aux.length - 1; i >= 0; i--) {
+//                ListaD.Agregar(aux[i]);
+//            }
+//        } 
+//        catch (Exception e) {
+//            System.out.println("No se encontraron objetos guardados en el json!");
+//        }
+//    }
     
    /**
      * This method is called from within the constructor to initialize the form.
@@ -395,7 +434,13 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El campo de apellido esta vacio","CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
         }
         else if(txtDireccion.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "El campo de direccion esta vacio","CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El campo de direccion esta vacio", "CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
+        } 
+        else if (txtCorreo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo de correo esta vacio", "CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
+        }
+        else if (txtContrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo de contraseña esta vacio", "CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
         }
         else{
             Integer IdPersona = ListaD.getLongitud()+1;
@@ -412,16 +457,17 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             
             Cuenta CuentaUsuario = new Cuenta(IdPersona, Correo, Contraseña, EstadoCuenta);
             
-            
             Persona personaGuardar = new Persona(IdPersona, TipoDNIP, NumeroDNIP, NombreP, ApellidoP, DireccionP, CuentaUsuario, rol);
             
             ListaD.Agregar(personaGuardar);
+            
+            Guardar();
             
             guardarListaEnJson(ListaD, "ListaUsuarios.json");
             
             System.out.println(ListaD);
 
-            Guardar();
+            
 
         }
         

@@ -1,66 +1,40 @@
-{
-  "cabezera": {
-    "info": {
-      "Id_Persona": 1,
-      "TipoDNI": "Cedula",
-      "DNI": "1",
-      "Nombre": "q",
-      "Apellido": "q",
-      "Direccion": "q",
-      "PersonaCuenta": {
-        "id_Cuenta": 1,
-        "Correo": "q",
-        "Contrasena": "q",
-        "EstadoCuenta": true
-      },
-      "RolPersona": {
-        "id_rol": 1,
-        "Nombre_rol": "Administrador",
-        "Descripcion_rol": "Es un admininistrador"
-      }
+[
+  {
+    "Id_Persona": 1,
+    "TipoDNI": "Pasaporte",
+    "DNI": "1",
+    "Nombre": "a",
+    "Apellido": "a",
+    "Direccion": "a",
+    "PersonaCuenta": {
+      "id_Cuenta": 1,
+      "Correo": "a",
+      "Contrasena": "a",
+      "EstadoCuenta": true
     },
-    "Siguiente": {
-      "info": {
-        "Id_Persona": 2,
-        "TipoDNI": "Cedula",
-        "DNI": "222",
-        "Nombre": "s",
-        "Apellido": "s",
-        "Direccion": "s",
-        "PersonaCuenta": {
-          "id_Cuenta": 2,
-          "Correo": "s",
-          "Contrasena": "s",
-          "EstadoCuenta": true
-        },
-        "RolPersona": {
-          "id_rol": 2,
-          "Nombre_rol": "Cajero",
-          "Descripcion_rol": "Es un empleado"
-        }
-      }
+    "RolPersona": {
+      "id_rol": 3,
+      "Nombre_rol": "Cliente",
+      "Descripcion_rol": "Es un usuario"
     }
   },
-  "ultimo": {
-    "info": {
-      "Id_Persona": 2,
-      "TipoDNI": "Cedula",
-      "DNI": "222",
-      "Nombre": "s",
-      "Apellido": "s",
-      "Direccion": "s",
-      "PersonaCuenta": {
-        "id_Cuenta": 2,
-        "Correo": "s",
-        "Contrasena": "s",
-        "EstadoCuenta": true
-      },
-      "RolPersona": {
-        "id_rol": 2,
-        "Nombre_rol": "Cajero",
-        "Descripcion_rol": "Es un empleado"
-      }
+  {
+    "Id_Persona": 2,
+    "TipoDNI": "Pasaporte",
+    "DNI": "2",
+    "Nombre": "s",
+    "Apellido": "s",
+    "Direccion": "s",
+    "PersonaCuenta": {
+      "id_Cuenta": 2,
+      "Correo": "s",
+      "Contrasena": "s",
+      "EstadoCuenta": true
+    },
+    "RolPersona": {
+      "id_rol": 3,
+      "Nombre_rol": "Cliente",
+      "Descripcion_rol": "Es un usuario"
     }
-  },
-  "Longitud": 2
-}
+  }
+]
