@@ -119,18 +119,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
-
-//    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
-//        try (Writer writer = new FileWriter(archivoJson)) {
-//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//            gson.toJson(listaPersonas, writer);
-//        } 
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
+    
     public ListaDinamica<Persona> cargarPersonasDesdeJSON(String rutaArchivo) {
         
         try (FileReader ListaUsuariosGuardada = new FileReader(rutaArchivo)) {
@@ -157,6 +146,18 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         }
         
     }
+
+//    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
+//        try (Writer writer = new FileWriter(archivoJson)) {
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//            gson.toJson(listaPersonas, writer);
+//        } 
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    
     
 //    private ListaDinamica<Persona> cargarPersonasDesdeJSON(String archivoJson) {
 //        ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
@@ -406,13 +407,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-//        cargarPersonasDesdeJSON("ListaUsuarios.json");
-//        try {
-//            cargarListaDesdeJson("ListaUsuarios.json");
-//        } 
-//        catch (EstaVacia ex) {
-//            Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        
+        
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnRegistrarNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNuevoUsuarioActionPerformed
