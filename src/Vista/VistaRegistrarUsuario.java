@@ -37,12 +37,10 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);   
         UtilVista.CargarComboRoles(cbxRol);
-        cargarPersonasDesdeJSON("ListaUsuarios.json");
         CargarTabla();
     }
     
     private void CargarTabla() {
-        
         mtp.setPersonas(personaControl.getMatrizPersona());
         cbxTipoIdentificacion.setSelectedIndex(-1);
         cbxRol.setSelectedIndex(-1);
@@ -112,6 +110,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
             Object[] personasArray = listaPersonas.CovertirEnArreglo();
             gson.toJson(personasArray, ListaUsuarios);
+            
+//            CargarTabla();
 
             System.out.println("Datos guardados correctamente en " + archivoJson);
         } 
@@ -231,6 +231,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         cbxRol = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         cbxTipoIdentificacion = new javax.swing.JComboBox<>();
+        btnCargarRegistros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REGISTRAR USUARIO");
@@ -311,6 +312,13 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
         cbxTipoIdentificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula", "Pasaporte" }));
 
+        btnCargarRegistros.setText("CARGAR REGISTROS");
+        btnCargarRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarRegistrosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -341,7 +349,9 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 911, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCargarRegistros)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRegistrarNuevoUsuario)))
                 .addContainerGap())
         );
@@ -388,7 +398,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar)
-                    .addComponent(btnRegistrarNuevoUsuario))
+                    .addComponent(btnRegistrarNuevoUsuario)
+                    .addComponent(btnCargarRegistros))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -514,6 +525,12 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtApellidoKeyTyped
 
+    private void btnCargarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarRegistrosActionPerformed
+        // TODO add your handling code here:
+        cargarPersonasDesdeJSON("ListaUsuarios.json");
+        CargarTabla();
+    }//GEN-LAST:event_btnCargarRegistrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -550,6 +567,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCargarRegistros;
     private javax.swing.JButton btnRegistrarNuevoUsuario;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxRol;

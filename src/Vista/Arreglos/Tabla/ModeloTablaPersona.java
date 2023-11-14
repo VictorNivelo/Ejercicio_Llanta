@@ -43,7 +43,7 @@ public class ModeloTablaPersona extends AbstractTableModel {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return 9;
     }
-
+    
     private String EstadoCuenta(int i) {
         
         Persona p = personas[i];

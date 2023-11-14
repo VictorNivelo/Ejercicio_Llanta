@@ -67,7 +67,9 @@
                       <Component id="jLabel1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="911" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnCargarRegistros" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnRegistrarNuevoUsuario" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -121,6 +123,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnRegresar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnRegistrarNuevoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCargarRegistros" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="8" max="32767" attributes="0"/>
               </Group>
@@ -272,6 +275,14 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCargarRegistros">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CARGAR REGISTROS"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCargarRegistrosActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
