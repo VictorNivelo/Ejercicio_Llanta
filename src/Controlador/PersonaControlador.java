@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Controlador.Tda.listas.ListaDinamica;
 import Modelo.Persona;
 
 /**
@@ -12,13 +13,16 @@ import Modelo.Persona;
  */
 public class PersonaControlador {
     private Persona persona;
-    private Persona[] MatrizPersona;
+    private ListaDinamica<Persona> MatrizPersona;
+//    private Persona[] MatrizPersona;
     
     public PersonaControlador(){
     }
 
     public PersonaControlador(Integer tamano) {
-        this.MatrizPersona = new Persona[tamano];
+        this.MatrizPersona  = new ListaDinamica<>();
+//        this.MatrizPersona = new ;
+//        this.MatrizPersona = new Persona[tamano];
     }
 
     //metodo que permite guardar
@@ -26,7 +30,8 @@ public class PersonaControlador {
         Integer pos = VerificarPosicion();
         if (pos > -1) {
             persona.setId_Persona(pos+1);
-            MatrizPersona[VerificarPosicion()] = persona;
+            MatrizPersona.getCabezera();
+//            MatrizPersona[VerificarPosicion()] = persona;
             return true;
         } 
         else {
@@ -50,8 +55,8 @@ public class PersonaControlador {
         
         Integer band = -1;
         
-        for(int i = 0; i < this.MatrizPersona.length; i++){
-            if(this.MatrizPersona[i] == null){
+        for(int i = 0; i < this.MatrizPersona.getLongitud(); i++){
+            if(this.MatrizPersona.getLongitud() == null){
                 band = i;
                 break;
             }
@@ -63,8 +68,8 @@ public class PersonaControlador {
     }
     
     public void Imprimir() {
-        for (int i = 0; i > this.getMatrizPersona().length; i++) {
-            System.out.println(getMatrizPersona()[i]);
+        for (int i = 0; i > this.getMatrizPersona().getLongitud(); i++) {
+            System.out.println(getMatrizPersona().getLongitud());
         }
     }
 
@@ -78,12 +83,22 @@ public class PersonaControlador {
     public void setPersona(Persona persona) {
         this.persona = persona ;
     }
+    
+    
 
-    public Persona[] getMatrizPersona() {
+//    public Persona[] getMatrizPersona() {
+//        return MatrizPersona;
+//    }
+//
+//    public void setMatrizPersona(Persona[] MatrizPersona) {
+//        this.MatrizPersona = MatrizPersona;
+//    }
+
+    public ListaDinamica<Persona> getMatrizPersona() {
         return MatrizPersona;
     }
 
-    public void setMatrizPersona(Persona[] MatrizPersona) {
+    public void setMatrizPersona(ListaDinamica<Persona> MatrizPersona) {
         this.MatrizPersona = MatrizPersona;
     }
     

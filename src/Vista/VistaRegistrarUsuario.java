@@ -25,7 +25,7 @@ import java.io.FileReader;
  */
 public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
-    private PersonaControlador personaControl = new PersonaControlador(26);
+    private PersonaControlador personaControl = new PersonaControlador(10);
     private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
@@ -41,7 +41,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     }
     
     private void CargarTabla() {
-        mtp.setPersonas(personaControl.getMatrizPersona());
+        mtp.setPersona(personaControl.getMatrizPersona());
         cbxTipoIdentificacion.setSelectedIndex(-1);
         cbxRol.setSelectedIndex(-1);
         tblUsuarios.setModel(mtp);
@@ -136,7 +136,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
             System.out.println(listaPersonas);
             
-            personaControl.setMatrizPersona(personasArray);
+            personaControl.setMatrizPersona(listaPersonas);
             
             return listaPersonas;
         } 

@@ -4,7 +4,11 @@
  */
 package Vista.Arreglos.Tabla;
 
+import Controlador.Tda.listas.Exepciones.EstaVacia;
+import Controlador.Tda.listas.ListaDinamica;
 import Modelo.Persona;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -13,7 +17,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeloTablaPersona extends AbstractTableModel {
 
-    private Persona personas[];
+//    private Persona personas[];
+    private ListaDinamica<Persona> personas;
 //    private ListaDinamica<Persona> personas;
 
 //    public ListaDinamica<Persona> getPersonas() {
@@ -24,18 +29,29 @@ public class ModeloTablaPersona extends AbstractTableModel {
 //        this.personas = personas;
 //    }
 //    
-    public Persona[] getPersonas() {
+
+    public ListaDinamica<Persona> getPersona() {
         return personas;
     }
 
-    public void setPersonas(Persona[] personas) {
-        this.personas = personas;
+    public void setPersona(ListaDinamica<Persona> persona) {
+        this.personas = persona;
     }
+    
+    
+    
+//    public Persona[] getPersonas() {
+//        return personas;
+//    }
+//
+//    public void setPersonas(Persona[] personas) {
+//        this.personas = personas;
+//    }
 
     @Override
     public int getRowCount() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        return personas.length;
+        return personas.getLongitud();
     }
 
     @Override
@@ -44,9 +60,10 @@ public class ModeloTablaPersona extends AbstractTableModel {
         return 9;
     }
     
-    private String EstadoCuenta(int i) {
+    private String EstadoCuenta(int i) throws EstaVacia {
         
-        Persona p = personas[i];
+        Persona p = personas.ObtenerInfo(i);
+//        Persona p = personas[i];
         
         if (p.getPersonaCuenta().getEstadoCuenta()) {
             return "Activa";
@@ -58,34 +75,45 @@ public class ModeloTablaPersona extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int i, int i1) {
-        
-        Persona p = personas[i];
 
-        switch (i1) {
-            case 0:
-                return (p != null) ? p.getId_Persona(): "";
-            case 1: 
-                return (p != null) ? p.getRolPersona().getNombre_rol() : "";
-            case 2:
-                return (p != null) ? p.getTipoDNI(): "";
-            case 3:
-                return (p != null) ? p.getDNI() : "";
-            case 4:
-                return (p != null) ? p.getNombre() : "";
-            case 5:
-                return (p != null) ? p.getApellido() : "";
-            case 6:
-                return (p != null) ? p.getDireccion() : "";
-            case 7:
-                return (p != null) ? p.getPersonaCuenta().getCorreo() : "";
-            case 8:
-                return (p != null) ? EstadoCuenta(i): "";
-                
-            default:
-                return null;
-
+        try {
+            Persona p = personas.ObtenerInfo(i);
+            
+            switch (i1) {
+                case 0:
+                    return (p != null) ? p.getId_Persona() : "";
+                case 1:
+                    return (p != null) ? p.getRolPersona().getNombre_rol() : "";
+                case 2:
+                    return (p != null) ? p.getTipoDNI() : "";
+                case 3:
+                    return (p != null) ? p.getDNI() : "";
+                case 4:
+                    return (p != null) ? p.getNombre() : "";
+                case 5:
+                    return (p != null) ? p.getApellido() : "";
+                case 6:
+                    return (p != null) ? p.getDireccion() : "";
+                case 7:
+                    return (p != null) ? p.getPersonaCuenta().getCorreo() : "";
+                case 8:
+                    return (p != null) ? EstadoCuenta(i) : "";
+                    
+                default:
+                    return null;
+                    
+            }
+//        Persona p = personas[i];
+        } 
+        catch (EstaVacia ex) {
+            Logger.getLogger(ModeloTablaPersona.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        catch (IndexOutOfBoundsException ex) {
+            Logger.getLogger(ModeloTablaPersona.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        return personas;
+
+}
 
     @Override
     public String getColumnName(int column) {
