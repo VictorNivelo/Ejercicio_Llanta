@@ -18,10 +18,9 @@ public class PersonaControlador {
     }
 
     public PersonaControlador(Integer tamano) {
-            this.MatrizPersona = new Persona[tamano];
-        
+        this.MatrizPersona = new Persona[tamano];
     }
-    
+
     //metodo que permite guardar
     public Boolean Guardar(){
         Integer pos = VerificarPosicion();
