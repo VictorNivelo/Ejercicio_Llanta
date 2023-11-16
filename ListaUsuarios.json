@@ -1,52 +1,14 @@
 [
   {
     "Id_Persona": 1,
-    "TipoDNI": "Cedula",
+    "TipoDNI": "Pasaporte",
     "DNI": "1",
-    "Nombre": "a",
-    "Apellido": "a",
-    "Direccion": "a",
+    "Nombre": "dDd",
+    "Apellido": "d",
+    "Direccion": "d",
     "PersonaCuenta": {
       "id_Cuenta": 1,
-      "Correo": "a",
-      "Contrasena": "a",
-      "EstadoCuenta": true
-    },
-    "RolPersona": {
-      "id_rol": 1,
-      "Nombre_rol": "Administrador",
-      "Descripcion_rol": "Es un admininistrador"
-    }
-  },
-  {
-    "Id_Persona": 2,
-    "TipoDNI": "Pasaporte",
-    "DNI": "1",
-    "Nombre": "d",
-    "Apellido": "d",
-    "Direccion": "d",
-    "PersonaCuenta": {
-      "id_Cuenta": 2,
       "Correo": "d",
-      "Contrasena": "d",
-      "EstadoCuenta": true
-    },
-    "RolPersona": {
-      "id_rol": 2,
-      "Nombre_rol": "Cajero",
-      "Descripcion_rol": "Es un empleado"
-    }
-  },
-  {
-    "Id_Persona": 3,
-    "TipoDNI": "Pasaporte",
-    "DNI": "1",
-    "Nombre": "d",
-    "Apellido": "d",
-    "Direccion": "d",
-    "PersonaCuenta": {
-      "id_Cuenta": 3,
-      "Correo": "ddd",
       "Contrasena": "d",
       "EstadoCuenta": true
     },
