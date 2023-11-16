@@ -5,7 +5,9 @@
 package Vista;
 
 import Controlador.PersonaControlador;
+import Controlador.Tda.listas.Exepciones.EstaVacia;
 import Controlador.Tda.listas.ListaDinamica;
+import Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista;
 import Vista.Arreglos.Tabla.ModeloTablaPersona;
 import Vista.Arreglos.Util.UtilVista;
 import com.google.gson.Gson;
@@ -17,6 +19,8 @@ import Modelo.Cuenta;
 import Modelo.Persona;
 import Modelo.Rol;
 import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -25,19 +29,22 @@ import java.io.FileReader;
  */
 public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
+    private ModeloTablaPersonaLista mtp = new ModeloTablaPersonaLista();
+    
+    
     private PersonaControlador personaControl = new PersonaControlador(10);
-    private ModeloTablaPersona mtp = new ModeloTablaPersona();
+//    private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
 
     /**
      * Creates new form VistaRegistrarUsuario
      */
-    public VistaRegistrarUsuario(){
+    public VistaRegistrarUsuario() throws EstaVacia{
         initComponents();
         this.setLocationRelativeTo(null);   
-        UtilVista.CargarComboRoles(cbxRol);
-        CargarTabla();
+//        UtilVista.CargarComboRoles(cbxRol);
+//        CargarTabla();
     }
     
     private void CargarTabla() {
@@ -49,7 +56,9 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
     }
     
-    private void Limpiar() {
+    private void Limpiar() throws EstaVacia {
+//        UtilVista.CargarComboRoles(cbxRol);
+        
         txtApellido.setText("");
         txtNombre.setText("");
         txtDireccion.setText("");
@@ -68,7 +77,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         
     }
     
-    private void Guardar(){
+    private void Guardar() throws EstaVacia{
         if(Validar()){
             String Correo = txtCorreo.getText();
             String Contraseña = txtContrasena.getText();
@@ -84,6 +93,10 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             personaControl.getPersona().setApellido(txtApellido.getText());
             personaControl.getPersona().setDireccion(txtDireccion.getText());
             personaControl.getPersona().setRolPersona(UtilVista.ObtenerRolControlador(cbxRol));
+            
+//            if(personaControl.){
+//                
+//            }
             
             if(personaControl.Guardar()){
                 JOptionPane.showMessageDialog(null, "Datos guardados", "Informacion", JOptionPane.INFORMATION_MESSAGE);
@@ -146,7 +159,74 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         }
         
     }
+    public boolean validadorDeCedula(String cedula) {
+        boolean cedulaCorrecta = false;
 
+        try {
+
+            if (cedula.length() == 10) // ConstantesApp.LongitudCedula
+            {
+                int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+                if (tercerDigito < 6) {
+
+                    int[] coefValCedula = {2, 1, 2, 1, 2, 1, 2, 1, 2};
+                    int verificador = Integer.parseInt(cedula.substring(9, 10));
+                    int suma = 0;
+                    int digito = 0;
+                    for (int i = 0; i < (cedula.length() - 1); i++) {
+                        digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
+                        suma += ((digito % 10) + (digito / 10));
+                    }
+
+                    if ((suma % 10 == 0) && (suma % 10 == verificador)) {
+                        cedulaCorrecta = true;
+                    } else if ((10 - (suma % 10)) == verificador) {
+                        cedulaCorrecta = true;
+                    } else {
+                        cedulaCorrecta = false;
+                    }
+                } else {
+                    cedulaCorrecta = false;
+                }
+            } else {
+                cedulaCorrecta = false;
+            }
+        } catch (NumberFormatException nfe) {
+            cedulaCorrecta = false;
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Una excepcion ocurrio en el proceso de validadcion");
+            System.out.println("Una excepcion ocurrio en el proceso de validadcion");
+            cedulaCorrecta = false;
+        }
+
+        if (!cedulaCorrecta) {
+            System.out.println("La Cédula ingresada es Incorrecta");
+            JOptionPane.showMessageDialog(null, "La Cédula ingresada es Incorrecta");
+        }
+        return cedulaCorrecta;
+    }
+    
+    private void CargarVista(){
+        int fila = tblUsuarios.getSelectedRow();
+        if(fila < 0){
+            JOptionPane.showMessageDialog(null, "Escoga un registro");
+        }else{
+            try {
+                personaControl.setPersona(mtp.getPersona().ObtenerInfo(fila));
+                txtApellido.setText(personaControl.getPersona().getApellido());
+                txtNombre.setText(personaControl.getPersona().getNombre());
+                txtNumeroIdentificacion.setText(personaControl.getPersona().getDNI());
+                txtDireccion.setText(personaControl.getPersona().getDireccion());
+                txtCorreo.setText(personaControl.getPersona().getPersonaCuenta().getCorreo());
+                txtContrasena.setText(personaControl.getPersona().getPersonaCuenta().getContrasena());
+                cbxRol.setSelectedIndex(personaControl.getPersona().getRolPersona().getId_rol()-1);
+//                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
+//                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
+            } catch (Exception e) {
+            }
+        }
+    }
+    
 //    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
 //        try (Writer writer = new FileWriter(archivoJson)) {
 //            Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -232,6 +312,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         cbxTipoIdentificacion = new javax.swing.JComboBox<>();
         btnCargarRegistros = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REGISTRAR USUARIO");
@@ -308,6 +390,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
         jLabel2.setText("Rol");
 
+        cbxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero", "Cliente" }));
+
         jLabel9.setText("Tipo de identificacion");
 
         cbxTipoIdentificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula", "Pasaporte" }));
@@ -316,6 +400,20 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         btnCargarRegistros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarRegistrosActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Escoger");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -350,6 +448,10 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCargarRegistros)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRegistrarNuevoUsuario)))
@@ -399,7 +501,9 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar)
                     .addComponent(btnRegistrarNuevoUsuario)
-                    .addComponent(btnCargarRegistros))
+                    .addComponent(btnCargarRegistros)
+                    .addComponent(btnCancelar)
+                    .addComponent(jButton1))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -424,7 +528,13 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
     private void btnRegistrarNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNuevoUsuarioActionPerformed
         // TODO add your handling code here:"
-        if(cbxRol.getSelectedIndex() == -1){
+        String NumeroDNIP = txtNumeroIdentificacion.getText();
+//        validadorDeCedula(NumeroDNIP);
+        if(validadorDeCedula(NumeroDNIP) == false){
+//            JOptionPane.showMessageDialog(null, "Cedula invalida");
+        }
+        
+        else if(cbxRol.getSelectedIndex() == -1){
             JOptionPane.showMessageDialog(null, "El tipo de rol no esta seleccionado","CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
         }
         else if(cbxTipoIdentificacion.getSelectedIndex() == -1){
@@ -449,9 +559,10 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El campo de contraseña esta vacio", "CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
         }
         else{
+            
             Integer IdPersona = ListaD.getLongitud()+1;
             String TipoDNIP = cbxTipoIdentificacion.getSelectedItem().toString();
-            String NumeroDNIP = txtNumeroIdentificacion.getText();
+//            String NumeroDNIP = txtNumeroIdentificacion.getText();
             String NombreP = txtNombre.getText();
             String ApellidoP = txtApellido.getText();
             String DireccionP = txtDireccion.getText();
@@ -462,13 +573,18 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             String Contraseña = txtContrasena.getText();
             Boolean EstadoCuenta = true;
             
+            
             Cuenta CuentaUsuario = new Cuenta(IdPersona, Correo, Contraseña, EstadoCuenta);
             
             Persona personaGuardar = new Persona(IdPersona, TipoDNIP, NumeroDNIP, NombreP, ApellidoP, DireccionP, CuentaUsuario, rol);
             
             ListaD.Agregar(personaGuardar);
             
-            Guardar();
+            try {
+                Guardar();
+            } catch (EstaVacia ex) {
+                Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             guardarListaEnJson(ListaD, "ListaUsuarios.json");
             
@@ -531,6 +647,20 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         CargarTabla();
     }//GEN-LAST:event_btnCargarRegistrosActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            // TODO add your handling code here:
+            Limpiar();
+        } catch (EstaVacia ex) {
+            Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CargarVista();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -561,17 +691,23 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaRegistrarUsuario().setVisible(true);
+                try {
+                    new VistaRegistrarUsuario().setVisible(true);
+                } catch (EstaVacia ex) {
+                    Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCargarRegistros;
     private javax.swing.JButton btnRegistrarNuevoUsuario;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxRol;
     private javax.swing.JComboBox<String> cbxTipoIdentificacion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

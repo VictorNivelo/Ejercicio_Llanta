@@ -11,7 +11,7 @@ import java.io.File;
 
 /**
  *
- * @author Invitado xd
+ * @author Victor
  */
 public class Bridge {
     public static String URL = "files"+ File.separatorChar;

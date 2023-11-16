@@ -1,21 +1,59 @@
 [
   {
     "Id_Persona": 1,
-    "TipoDNI": "Pasaporte",
-    "DNI": "1",
-    "Nombre": "dDd",
-    "Apellido": "d",
-    "Direccion": "d",
+    "TipoDNI": "Cedula",
+    "DNI": "1111111111",
+    "Nombre": "A",
+    "Apellido": "A",
+    "Direccion": "A",
     "PersonaCuenta": {
       "id_Cuenta": 1,
-      "Correo": "d",
-      "Contrasena": "d",
+      "Correo": "A",
+      "Contrasena": "A",
+      "EstadoCuenta": true
+    },
+    "RolPersona": {
+      "id_rol": 1,
+      "Nombre_rol": "Administrador",
+      "Descripcion_rol": "Es un admininistrador"
+    }
+  },
+  {
+    "Id_Persona": 2,
+    "TipoDNI": "Cedula",
+    "DNI": "2222222222",
+    "Nombre": "B",
+    "Apellido": "B",
+    "Direccion": "B",
+    "PersonaCuenta": {
+      "id_Cuenta": 2,
+      "Correo": "B",
+      "Contrasena": "BB",
       "EstadoCuenta": true
     },
     "RolPersona": {
       "id_rol": 2,
       "Nombre_rol": "Cajero",
       "Descripcion_rol": "Es un empleado"
+    }
+  },
+  {
+    "Id_Persona": 3,
+    "TipoDNI": "Pasaporte",
+    "DNI": "3",
+    "Nombre": "C",
+    "Apellido": "C",
+    "Direccion": "C",
+    "PersonaCuenta": {
+      "id_Cuenta": 3,
+      "Correo": "CC",
+      "Contrasena": "C",
+      "EstadoCuenta": true
+    },
+    "RolPersona": {
+      "id_rol": 3,
+      "Nombre_rol": "Cliente",
+      "Descripcion_rol": "Es un usuario"
     }
   }
 ]

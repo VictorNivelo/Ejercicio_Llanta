@@ -6,51 +6,81 @@ package Controlador.Persona;
 
 import Controlador.Dao.DaoImplement;
 import Controlador.Tda.listas.ListaDinamica;
+import Modelo.Persona;
 import Modelo.Rol;
 
 /**
  *
- * @author Invitado xd
+ * @author Victor
  */
-public class RolControl extends DaoImplement<Rol>{
-    private ListaDinamica<Rol> listaRol = new ListaDinamica<>();
-    private Rol rol;
+public class RolControl extends DaoImplement<Persona>{
+    private ListaDinamica<Persona> listaP = new ListaDinamica<>();
+    private Persona persona;
 
-    public RolControl() {
-        super(Rol.class);
+    
+    public RolControl(){
+        super (Persona.class);
     }
     
-    public ListaDinamica<Rol> getListaRol() {
-        listaRol = all();
-        return listaRol;
+
+//    public RolControl() {
+//        super(persona).class);
+//    }
+
+    public ListaDinamica<Persona> getListaP() {
+        listaP = all();
+        return listaP;
     }
 
-    public void setListaRol(ListaDinamica<Rol> listaRol) {
-        this.listaRol = listaRol;
+    public void setListaP(ListaDinamica<Persona> listaP) {
+        this.listaP = listaP;
     }
 
-    public Rol getRol() {
-        if(rol ==null){
-            rol = new Rol();
+    public Persona getPersona() {
+        if(persona == null){
+            persona = new Persona();
         }
-        return rol;
+        return persona;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
+    
+    
+    
+//    public ListaDinamica<Persona> getListaRol() {
+//        listaP = all();
+//        return listaP;
+//    }
+
+//    public void setListaRol(ListaDinamica<Persona> listaRol) {
+//        this.listaP = listaRol;
+//    }
+//
+//    public Rol getRol() {
+//        if(persona ==null){
+//            persona = new Rol();
+//        }
+//        return persona;
+//    }
+//
+//    public void setRol(Rol rol) {
+//        this.persona = rol;
+//    }
     
     public Boolean Persist(){
-        rol.setId_rol(all().getLongitud()+1);
-        return Persist(rol);
+        persona.setId_Persona(all().getLongitud()+1);
+        return Persist();
+//        return Persist(persona);
     }
     
     public static void main(String[] args) {
         RolControl rc = new RolControl();
-        rc.getRol().setDescripcion_rol("administrador");
-        rc.getRol().setNombre_rol("amen");
+        rc.getPersona().setNombre("administrador");
+        rc.getPersona().setApellido("amen");
 
-        System.out.println(""+rc.rol.toString());
+        System.out.println(""+rc.persona.toString());
 
         rc.Persist();
 //        rc.setRol(null);

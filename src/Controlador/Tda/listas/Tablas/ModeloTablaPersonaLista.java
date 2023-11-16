@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Vista.Arreglos.Tabla;
+package Controlador.Tda.listas.Tablas;
 
 import Controlador.Tda.listas.Exepciones.EstaVacia;
 import Controlador.Tda.listas.ListaDinamica;
@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Victor
  */
-public class ModeloTablaPersona extends AbstractTableModel {
+public class ModeloTablaPersonaLista extends AbstractTableModel {
 
 //    private Persona personas[];
     private ListaDinamica<Persona> personas;
@@ -106,10 +106,10 @@ public class ModeloTablaPersona extends AbstractTableModel {
 //        Persona p = personas[i];
         } 
         catch (EstaVacia ex) {
-            Logger.getLogger(Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
         } 
         catch (IndexOutOfBoundsException ex) {
-            Logger.getLogger(Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
         }
         return personas;
 

@@ -11,7 +11,7 @@ import java.io.FileWriter;
 
 /**
  *
- * @author Invitado xd
+ * @author Victor
  */
 public class DaoImplement<T> implements DaoInterface<T>{
     private Class<T> clazz;
