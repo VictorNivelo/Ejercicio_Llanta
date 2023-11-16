@@ -40,8 +40,8 @@ public class UtilVista {
 //            
 //        }
         
-        for(int i = 0; i < rolControlador.getListaP().getLongitud(); i++){
-            cbx.addItem(rolControlador.getListaP().ObtenerInfo(i));
+        for(int i = 0; i < rolControlador.getListaRol().getLongitud(); i++){
+            cbx.addItem(rolControlador.getListaRol().ObtenerInfo(i));
         }
     }
     

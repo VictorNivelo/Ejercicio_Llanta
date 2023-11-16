@@ -13,72 +13,43 @@ import Modelo.Rol;
  *
  * @author Victor
  */
-public class RolControl extends DaoImplement<Persona>{
-    private ListaDinamica<Persona> listaP = new ListaDinamica<>();
-    private Persona persona;
+public class RolControl extends DaoImplement<Rol>{
+    private ListaDinamica<Rol> listaP = new ListaDinamica<>();
+    private Rol persona;
 
-    
-    public RolControl(){
-        super (Persona.class);
+    public RolControl() {
+        super(Rol.class);
     }
     
-
-//    public RolControl() {
-//        super(persona).class);
-//    }
-
-    public ListaDinamica<Persona> getListaP() {
+    public ListaDinamica<Rol> getListaRol() {
         listaP = all();
         return listaP;
     }
 
-    public void setListaP(ListaDinamica<Persona> listaP) {
-        this.listaP = listaP;
+    public void setListaRol(ListaDinamica<Rol> listaRol) {
+        this.listaP = listaRol;
     }
 
-    public Persona getPersona() {
-        if(persona == null){
-            persona = new Persona();
+    public Rol getRol() {
+        if(persona ==null){
+            persona = new Rol();
         }
         return persona;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setRol(Rol rol) {
+        this.persona = rol;
     }
     
-    
-    
-//    public ListaDinamica<Persona> getListaRol() {
-//        listaP = all();
-//        return listaP;
-//    }
-
-//    public void setListaRol(ListaDinamica<Persona> listaRol) {
-//        this.listaP = listaRol;
-//    }
-//
-//    public Rol getRol() {
-//        if(persona ==null){
-//            persona = new Rol();
-//        }
-//        return persona;
-//    }
-//
-//    public void setRol(Rol rol) {
-//        this.persona = rol;
-//    }
-    
     public Boolean Persist(){
-        persona.setId_Persona(all().getLongitud()+1);
-        return Persist();
-//        return Persist(persona);
+        persona.setId_rol(all().getLongitud()+1);
+        return Persist(persona);
     }
     
     public static void main(String[] args) {
         RolControl rc = new RolControl();
-        rc.getPersona().setNombre("administrador");
-        rc.getPersona().setApellido("amen");
+        rc.getRol().setDescripcion_rol("administrador");
+        rc.getRol().setNombre_rol("amen");
 
         System.out.println(""+rc.persona.toString());
 

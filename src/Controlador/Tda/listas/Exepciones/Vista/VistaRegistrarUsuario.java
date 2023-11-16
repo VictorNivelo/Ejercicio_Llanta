@@ -582,7 +582,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             
             try {
                 Guardar();
-            } catch (EstaVacia ex) {
+            } 
+            catch (EstaVacia ex) {
                 Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
             
@@ -651,7 +652,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Limpiar();
-        } catch (EstaVacia ex) {
+        } 
+        catch (EstaVacia ex) {
             Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
