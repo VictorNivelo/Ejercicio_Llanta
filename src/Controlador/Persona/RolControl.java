@@ -49,8 +49,8 @@ public class RolControl extends DaoImplement<Rol>{
         RolControl rc = new RolControl();
         rc.getRol().setDescripcion_rol("administrador");
         rc.getRol().setNombre_rol("amen");
-        System.out.println(""+rc.toString());
-//        rc.Persist();
+        System.out.println(""+rc.getRol().toString());
+        rc.Persist();
 //        rc.setRol(null);
 //        rc.getRol().setDescripcion_rol("xd2");
 //        rc.getRol().setNombre_rol("cash");
