@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vista;
+package Controlador.Tda.listas.Exepciones.Vista;
 
+import Controlador.Persona.PersonaDao;
 import Controlador.PersonaControlador;
 import Controlador.Tda.listas.Exepciones.EstaVacia;
 import Controlador.Tda.listas.ListaDinamica;
@@ -97,7 +98,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 //            if(personaControl.){
 //                
 //            }
-            
+            ;
             if(personaControl.Guardar()){
                 JOptionPane.showMessageDialog(null, "Datos guardados", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 //                personaControl.setPersona(null);
