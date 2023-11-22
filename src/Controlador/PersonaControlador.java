@@ -17,6 +17,7 @@ public class PersonaControlador {
 //    private Persona[] MatrizPersona;
     
     public PersonaControlador(){
+        
     }
 
     public PersonaControlador(Integer tamano) {
