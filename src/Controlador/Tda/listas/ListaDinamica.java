@@ -5,6 +5,7 @@
 package Controlador.Tda.listas;
 
 import Controlador.Tda.listas.Exepciones.ListaVacia;
+import Controlador.Tda.listas.Exepciones.PosicionNoEncontrada;
 
 /**
  *
@@ -147,6 +148,30 @@ public class ListaDinamica<E> {
             Nodo<E> Ayuda = new Nodo<>(info, Buscar);
             BuscarPrevio.setSiguiente(Ayuda);
             Longitud++;
+        }
+    }
+    
+    public void modificarPosicion(E dato, Integer pos) throws PosicionNoEncontrada{
+        if(EstaVacio()){
+            Agregar(dato);
+        }
+        else if(pos>=0 && pos < Longitud){
+            if(pos == 0){
+                cabezera.setInfo(dato);
+            } 
+            else{
+                
+                Nodo<E> aux = cabezera;
+
+                for (int i = 0; i < pos; i++ ){
+                    aux = aux.getSiguiente();
+                }
+                aux.setInfo(dato);
+            }
+            
+        }
+        else{
+            throw new PosicionNoEncontrada();
         }
     }
     

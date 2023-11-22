@@ -56,7 +56,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
     private void Limpiar() throws ListaVacia {
 //        UtilVista.CargarComboRoles(cbxRol);
-        
         txtApellido.setText("");
         txtNombre.setText("");
         txtDireccion.setText("");
@@ -197,9 +196,11 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             } else {
                 cedulaCorrecta = false;
             }
-        } catch (NumberFormatException nfe) {
+        } 
+        catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
-        } catch (Exception err) {
+        } 
+        catch (Exception err) {
             JOptionPane.showMessageDialog(null, "Una excepcion ocurrio en el proceso de validadcion");
             System.out.println("Una excepcion ocurrio en el proceso de validadcion");
             cedulaCorrecta = false;
@@ -226,6 +227,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                 txtCorreo.setText(personaControlDao.getPersona().getPersonaCuenta().getCorreo());
                 txtContrasena.setText(personaControlDao.getPersona().getPersonaCuenta().getContrasena());
                 cbxRol.setSelectedIndex(personaControlDao.getPersona().getRolPersona().getId_rol()-1);
+                
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
             } catch (Exception e) {
@@ -317,7 +319,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         cbxRol = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         cbxTipoIdentificacion = new javax.swing.JComboBox<>();
-        btnCargarRegistros = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -401,13 +402,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
         cbxTipoIdentificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula", "Pasaporte" }));
 
-        btnCargarRegistros.setText("CARGAR REGISTROS");
-        btnCargarRegistros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarRegistrosActionPerformed(evt);
-            }
-        });
-
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -423,6 +417,11 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         });
 
         jButton2.setText("MODIFICAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -460,8 +459,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCargarRegistros)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRegistrarNuevoUsuario)))
                 .addContainerGap())
@@ -510,7 +507,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar)
                     .addComponent(btnRegistrarNuevoUsuario)
-                    .addComponent(btnCargarRegistros)
                     .addComponent(btnCancelar)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -652,12 +648,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtApellidoKeyTyped
 
-    private void btnCargarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarRegistrosActionPerformed
-        // TODO add your handling code here:
-//        cargarPersonasDesdeJSON("ListaUsuarios.json");
-        CargarTabla();
-    }//GEN-LAST:event_btnCargarRegistrosActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         try {
             // TODO add your handling code here:
@@ -673,6 +663,11 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         CargarVista();
         cbxTipoIdentificacion.setSelectedIndex(1);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -715,7 +710,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCargarRegistros;
     private javax.swing.JButton btnRegistrarNuevoUsuario;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxRol;

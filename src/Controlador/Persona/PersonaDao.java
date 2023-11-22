@@ -44,6 +44,6 @@ public class PersonaDao extends DaoImplement<Persona>{
     public Boolean Persist(){
         persona.setId_Persona(all().getLongitud()+1);
         return Persist(persona);
-//        return Persist(persona);
     }
+    
 }

@@ -5,9 +5,21 @@
 package Controlador.Dao;
 
 import Controlador.Tda.listas.ListaDinamica;
+import Controlador.Utiles.Utiles;
 import com.thoughtworks.xstream.XStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.lang.reflect.Method;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -63,5 +75,62 @@ public class DaoImplement<T> implements DaoInterface<T>{
     @Override
     public T get(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public void modificar(T dato, Integer pos) throws FileNotFoundException, JAXBException{
+        ListaDinamica<T> lista = listar();
+        try {
+            lista.modificarPosicion(dato, pos);
+            FileOutputStream file = new FileOutputStream(URL);
+            JAXBContext jaxbc = JAXBContext.newInstance(new Class[]{ListaDinamica.class, this.clazz});
+            Marshaller marshaller = jaxbc.createMarshaller(); //Transforma el objeto a xml
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(lista, file);
+        } 
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public ListaDinamica<T> listar() {
+        ListaDinamica<T> lista = new ListaDinamica<>();
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(URL);
+            NodeList datos = doc.getElementsByTagName(this.clazz.getSimpleName().toLowerCase()); //Encontrar en el archivo las etiquetas de la clase que se busca
+            
+            for(int i = 0; i<datos.getLength();i++){
+                Node n1 = datos.item(i);
+                NodeList nodo1 = n1.getChildNodes();
+                T obj = this.clazz.newInstance();
+                
+                for(int j = 0; j <nodo1.getLength(); j++){
+                    Node dato = nodo1.item(j);
+                    if(dato.getNodeName() != null && !dato.getNodeName().equalsIgnoreCase("")&& 
+                            dato.getTextContent() != null && !dato.getTextContent().equalsIgnoreCase("") && !dato.getNodeName().equalsIgnoreCase("#Text")){
+                        
+                        Method metodo = null; //llamar al método para fijar las etiquetas a un objeto de la clase que se pide
+                        for(Method met : this.clazz.getMethods()){
+                            if(met.getName().equalsIgnoreCase((("set"+Utiles.capitalizar(dato.getNodeName()))))){
+                                metodo = met;
+                                break;
+                            }
+                        }
+                        metodo.invoke(obj, 
+                         Utiles.transformarDato(Utiles.obtenerAtributo(clazz, dato.getNodeName()), dato.getTextContent()));
+                    }
+                }
+                lista.Agregar(obj);
+            }
+        } 
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
+
+    public T obtener(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
