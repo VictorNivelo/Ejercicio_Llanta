@@ -668,8 +668,12 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEscogerActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-        
+        try {
+            Guardar();
+        } 
+        catch (ListaVacia ex) {
+            Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
