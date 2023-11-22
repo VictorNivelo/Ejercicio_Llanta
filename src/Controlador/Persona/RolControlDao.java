@@ -6,18 +6,17 @@ package Controlador.Persona;
 
 import Controlador.Dao.DaoImplement;
 import Controlador.Tda.listas.ListaDinamica;
-import Modelo.Persona;
 import Modelo.Rol;
 
 /**
  *
  * @author Victor
  */
-public class RolControl extends DaoImplement<Rol>{
+public class RolControlDao extends DaoImplement<Rol>{
     private ListaDinamica<Rol> listaP = new ListaDinamica<>();
-    private Rol persona;
+    private Rol rol;
 
-    public RolControl() {
+    public RolControlDao() {
         super(Rol.class);
     }
     
@@ -31,29 +30,41 @@ public class RolControl extends DaoImplement<Rol>{
     }
 
     public Rol getRol() {
-        if(persona ==null){
-            persona = new Rol();
+        if(rol ==null){
+            rol = new Rol();
         }
-        return persona;
+        return rol;
     }
 
     public void setRol(Rol rol) {
-        this.persona = rol;
+        this.rol = rol;
     }
     
     public Boolean Persist(){
-        persona.setId_rol(all().getLongitud()+1);
-        return Persist(persona);
+        rol.setId_rol(all().getLongitud()+1);
+        return Persist(rol);
     }
     
     public static void main(String[] args) {
-        RolControl rc = new RolControl();
-        rc.getRol().setDescripcion_rol("administrador");
-        rc.getRol().setNombre_rol("amen");
-
-        System.out.println(""+rc.persona.toString());
-
+        RolControlDao rc = new RolControlDao();
+        rc.getRol().setDescripcion_rol("es un administrador");
+        rc.getRol().setNombre_rol("administrador");
         rc.Persist();
+        rc.setRol(null);
+        
+        rc.getRol().setDescripcion_rol("es un Cajero");
+        rc.getRol().setNombre_rol("Cajero");
+        rc.Persist();
+        rc.setRol(null);
+        
+        rc.getRol().setDescripcion_rol("es un Cliente");
+        rc.getRol().setNombre_rol("Cliente");
+        rc.Persist();
+        rc.setRol(null);
+
+//        System.out.println(""+rc.all().toString());
+
+//        rc.Persist();
 //        rc.setRol(null);
 //        rc.getRol().setDescripcion_rol("xd2");
 //        rc.getRol().setNombre_rol("cash");

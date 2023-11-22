@@ -5,7 +5,7 @@
 package Vista;
 
 import Controlador.PersonaControlador;
-import Controlador.Tda.listas.Exepciones.EstaVacia;
+import Controlador.Tda.listas.Exepciones.ListaVacia;
 import Controlador.Tda.listas.ListaDinamica;
 import Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista;
 import Vista.Arreglos.Util.UtilVista;
@@ -36,7 +36,7 @@ public class VistaRegistrarUsuarioLista extends javax.swing.JFrame {
     /**
      * Creates new form VistaRegistrarUsuario
      */
-    public VistaRegistrarUsuarioLista() throws EstaVacia{
+    public VistaRegistrarUsuarioLista() throws ListaVacia{
         initComponents();
         this.setLocationRelativeTo(null);   
         UtilVista.CargarComboRoles(cbxRol);
@@ -44,7 +44,7 @@ public class VistaRegistrarUsuarioLista extends javax.swing.JFrame {
     }
     
     private void CargarTabla() {
-        mtp.setPersona(personaControl.getMatrizPersona());
+        mtp.setPersona(personaControl.getListaPersona());
         cbxTipoIdentificacion.setSelectedIndex(-1);
         cbxRol.setSelectedIndex(-1);
         tblUsuarios.setModel(mtp);
@@ -139,7 +139,7 @@ public class VistaRegistrarUsuarioLista extends javax.swing.JFrame {
 
             System.out.println(listaPersonas);
             
-            personaControl.setMatrizPersona(listaPersonas);
+            personaControl.setListaPersona(listaPersonas);
             
             return listaPersonas;
         } 
@@ -613,7 +613,7 @@ public class VistaRegistrarUsuarioLista extends javax.swing.JFrame {
             public void run() {
                 try {
                     new VistaRegistrarUsuarioLista().setVisible(true);
-                } catch (EstaVacia ex) {
+                } catch (ListaVacia ex) {
                     Logger.getLogger(VistaRegistrarUsuarioLista.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

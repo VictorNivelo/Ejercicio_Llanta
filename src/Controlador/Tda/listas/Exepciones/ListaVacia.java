@@ -8,13 +8,13 @@ package Controlador.Tda.listas.Exepciones;
  *
  * @author Victor
  */
-public class EstaVacia extends Exception{
+public class ListaVacia extends Exception{
     
-    public EstaVacia(){
+    public ListaVacia(){
         
     }
     
-    public EstaVacia(String msg) {
+    public ListaVacia(String msg) {
         super(msg);
     }
 }

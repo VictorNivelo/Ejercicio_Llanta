@@ -18,12 +18,14 @@ public class DaoImplement<T> implements DaoInterface<T>{
     private XStream conection;
     private String URL;
     
-   public DaoImplement(Class<T> clazz){
-       this.clazz = clazz;
-       conection = Bridge.getConection();
-       URL = Bridge.URL+clazz.getSimpleName()+".json";
-   }
-
+    public DaoImplement(Class<T> clazz) {
+        this.clazz = clazz;
+        conection = Bridge.getConection();
+        URL = Bridge.URL + clazz.getSimpleName() + ".json";
+    }
+    
+    
+    
     @Override
     public Boolean Persist(T dato) {
         ListaDinamica<T> ld = all();

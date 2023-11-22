@@ -12,15 +12,15 @@ import Modelo.Persona;
  * @author Victor
  */
 public class PersonaControlador {
-    private Persona persona;
-    private ListaDinamica<Persona> MatrizPersona;
+    private Persona personaControl;
+    private ListaDinamica<Persona> ListaPersona;
 //    private Persona[] MatrizPersona;
     
     public PersonaControlador(){
     }
 
     public PersonaControlador(Integer tamano) {
-        this.MatrizPersona  = new ListaDinamica<>();
+        this.ListaPersona  = new ListaDinamica<>();
 //        this.MatrizPersona = new ;
 //        this.MatrizPersona = new Persona[tamano];
     }
@@ -29,8 +29,8 @@ public class PersonaControlador {
     public Boolean Guardar(){
         Integer pos = VerificarPosicion();
         if (pos > -1) {
-            persona.setId_Persona(pos+1);
-            MatrizPersona.getCabezera();
+            personaControl.setId_Persona(pos+1);
+            ListaPersona.getCabezera();
 //            MatrizPersona[VerificarPosicion()] = persona;
             return true;
         } 
@@ -55,8 +55,8 @@ public class PersonaControlador {
         
         Integer band = -1;
         
-        for(int i = 0; i < this.MatrizPersona.getLongitud(); i++){
-            if(this.MatrizPersona.getLongitud() == null){
+        for(int i = 0; i < this.ListaPersona.getLongitud(); i++){
+            if(this.ListaPersona.getLongitud() == null){
                 band = i;
                 break;
             }
@@ -68,20 +68,20 @@ public class PersonaControlador {
     }
     
     public void Imprimir() {
-        for (int i = 0; i > this.getMatrizPersona().getLongitud(); i++) {
-            System.out.println(getMatrizPersona().getLongitud());
+        for (int i = 0; i > this.getListaPersona().getLongitud(); i++) {
+            System.out.println(getListaPersona().getLongitud());
         }
     }
 
     public Persona getPersona() {
-        if (persona == null) {
-            persona = new Persona();
+        if (personaControl == null) {
+            personaControl = new Persona();
         }
-        return persona;
+        return personaControl;
     }
 
     public void setPersona(Persona persona) {
-        this.persona = persona ;
+        this.personaControl = persona ;
     }
     
     
@@ -94,12 +94,12 @@ public class PersonaControlador {
 //        this.MatrizPersona = MatrizPersona;
 //    }
 
-    public ListaDinamica<Persona> getMatrizPersona() {
-        return MatrizPersona;
+    public ListaDinamica<Persona> getListaPersona() {
+        return ListaPersona;
     }
 
-    public void setMatrizPersona(ListaDinamica<Persona> MatrizPersona) {
-        this.MatrizPersona = MatrizPersona;
+    public void setListaPersona(ListaDinamica<Persona> MatrizPersona) {
+        this.ListaPersona = MatrizPersona;
     }
     
 }

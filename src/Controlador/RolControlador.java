@@ -11,6 +11,7 @@ import Modelo.Rol;
  * @author Victor
  */
 public class RolControlador {
+
     private Rol[] roles;
     
     public RolControlador(){

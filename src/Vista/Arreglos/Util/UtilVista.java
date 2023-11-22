@@ -5,8 +5,6 @@
 package Vista.Arreglos.Util;
 
 import Controlador.RolControlador;
-import Controlador.Tda.listas.Exepciones.EstaVacia;
-import Modelo.Persona;
 import Modelo.Rol;
 import javax.swing.JComboBox;
 
@@ -30,24 +28,24 @@ public class UtilVista {
         return (Rol) cbx.getSelectedItem();
     }
     
-    public static void CargarComboR(JComboBox cbx) throws EstaVacia{
-        
-        
-        Controlador.Persona.RolControl rolControlador = new Controlador.Persona.RolControl();
-        cbx.removeAllItems();
-        
-//        if(rc.){
-//            
+//    public static void CargarComboR(JComboBox cbx) throws EstaVacia{
+//        
+//        
+//        Controlador.Persona.RolControl rolControlador = new Controlador.Persona.RolControl();
+//        cbx.removeAllItems();
+//        
+////        if(rc.){
+////            
+////        }
+//        
+//        for(int i = 0; i < rolControlador.getListaRol().getLongitud(); i++){
+//            cbx.addItem(rolControlador.getListaRol().ObtenerInfo(i));
 //        }
-        
-        for(int i = 0; i < rolControlador.getListaRol().getLongitud(); i++){
-            cbx.addItem(rolControlador.getListaRol().ObtenerInfo(i));
-        }
-    }
-    
-    public static Persona ObtenerRolCont(JComboBox cbx){
-        return (Persona)cbx.getSelectedItem();
-    }
+//    }
+//    
+//    public static Persona ObtenerRolCont(JComboBox cbx){
+//        return (Persona)cbx.getSelectedItem();
+//    }
     
     
    

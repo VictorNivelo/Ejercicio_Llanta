@@ -21,10 +21,6 @@ public class PersonaDao extends DaoImplement<Persona>{
     }
     
 
-//    public RolControl() {
-//        super(persona).class);
-//    }
-
     public ListaDinamica<Persona> getListaP() {
         listaP = all();
         return listaP;
@@ -44,7 +40,6 @@ public class PersonaDao extends DaoImplement<Persona>{
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-    
     
     public Boolean Persist(){
         persona.setId_Persona(all().getLongitud()+1);

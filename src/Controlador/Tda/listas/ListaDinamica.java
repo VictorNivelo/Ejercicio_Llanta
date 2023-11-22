@@ -4,11 +4,12 @@
  */
 package Controlador.Tda.listas;
 
-import Controlador.Tda.listas.Exepciones.EstaVacia;
+import Controlador.Tda.listas.Exepciones.ListaVacia;
 
 /**
  *
  * @author Victor
+ * @param <E>
  */
 public class ListaDinamica<E> {
     private Nodo<E> cabezera;
@@ -23,10 +24,6 @@ public class ListaDinamica<E> {
     
     public Boolean EstaVacio(){
         return(cabezera == null || Longitud == 0 );
-    }
-    
-    public void Agregar(E info){
-        AgregarFinal(info);
     }
     
     public void AgregarCabeza(E info){
@@ -62,9 +59,15 @@ public class ListaDinamica<E> {
         }
     }
     
-    private E ObtenerPrimero() throws EstaVacia{
+    public void Agregar(E info){
+        AgregarFinal(info);
+    }
+    
+    
+    
+    private E ObtenerPrimero() throws ListaVacia{
         if(EstaVacio()){
-            throw new EstaVacia("La lista esta vacia");
+            throw new ListaVacia("La lista esta vacia");
     }
         return cabezera.getInfo();
     }
@@ -96,20 +99,20 @@ public class ListaDinamica<E> {
 //        }
 //    }
     
-    private E ObtenerUltimo() throws EstaVacia{
+    private E ObtenerUltimo() throws ListaVacia{
         if(EstaVacio()){
-            throw new EstaVacia("La lista esta vacia");
+            throw new ListaVacia("La lista esta vacia");
         }
         return ultimo.getInfo();
     }
     
-    public E ObtenerInfo(Integer indice)throws EstaVacia, IndexOutOfBoundsException{
+    public E ObtenerInfo(Integer indice)throws ListaVacia, IndexOutOfBoundsException{
         return ObtenerNodo(indice).getInfo();
     }
     
-    private Nodo<E> ObtenerNodo(Integer indice)throws EstaVacia, IndexOutOfBoundsException{
+    private Nodo<E> ObtenerNodo(Integer indice)throws ListaVacia, IndexOutOfBoundsException{
         if(EstaVacio()){
-            throw new EstaVacia("La lista esta vacia");
+            throw new ListaVacia("La lista esta vacia");
         }
         else if(indice < 0 || indice.intValue() == Longitud){
             throw new IndexOutOfBoundsException("Fuera de nodo");
@@ -131,7 +134,7 @@ public class ListaDinamica<E> {
         }
     }
        
-    public void Agregar (E info, Integer indice)throws EstaVacia{
+    public void Agregar (E info, Integer indice)throws ListaVacia{
         if(EstaVacio() || indice == 0){
             AgregarCabeza(info);
         }

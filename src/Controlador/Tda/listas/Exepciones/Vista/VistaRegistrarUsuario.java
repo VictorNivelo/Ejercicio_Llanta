@@ -5,12 +5,9 @@
 package Controlador.Tda.listas.Exepciones.Vista;
 
 import Controlador.Persona.PersonaDao;
-import Controlador.PersonaControlador;
-import Controlador.Tda.listas.Exepciones.EstaVacia;
+import Controlador.Tda.listas.Exepciones.ListaVacia;
 import Controlador.Tda.listas.ListaDinamica;
 import Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista;
-import Vista.Arreglos.Tabla.ModeloTablaPersona;
-import Vista.Arreglos.Util.UtilVista;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
@@ -19,6 +16,7 @@ import javax.swing.JOptionPane;
 import Modelo.Cuenta;
 import Modelo.Persona;
 import Modelo.Rol;
+import Vista.Arreglos.Util.UtilVistaLista;
 import java.io.FileReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +31,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     private ModeloTablaPersonaLista mtp = new ModeloTablaPersonaLista();
     
     
-    private PersonaControlador personaControl = new PersonaControlador(10);
+//    private PersonaControlador personaControl = new PersonaControlador(10);
+    private PersonaDao personaControlDao = new PersonaDao();
 //    private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
@@ -41,15 +40,15 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     /**
      * Creates new form VistaRegistrarUsuario
      */
-    public VistaRegistrarUsuario() throws EstaVacia{
+    public VistaRegistrarUsuario() throws ListaVacia{
         initComponents();
         this.setLocationRelativeTo(null);   
-//        UtilVista.CargarComboRoles(cbxRol);
-//        CargarTabla();
+        UtilVistaLista.cargarcomboRoles(cbxRol);
+        CargarTabla();
     }
     
     private void CargarTabla() {
-        mtp.setPersona(personaControl.getMatrizPersona());
+        mtp.setPersona(personaControlDao.getListaP());
         cbxTipoIdentificacion.setSelectedIndex(-1);
         cbxRol.setSelectedIndex(-1);
         tblUsuarios.setModel(mtp);
@@ -57,7 +56,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
     }
     
-    private void Limpiar() throws EstaVacia {
+    private void Limpiar() throws ListaVacia {
 //        UtilVista.CargarComboRoles(cbxRol);
         
         txtApellido.setText("");
@@ -68,7 +67,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         cbxTipoIdentificacion.setSelectedIndex(-1);
         txtCorreo.setText("");
         txtContrasena.setText("");
-        personaControl.setPersona(null);
+        personaControlDao.setPersona(null);
         CargarTabla();
 
     }
@@ -78,7 +77,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         
     }
     
-    private void Guardar() throws EstaVacia{
+    private void Guardar() throws ListaVacia{
         if(Validar()){
             String Correo = txtCorreo.getText();
             String Contraseña = txtContrasena.getText();
@@ -87,28 +86,36 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             
             Cuenta CuentaUsuario = new Cuenta(IdPersona, Correo, Contraseña, EstadoCuenta);
             
-            personaControl.getPersona().setPersonaCuenta(CuentaUsuario);
-            personaControl.getPersona().setTipoDNI(cbxTipoIdentificacion.getSelectedItem().toString());
-            personaControl.getPersona().setDNI(txtNumeroIdentificacion.getText());
-            personaControl.getPersona().setNombre(txtNombre.getText());
-            personaControl.getPersona().setApellido(txtApellido.getText());
-            personaControl.getPersona().setDireccion(txtDireccion.getText());
-            personaControl.getPersona().setRolPersona(UtilVista.ObtenerRolControlador(cbxRol));
+            personaControlDao.getPersona().setPersonaCuenta(CuentaUsuario);
+            personaControlDao.getPersona().setTipoDNI(cbxTipoIdentificacion.getSelectedItem().toString());
+            personaControlDao.getPersona().setDNI(txtNumeroIdentificacion.getText());
+            personaControlDao.getPersona().setNombre(txtNombre.getText());
+            personaControlDao.getPersona().setApellido(txtApellido.getText());
+            personaControlDao.getPersona().setDireccion(txtDireccion.getText());
+            personaControlDao.getPersona().setRolPersona(UtilVistaLista.obtenerRolControl(cbxRol));
             
-//            if(personaControl.){
-//                
-//            }
-            ;
-            if(personaControl.Guardar()){
-                JOptionPane.showMessageDialog(null, "Datos guardados", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-//                personaControl.setPersona(null);
+            if (personaControlDao.Persist()) {
+                JOptionPane.showMessageDialog(null, "Datos guardados");
+                //personaControl.imprimir();
+
+//                personaControl.persist();
+                personaControlDao.setPersona(null);
                 CargarTabla();
-                
-//                personaControlador.Imprimir();
+
+            } 
+            else {
+                JOptionPane.showMessageDialog(null, "No se pudo guardar, hubo un error");
             }
-            else{
-                JOptionPane.showMessageDialog(null, "No se pudo guardar", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            }
+//            if(personaControl.Guardar()){
+//                JOptionPane.showMessageDialog(null, "Datos guardados", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+////                personaControl.setPersona(null);
+//                CargarTabla();
+//                
+////                personaControlador.Imprimir();
+//            }
+//            else{
+//                JOptionPane.showMessageDialog(null, "No se pudo guardar", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+//            }
         }
         else{
             JOptionPane.showMessageDialog(null, "Falta llenar campos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -150,7 +157,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
             System.out.println(listaPersonas);
             
-            personaControl.setMatrizPersona(listaPersonas);
+            personaControlDao.setListaP(listaPersonas);
             
             return listaPersonas;
         } 
@@ -213,14 +220,14 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
         }else{
             try {
-                personaControl.setPersona(mtp.getPersona().ObtenerInfo(fila));
-                txtApellido.setText(personaControl.getPersona().getApellido());
-                txtNombre.setText(personaControl.getPersona().getNombre());
-                txtNumeroIdentificacion.setText(personaControl.getPersona().getDNI());
-                txtDireccion.setText(personaControl.getPersona().getDireccion());
-                txtCorreo.setText(personaControl.getPersona().getPersonaCuenta().getCorreo());
-                txtContrasena.setText(personaControl.getPersona().getPersonaCuenta().getContrasena());
-                cbxRol.setSelectedIndex(personaControl.getPersona().getRolPersona().getId_rol()-1);
+                personaControlDao.setPersona(mtp.getPersona().ObtenerInfo(fila));
+                txtApellido.setText(personaControlDao.getPersona().getApellido());
+                txtNombre.setText(personaControlDao.getPersona().getNombre());
+                txtNumeroIdentificacion.setText(personaControlDao.getPersona().getDNI());
+                txtDireccion.setText(personaControlDao.getPersona().getDireccion());
+                txtCorreo.setText(personaControlDao.getPersona().getPersonaCuenta().getCorreo());
+                txtContrasena.setText(personaControlDao.getPersona().getPersonaCuenta().getContrasena());
+                cbxRol.setSelectedIndex(personaControlDao.getPersona().getRolPersona().getId_rol()-1);
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
             } catch (Exception e) {
@@ -391,8 +398,6 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
         jLabel2.setText("Rol");
 
-        cbxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero", "Cliente" }));
-
         jLabel9.setText("Tipo de identificacion");
 
         cbxTipoIdentificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula", "Pasaporte" }));
@@ -531,11 +536,11 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:"
         String NumeroDNIP = txtNumeroIdentificacion.getText();
 //        validadorDeCedula(NumeroDNIP);
-        if(validadorDeCedula(NumeroDNIP) == false){
-//            JOptionPane.showMessageDialog(null, "Cedula invalida");
-        }
+//        if(validadorDeCedula(NumeroDNIP) == false){
+////            JOptionPane.showMessageDialog(null, "Cedula invalida");
+//        }
         
-        else if(cbxRol.getSelectedIndex() == -1){
+        if(cbxRol.getSelectedIndex() == -1){
             JOptionPane.showMessageDialog(null, "El tipo de rol no esta seleccionado","CAMPO VACIO", JOptionPane.WARNING_MESSAGE);
         }
         else if(cbxTipoIdentificacion.getSelectedIndex() == -1){
@@ -568,7 +573,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             String ApellidoP = txtApellido.getText();
             String DireccionP = txtDireccion.getText();
             
-            Rol rol = UtilVista.ObtenerRolControlador(cbxRol);
+            Rol rol = UtilVistaLista.obtenerRolControl(cbxRol);
             
             String Correo = txtCorreo.getText();
             String Contraseña = txtContrasena.getText();
@@ -584,7 +589,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             try {
                 Guardar();
             } 
-            catch (EstaVacia ex) {
+            catch (ListaVacia ex) {
                 Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
             
@@ -654,7 +659,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             // TODO add your handling code here:
             Limpiar();
         } 
-        catch (EstaVacia ex) {
+        catch (ListaVacia ex) {
             Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -697,7 +702,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             public void run() {
                 try {
                     new VistaRegistrarUsuario().setVisible(true);
-                } catch (EstaVacia ex) {
+                } catch (ListaVacia ex) {
                     Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
