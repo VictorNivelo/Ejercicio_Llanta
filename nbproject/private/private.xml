@@ -5,8 +5,12 @@
         <group>
             <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/listas/ListaDinamica.java</file>
             <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Persona/RolControlDao.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Utiles/Utiles.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Persona/PersonaDao.java</file>
             <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Vista/Dao/VistaRegistrarUsuario.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/listas/Exepciones/PosicionNoEncontrada.java</file>
             <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Vista/Arreglos/Util/UtilVistaLista.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Dao/DaoImplement.java</file>
         </group>
     </open-files>
 </project-private>

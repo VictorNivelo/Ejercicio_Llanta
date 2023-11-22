@@ -8,16 +8,11 @@ import Controlador.Persona.PersonaDao;
 import Controlador.Tda.listas.Exepciones.ListaVacia;
 import Controlador.Tda.listas.ListaDinamica;
 import Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.JOptionPane;
 import Modelo.Cuenta;
 import Modelo.Persona;
 import Modelo.Rol;
 import Vista.Arreglos.Util.UtilVistaLista;
-import java.io.FileReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,8 +24,6 @@ import java.util.logging.Logger;
 public class VistaRegistrarUsuario extends javax.swing.JFrame {
     
     private ModeloTablaPersonaLista mtp = new ModeloTablaPersonaLista();
-    
-    
     private PersonaDao personaControlDao = new PersonaDao();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
@@ -185,15 +178,19 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
                     if ((suma % 10 == 0) && (suma % 10 == verificador)) {
                         cedulaCorrecta = true;
-                    } else if ((10 - (suma % 10)) == verificador) {
+                    } 
+                    else if ((10 - (suma % 10)) == verificador) {
                         cedulaCorrecta = true;
-                    } else {
+                    } 
+                    else {
                         cedulaCorrecta = false;
                     }
-                } else {
+                } 
+                else {
                     cedulaCorrecta = false;
                 }
-            } else {
+            } 
+            else {
                 cedulaCorrecta = false;
             }
         } 
@@ -217,7 +214,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         int fila = tblUsuarios.getSelectedRow();
         if(fila < 0){
             JOptionPane.showMessageDialog(null, "Escoga un registro");
-        }else{
+        }
+        else{
             try {
                 personaControlDao.setPersona(mtp.getPersona().getInfo(fila));
                 txtApellido.setText(personaControlDao.getPersona().getApellido());
@@ -230,7 +228,9 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                 
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
-            } catch (Exception e) {
+            } 
+            catch (Exception e) {
+                
             }
         }
     }
