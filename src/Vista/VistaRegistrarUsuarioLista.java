@@ -9,8 +9,8 @@ import Controlador.Tda.listas.Exepciones.ListaVacia;
 import Controlador.Tda.listas.ListaDinamica;
 import Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista;
 import Vista.Arreglos.Util.UtilVista;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -105,50 +105,50 @@ public class VistaRegistrarUsuarioLista extends javax.swing.JFrame {
         Limpiar();
     }
     
-    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
-
-        try (FileWriter ListaUsuarios = new FileWriter(archivoJson)) {
-            
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-            Object[] personasArray = listaPersonas.CovertirEnArreglo();
-            gson.toJson(personasArray, ListaUsuarios);
-            
-//            CargarTabla();
-
-            System.out.println("Datos guardados correctamente en " + archivoJson);
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public ListaDinamica<Persona> cargarPersonasDesdeJSON(String rutaArchivo) {
-        
-        try (FileReader ListaUsuariosGuardada = new FileReader(rutaArchivo)) {
-            
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-            Persona[] personasArray = gson.fromJson(ListaUsuariosGuardada, Persona[].class);
-
-            ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
-
-            for (Persona persona : personasArray) {
-                listaPersonas.AgregarFinal(persona);
-            }
-
-            System.out.println(listaPersonas);
-            
-            personaControl.setListaPersona(listaPersonas);
-            
-            return listaPersonas;
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        
-    }
+//    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
+//
+//        try (FileWriter ListaUsuarios = new FileWriter(archivoJson)) {
+//            
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//            Object[] personasArray = listaPersonas.CovertirEnArreglo();
+//            gson.toJson(personasArray, ListaUsuarios);
+//            
+////            CargarTabla();
+//
+//            System.out.println("Datos guardados correctamente en " + archivoJson);
+//        } 
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    
+//    public ListaDinamica<Persona> cargarPersonasDesdeJSON(String rutaArchivo) {
+//        
+//        try (FileReader ListaUsuariosGuardada = new FileReader(rutaArchivo)) {
+//            
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//            Persona[] personasArray = gson.fromJson(ListaUsuariosGuardada, Persona[].class);
+//
+//            ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
+//
+//            for (Persona persona : personasArray) {
+//                listaPersonas.AgregarFinal(persona);
+//            }
+//
+//            System.out.println(listaPersonas);
+//            
+//            personaControl.setListaPersona(listaPersonas);
+//            
+//            return listaPersonas;
+//        } 
+//        catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//        
+//    }
     
     public boolean validadorDeCedula(String cedula) {
         boolean cedulaCorrecta = false;
@@ -519,7 +519,7 @@ public class VistaRegistrarUsuarioLista extends javax.swing.JFrame {
             
             Guardar();
             
-            guardarListaEnJson(ListaD, "ListaUsuarios.json");
+//            guardarListaEnJson(ListaD, "ListaUsuarios.json");
             
             System.out.println(ListaD);
             
@@ -576,7 +576,7 @@ public class VistaRegistrarUsuarioLista extends javax.swing.JFrame {
 
     private void btnCargarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarRegistrosActionPerformed
         // TODO add your handling code here:
-        cargarPersonasDesdeJSON("ListaUsuarios.json");
+//        cargarPersonasDesdeJSON("ListaUsuarios.json");
         CargarTabla();
     }//GEN-LAST:event_btnCargarRegistrosActionPerformed
 
