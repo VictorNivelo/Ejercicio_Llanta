@@ -62,7 +62,7 @@ public class ModeloTablaPersona extends AbstractTableModel {
     
     private String EstadoCuenta(int i) throws ListaVacia {
         
-        Persona p = personas.ObtenerInfo(i);
+        Persona p = personas.getInfo(i);
 //        Persona p = personas[i];
         
         if (p.getPersonaCuenta().getEstadoCuenta()) {
@@ -77,7 +77,7 @@ public class ModeloTablaPersona extends AbstractTableModel {
     public Object getValueAt(int i, int i1) {
 
         try {
-            Persona p = personas.ObtenerInfo(i);
+            Persona p = personas.getInfo(i);
             
             switch (i1) {
                 case 0:

@@ -23,7 +23,7 @@ public class UtilVistaLista {
         }
         else{
            for (int i = 0; i < rc.getListaRol().getLongitud(); i++) {
-            cbx.addItem(rc.getListaRol().ObtenerInfo(i));
+            cbx.addItem(rc.getListaRol().getInfo(i));
            }
         }
     }

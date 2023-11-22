@@ -106,11 +106,11 @@ public class ListaDinamica<E> {
         return ultimo.getInfo();
     }
     
-    public E ObtenerInfo(Integer indice)throws ListaVacia, IndexOutOfBoundsException{
-        return ObtenerNodo(indice).getInfo();
+    public E getInfo(Integer indice)throws ListaVacia, IndexOutOfBoundsException{
+        return getNodo(indice).getInfo();
     }
     
-    private Nodo<E> ObtenerNodo(Integer indice)throws ListaVacia, IndexOutOfBoundsException{
+    private Nodo<E> getNodo(Integer indice)throws ListaVacia, IndexOutOfBoundsException{
         if(EstaVacio()){
             throw new ListaVacia("La lista esta vacia");
         }
@@ -142,8 +142,8 @@ public class ListaDinamica<E> {
             AgregarFinal(info);
         }
         else{
-            Nodo<E> BuscarPrevio = ObtenerNodo(indice - 1);
-            Nodo<E> Buscar= ObtenerNodo(indice);
+            Nodo<E> BuscarPrevio = getNodo(indice - 1);
+            Nodo<E> Buscar= getNodo(indice);
             Nodo<E> Ayuda = new Nodo<>(info, Buscar);
             BuscarPrevio.setSiguiente(Ayuda);
             Longitud++;

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Controlador.Tda.listas.Exepciones.Vista;
+package Vista.Dao;
 
 import Controlador.Persona.PersonaDao;
 import Controlador.Tda.listas.Exepciones.ListaVacia;
@@ -220,7 +220,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
         }else{
             try {
-                personaControlDao.setPersona(mtp.getPersona().ObtenerInfo(fila));
+                personaControlDao.setPersona(mtp.getPersona().getInfo(fila));
                 txtApellido.setText(personaControlDao.getPersona().getApellido());
                 txtNombre.setText(personaControlDao.getPersona().getNombre());
                 txtNumeroIdentificacion.setText(personaControlDao.getPersona().getDNI());
