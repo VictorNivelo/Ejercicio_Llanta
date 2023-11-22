@@ -31,9 +31,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     private ModeloTablaPersonaLista mtp = new ModeloTablaPersonaLista();
     
     
-//    private PersonaControlador personaControl = new PersonaControlador(10);
     private PersonaDao personaControlDao = new PersonaDao();
-//    private ModeloTablaPersona mtp = new ModeloTablaPersona();
     private ListaDinamica<Persona> ListaD = new ListaDinamica<>();
 
 
@@ -123,50 +121,50 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         Limpiar();
     }
     
-    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
-
-        try (FileWriter ListaUsuarios = new FileWriter(archivoJson)) {
-            
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-            Object[] personasArray = listaPersonas.CovertirEnArreglo();
-            gson.toJson(personasArray, ListaUsuarios);
-            
-//            CargarTabla();
-
-            System.out.println("Datos guardados correctamente en " + archivoJson);
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void guardarListaEnJson(ListaDinamica<Persona> listaPersonas, String archivoJson) {
+//
+//        try (FileWriter ListaUsuarios = new FileWriter(archivoJson)) {
+//            
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//            Object[] personasArray = listaPersonas.CovertirEnArreglo();
+//            gson.toJson(personasArray, ListaUsuarios);
+//            
+////            CargarTabla();
+//
+//            System.out.println("Datos guardados correctamente en " + archivoJson);
+//        } 
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     
-    public ListaDinamica<Persona> cargarPersonasDesdeJSON(String rutaArchivo) {
-        
-        try (FileReader ListaUsuariosGuardada = new FileReader(rutaArchivo)) {
-            
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-            Persona[] personasArray = gson.fromJson(ListaUsuariosGuardada, Persona[].class);
-
-            ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
-
-            for (Persona persona : personasArray) {
-                listaPersonas.AgregarFinal(persona);
-            }
-
-            System.out.println(listaPersonas);
-            
-            personaControlDao.setListaP(listaPersonas);
-            
-            return listaPersonas;
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        
-    }
+//    public ListaDinamica<Persona> cargarPersonasDesdeJSON(String rutaArchivo) {
+//        
+//        try (FileReader ListaUsuariosGuardada = new FileReader(rutaArchivo)) {
+//            
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//            Persona[] personasArray = gson.fromJson(ListaUsuariosGuardada, Persona[].class);
+//
+//            ListaDinamica<Persona> listaPersonas = new ListaDinamica<>();
+//
+//            for (Persona persona : personasArray) {
+//                listaPersonas.AgregarFinal(persona);
+//            }
+//
+//            System.out.println(listaPersonas);
+//            
+//            personaControlDao.setListaP(listaPersonas);
+//            
+//            return listaPersonas;
+//        } 
+//        catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//        
+//    }
     public boolean validadorDeCedula(String cedula) {
         boolean cedulaCorrecta = false;
 
@@ -322,6 +320,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         btnCargarRegistros = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REGISTRAR USUARIO");
@@ -409,19 +408,21 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Escoger");
+        jButton1.setText("ESCOGER");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jButton2.setText("MODIFICAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -454,6 +455,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
@@ -509,7 +512,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                     .addComponent(btnRegistrarNuevoUsuario)
                     .addComponent(btnCargarRegistros)
                     .addComponent(btnCancelar)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -593,7 +597,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                 Logger.getLogger(VistaRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            guardarListaEnJson(ListaD, "ListaUsuarios.json");
+//            guardarListaEnJson(ListaD, "ListaUsuarios.json");
             
             System.out.println(ListaD);
             
@@ -650,7 +654,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
     private void btnCargarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarRegistrosActionPerformed
         // TODO add your handling code here:
-        cargarPersonasDesdeJSON("ListaUsuarios.json");
+//        cargarPersonasDesdeJSON("ListaUsuarios.json");
         CargarTabla();
     }//GEN-LAST:event_btnCargarRegistrosActionPerformed
 
@@ -717,6 +721,7 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxRol;
     private javax.swing.JComboBox<String> cbxTipoIdentificacion;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
