@@ -226,6 +226,9 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                 txtContrasena.setText(personaControlDao.getPersona().getPersonaCuenta().getContrasena());
                 cbxRol.setSelectedIndex(personaControlDao.getPersona().getRolPersona().getId_rol()-1);
                 
+                
+                
+                
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
 //                cbxTipoIdentificacion.setSelectedIndex(personaControl.getPersona().getTipoDNI());
             } 
@@ -320,8 +323,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         cbxTipoIdentificacion = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEscoger = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("REGISTRAR USUARIO");
@@ -409,17 +412,17 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("ESCOGER");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEscoger.setText("ESCOGER");
+        btnEscoger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEscogerActionPerformed(evt);
             }
         });
 
-        jButton2.setText("MODIFICAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -454,9 +457,9 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnEscoger)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -508,8 +511,8 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
                     .addComponent(btnRegresar)
                     .addComponent(btnRegistrarNuevoUsuario)
                     .addComponent(btnCancelar)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnEscoger)
+                    .addComponent(btnModificar))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -658,16 +661,16 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEscogerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscogerActionPerformed
         // TODO add your handling code here:
         CargarVista();
         cbxTipoIdentificacion.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEscogerActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -710,12 +713,12 @@ public class VistaRegistrarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEscoger;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrarNuevoUsuario;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cbxRol;
     private javax.swing.JComboBox<String> cbxTipoIdentificacion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
