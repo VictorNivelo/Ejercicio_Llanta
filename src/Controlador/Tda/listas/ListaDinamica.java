@@ -6,6 +6,7 @@ package Controlador.Tda.listas;
 
 import Controlador.Tda.listas.Exepciones.ListaVacia;
 import Controlador.Tda.listas.Exepciones.PosicionNoEncontrada;
+import jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle;
 
 /**
  *
@@ -197,6 +198,73 @@ public class ListaDinamica<E> {
         }
 
         return Arreglos;
+    }
+    
+    public E extractFirst() throws ListaVacia{
+        if(EstaVacio()){
+            throw new ListaVacia("Lista vacia");
+        }
+        else{
+            E element = cabezera.getInfo();
+            Nodo<E> help = cabezera.getSiguiente();
+            cabezera = null;
+            cabezera = help;
+            if(Longitud ==1)
+                ultimo = null;
+            Longitud--;
+            return element;
+        }
+    }
+    
+    public E extractLast() throws ListaVacia{
+        if(EstaVacio()){
+            throw new ListaVacia("Lista vacia");
+        }
+        else{
+            E element = ultimo.getInfo();
+            Nodo<E> help = getNodo(Longitud-2);
+            if(help == null){
+                ultimo =null;
+                if(Longitud == 2){
+                    ultimo = cabezera;
+                }
+                else{
+                    cabezera = null;
+                }
+            }
+            else{
+               ultimo = null;
+               ultimo = help;
+               ultimo.setSiguiente(null);
+            }
+            Longitud--;
+            return element;
+        }
+    }
+    
+    public E extract(Integer indice) throws ListaVacia{
+        if(EstaVacio()){
+            throw new ListaVacia("La lista esta vacia");
+        }
+        else if(indice < 0 || indice.intValue() == Longitud){
+            throw new IndexOutOfBoundsException("Fuera de nodo");
+        }
+        else if(indice == 0){
+            return extractFirst();
+        }
+        else if(indice == (Longitud -1)){
+            return extractLast();
+        }
+        else{
+            Nodo<E> nodo_previo = getNodo(indice-1);
+            Nodo<E> nodo_actual = getNodo(indice);
+            E info = nodo_actual.getInfo();
+            Nodo<E> help_next = nodo_actual.getSiguiente();
+            nodo_actual = null;
+            nodo_previo.setSiguiente(help_next);
+            Longitud--;
+            return info;
+        }
     }
 
     @Override
