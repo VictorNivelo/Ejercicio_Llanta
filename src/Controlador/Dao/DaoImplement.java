@@ -6,10 +6,7 @@ package Controlador.Dao;
 
 import Controlador.Tda.listas.Exepciones.PosicionNoEncontrada;
 import Controlador.Tda.listas.ListaDinamica;
-import Controlador.Utiles.Utiles;
 import com.thoughtworks.xstream.XStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.logging.Level;

@@ -9,17 +9,17 @@ import Controlador.Tda.listas.Exepciones.ListaVacia;
 import Controlador.Tda.listas.ListaDinamica;
 /**
  *
- * @author Invitado xd
+ * @author Victor
  */
 class Queue<E> extends ListaDinamica<E>{
     private Integer cima;
 
-    public Queue(Integer Tope) {
-        this.cima = cima;
+    public Queue(Integer cimaQ) {
+        this.cima = cimaQ;
     }
     
     public Boolean isFull(){
-        return getLongitud().intValue() >= cima.intValue();
+        return getLongitud() >= cima;
     }
     
     public void queue(E info) throws ListaVacia, FullStackException{

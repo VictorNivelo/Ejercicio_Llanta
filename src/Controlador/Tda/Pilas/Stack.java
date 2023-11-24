@@ -9,17 +9,17 @@ import Controlador.Tda.listas.Exepciones.ListaVacia;
 import Controlador.Tda.listas.ListaDinamica;
 /**
  *
- * @author Invitado xd
+ * @author Victor
  */
 class Stack<E> extends ListaDinamica<E>{
-    private Integer tope;
+    private final Integer tope;
 
-    public Stack(Integer Tope) {
-        this.tope = tope;
+    public Stack(Integer topeQ) {
+        this.tope = topeQ;
     }
     
     public Boolean isFull(){
-        return getLongitud().intValue() >= tope.intValue();
+        return getLongitud() >= tope;
     }
     
     public void push(E info) throws ListaVacia, FullStackException{
