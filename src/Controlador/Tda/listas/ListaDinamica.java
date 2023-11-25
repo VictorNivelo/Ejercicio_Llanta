@@ -66,7 +66,7 @@ public class ListaDinamica<E> {
     
     
     
-    private E ObtenerPrimero() throws ListaVacia{
+    private E getPrimero() throws ListaVacia{
         if(EstaVacio()){
             throw new ListaVacia("La lista esta vacia");
     }
@@ -100,7 +100,7 @@ public class ListaDinamica<E> {
 //        }
 //    }
     
-    private E ObtenerUltimo() throws ListaVacia{
+    private E getFinal() throws ListaVacia{
         if(EstaVacio()){
             throw new ListaVacia("La lista esta vacia");
         }

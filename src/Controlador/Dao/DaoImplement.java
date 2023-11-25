@@ -6,23 +6,12 @@ package Controlador.Dao;
 
 import Controlador.Tda.listas.Exepciones.PosicionNoEncontrada;
 import Controlador.Tda.listas.ListaDinamica;
-import Controlador.Utiles.Utiles;
 import com.thoughtworks.xstream.XStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import java.lang.reflect.Method;
-//import javax.xml.bind.JAXBContext;
-//import javax.xml.bind.JAXBException;
-//import javax.xml.bind.Marshaller;
-//import javax.xml.parsers.DocumentBuilder;
-//import javax.xml.parsers.DocumentBuilderFactory;
-//import org.w3c.dom.Document;
-//import org.w3c.dom.Node;
-//import org.w3c.dom.NodeList;
+
 
 /**
  *
