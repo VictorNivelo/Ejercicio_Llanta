@@ -9,7 +9,8 @@ import Controlador.Tda.listas.Exepciones.ListaVacia;
 
 /**
  *
- * @author Invitado xd
+ * @author Victor
+ * @param <E>
  */
 public class QueueUltimate<E> {
     private Queue<E> tail;

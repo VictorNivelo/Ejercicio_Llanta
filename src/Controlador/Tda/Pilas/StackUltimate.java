@@ -9,7 +9,7 @@ import Controlador.Tda.listas.Exepciones.ListaVacia;
 
 /**
  *
- * @author Invitado xd
+ * @author Victor
  */
 public class StackUltimate<E> {
     private Stack<E> stack;
