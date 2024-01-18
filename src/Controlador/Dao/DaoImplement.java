@@ -5,7 +5,7 @@
 package Controlador.Dao;
 
 import Controlador.TDA.listas.Exepciones.PosicionNoEncontrada;
-import Controlador.TDA.listas.ListaDinamica;
+import Controlador.TDA.Lista.ListaDinamica;
 import com.thoughtworks.xstream.XStream;
 import java.io.FileReader;
 import java.io.FileWriter;

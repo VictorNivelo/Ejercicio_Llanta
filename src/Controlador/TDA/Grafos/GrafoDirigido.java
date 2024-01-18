@@ -2,7 +2,7 @@
 package Controlador.TDA.Grafos;
 
 import Controlador.TDA.Grafos.Excepcion.VerticeException;
-import Controlador.TDA.listas.ListaDinamica;
+import Controlador.TDA.Lista.ListaDinamica;
 
 /**
  *

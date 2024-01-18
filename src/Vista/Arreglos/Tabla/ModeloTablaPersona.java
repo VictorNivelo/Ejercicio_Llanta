@@ -5,7 +5,7 @@
 package Vista.Arreglos.Tabla;
 
 import Controlador.TDA.listas.Exepciones.ListaVacia;
-import Controlador.TDA.listas.ListaDinamica;
+import Controlador.TDA.Lista.ListaDinamica;
 import Modelo.Persona;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,7 +1,7 @@
 
 package Controlador.TDA.Grafos;
 
-import Controlador.TDA.listas.ListaDinamica;
+import Controlador.TDA.Lista.ListaDinamica;
 
 
 

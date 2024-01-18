@@ -4,7 +4,7 @@
  */
 package Controlador;
 
-import Controlador.TDA.listas.ListaDinamica;
+import Controlador.TDA.Lista.ListaDinamica;
 import Modelo.Persona;
 
 /**

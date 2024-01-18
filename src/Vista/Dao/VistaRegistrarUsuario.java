@@ -6,7 +6,7 @@ package Vista.Dao;
 
 import Controlador.Persona.PersonaDao;
 import Controlador.TDA.listas.Exepciones.ListaVacia;
-import Controlador.TDA.listas.ListaDinamica;
+import Controlador.TDA.Lista.ListaDinamica;
 import Controlador.TDA.listas.Tablas.ModeloTablaPersonaLista;
 import javax.swing.JOptionPane;
 import Modelo.Cuenta;
