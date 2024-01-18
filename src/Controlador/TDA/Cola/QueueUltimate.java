@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controlador.TDA.Colas;
+package Controlador.TDA.Cola;
 
-import Controlador.TDA.Pilas.Excepcione.FullStackException;
+import Controlador.TDA.Pila.Excepcione.FullStackException;
 import Controlador.TDA.listas.Exepciones.ListaVacia;
 
 /**

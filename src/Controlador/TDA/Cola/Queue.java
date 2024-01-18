@@ -2,37 +2,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controlador.TDA.Pilas;
+package Controlador.TDA.Cola;
 
-import Controlador.TDA.Pilas.Excepcione.FullStackException;
+import Controlador.TDA.Pila.Excepcione.FullStackException;
 import Controlador.TDA.listas.Exepciones.ListaVacia;
 import Controlador.TDA.Lista.ListaDinamica;
 /**
  *
  * @author Victor
  */
-class Stack<E> extends ListaDinamica<E>{
-    private final Integer tope;
+class Queue<E> extends ListaDinamica<E>{
+    private Integer cima;
 
-    public Stack(Integer topeQ) {
-        this.tope = topeQ;
+    public Queue(Integer cimaQ) {
+        this.cima = cimaQ;
     }
     
     public Boolean isFull(){
-        return getLongitud() >= tope;
+        return getLongitud() >= cima;
     }
     
-    public void push(E info) throws ListaVacia, FullStackException{
+    public void queue(E info) throws ListaVacia, FullStackException{
         if(isFull()){
-            throw new FullStackException("Pilas llena");
+            throw new FullStackException("Cola llena");
 //            error
         }
         else{
-            Agregar(info, 0);
+            Agregar(info);
         }
     }
     
-    public E pop() throws ListaVacia{
+    public E dequeue() throws ListaVacia{
         E info = extractFirst();        
         return info;
     }
