@@ -4,7 +4,7 @@
  */
 package Controlador;
 
-import Controlador.Tda.listas.ListaDinamica;
+import Controlador.TDA.listas.ListaDinamica;
 import Modelo.Rol;
 
 /**

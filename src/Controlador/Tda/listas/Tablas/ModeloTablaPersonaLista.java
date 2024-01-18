@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controlador.Tda.listas.Tablas;
+package Controlador.TDA.listas.Tablas;
 
-import Controlador.Tda.listas.Exepciones.ListaVacia;
-import Controlador.Tda.listas.ListaDinamica;
+import Controlador.TDA.listas.Exepciones.ListaVacia;
+import Controlador.TDA.listas.ListaDinamica;
 import Modelo.Persona;
 import java.util.logging.Level;
 import java.util.logging.Logger;

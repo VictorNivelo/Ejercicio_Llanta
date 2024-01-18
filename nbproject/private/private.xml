@@ -2,6 +2,38 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Pilas/Excepcion/FullStackException.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/listas/ListaDinamica.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/listas/Nodo.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Grafos/GrafoNoDirigido.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Pilas/Stack.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Grafos/Adyacencia.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/listas/Exepciones/PosicionNoEncontrada.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Vista/Dao/VistaRegistrarUsuario.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Colas/QueueUltimate.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Dao/Bridge.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Vista/Arreglos/Tabla/ModeloTablaPersona.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Dao/DaoImplement.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/d3/grafo.js</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Grafos/Grafo.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/listas/Exepciones/ListaVacia.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Dao/DaoInterface.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/listas/Tablas/ModeloTablaPersonaLista.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Pilas/PilasPrueba.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Utiles/Utiles.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Persona/RolControlDao.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Colas/Queue.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Persona/PersonaDao.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/RolControlLista.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Grafos/Excepcion/VerticeException.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Grafos/GrafoDirigido.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Grafos/PaintGraph.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/Tda/Pilas/StackUltimate.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Vista/VistaRegistrarUsuarioLista.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/PersonaControlador.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Vista/Arreglos/Util/UtilVistaLista.java</file>
+            <file>file:/C:/Users/Victor/Documents/NetBeansProjects/Ejercicio_Llantas_Duplicado/src/Controlador/CuentaControlador.java</file>
+        </group>
     </open-files>
 </project-private>

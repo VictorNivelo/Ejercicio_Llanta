@@ -4,8 +4,8 @@
  */
 package Vista.Arreglos.Tabla;
 
-import Controlador.Tda.listas.Exepciones.ListaVacia;
-import Controlador.Tda.listas.ListaDinamica;
+import Controlador.TDA.listas.Exepciones.ListaVacia;
+import Controlador.TDA.listas.ListaDinamica;
 import Modelo.Persona;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -106,10 +106,10 @@ public class ModeloTablaPersona extends AbstractTableModel {
 //        Persona p = personas[i];
         }  
         catch (ListaVacia ex) {
-            Logger.getLogger(Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controlador.TDA.listas.Tablas.ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
         } 
         catch (IndexOutOfBoundsException ex) {
-            Logger.getLogger(Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controlador.TDA.listas.Tablas.ModeloTablaPersonaLista.class.getName()).log(Level.SEVERE, null, ex);
         }
         return personas;
 

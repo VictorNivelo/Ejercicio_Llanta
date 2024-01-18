@@ -5,9 +5,9 @@
 package Vista;
 
 import Controlador.PersonaControlador;
-import Controlador.Tda.listas.Exepciones.ListaVacia;
-import Controlador.Tda.listas.ListaDinamica;
-import Controlador.Tda.listas.Tablas.ModeloTablaPersonaLista;
+import Controlador.TDA.listas.Exepciones.ListaVacia;
+import Controlador.TDA.listas.ListaDinamica;
+import Controlador.TDA.listas.Tablas.ModeloTablaPersonaLista;
 import Vista.Arreglos.Util.UtilVista;
 //import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;

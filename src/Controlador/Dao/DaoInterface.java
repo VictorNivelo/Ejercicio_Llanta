@@ -4,7 +4,7 @@
  */
 package Controlador.Dao;
 
-import Controlador.Tda.listas.ListaDinamica;
+import Controlador.TDA.listas.ListaDinamica;
 
 /**
  *

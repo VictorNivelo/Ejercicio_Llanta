@@ -5,7 +5,7 @@
 package Vista.Arreglos.Util;
 
 import Controlador.Persona.RolControlDao;
-import Controlador.Tda.listas.Exepciones.ListaVacia;
+import Controlador.TDA.listas.Exepciones.ListaVacia;
 import Modelo.Rol;
 import javax.swing.JComboBox;
 

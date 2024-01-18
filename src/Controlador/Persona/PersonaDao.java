@@ -5,7 +5,7 @@
 package Controlador.Persona;
 
 import Controlador.Dao.DaoImplement;
-import Controlador.Tda.listas.ListaDinamica;
+import Controlador.TDA.listas.ListaDinamica;
 import Modelo.Persona;
 
 /**
