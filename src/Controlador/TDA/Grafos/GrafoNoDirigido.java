@@ -2,7 +2,6 @@
 package Controlador.TDA.Grafos;
 
 import Controlador.TDA.Grafos.Excepcion.VerticeException;
-import Controlador.TDA.Grafos.PaintGraph;
 import Controlador.Utiles.Utiles;
 
 /**

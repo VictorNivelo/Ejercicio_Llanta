@@ -1,8 +1,6 @@
 
 package Controlador.TDA.Grafos;
 
-import Controlador.TDA.Grafos.Adyacencia;
-import Controlador.TDA.Grafos.Grafo;
 import Controlador.TDA.listas.ListaDinamica;
 import java.io.FileWriter;
 
