@@ -4,9 +4,10 @@
  */
 package Controlador.TDA.Cola;
 
-import Controlador.TDA.Pila.Excepcione.FullStackException;
-import Controlador.TDA.listas.Exepciones.ListaVacia;
 import Controlador.TDA.Lista.ListaDinamica;
+import Controlador.TDA.Pila.Excepcion.FullStackException;
+import Controlador.TDA.Lista.Exepcion.ListaVacia;
+
 /**
  *
  * @author Victor

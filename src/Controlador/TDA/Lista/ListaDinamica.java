@@ -4,8 +4,8 @@
  */
 package Controlador.TDA.Lista;
 
-import Controlador.TDA.listas.Exepciones.ListaVacia;
-import Controlador.TDA.listas.Exepciones.PosicionNoEncontrada;
+import Controlador.TDA.Lista.Exepcion.ListaVacia;
+import Controlador.TDA.Lista.Exepcion.PosicionNoEncontrada;
 
 
 

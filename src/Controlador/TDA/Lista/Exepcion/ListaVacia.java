@@ -1,5 +1,5 @@
 
-package Controlador.TDA.listas.Exepciones;
+package Controlador.TDA.Lista.Exepcion;
 
 /**
  *

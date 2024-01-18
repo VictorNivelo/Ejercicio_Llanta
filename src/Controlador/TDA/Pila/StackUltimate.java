@@ -4,8 +4,8 @@
  */
 package Controlador.TDA.Pila;
 
-import Controlador.TDA.Pila.Excepcione.FullStackException;
-import Controlador.TDA.listas.Exepciones.ListaVacia;
+import Controlador.TDA.Pila.Excepcion.FullStackException;
+import Controlador.TDA.Lista.Exepcion.ListaVacia;
 
 /**
  *
