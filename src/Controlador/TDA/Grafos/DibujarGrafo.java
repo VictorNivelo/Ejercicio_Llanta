@@ -8,7 +8,7 @@ import java.io.FileWriter;
  *
  * @author Victor
  */
-public class PaintGraph {
+public class DibujarGrafo {
 
     String URL = "d3/grafo.js";
 
@@ -16,12 +16,15 @@ public class PaintGraph {
         StringBuilder paint = new StringBuilder();
 
         paint.append("var nodes = [");
+        
         for (int i = 1; i <= graph.num_vertice(); i++) {
             paint.append("{id: ").append(i).append(", label: 'V").append(i).append("'},");
         }
+        
         paint.append("];\n");
 
         paint.append("var edges = [");
+        
         for (int i = 1; i <= graph.num_vertice(); i++) {
             try {
                 ListaDinamica<Adyacencia> list = graph.adycentes(i);
@@ -38,6 +41,7 @@ public class PaintGraph {
                 e.printStackTrace();
             }
         }
+        
         paint.append("];\n");
 
         paint.append("var container = document.getElementById(\"mynetwork\");\n");

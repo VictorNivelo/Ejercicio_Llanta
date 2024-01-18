@@ -119,10 +119,12 @@ public class Utiles {
             if(atributo.getType().getSimpleName().equals("Integer")){
                 transformar = Integer.parseInt(dato);
             }
-        } else if(atributo.getType().isEnum()){
+        } 
+        else if(atributo.getType().isEnum()){
             Enum enumeracion = Enum.valueOf((Class)atributo.getType(), dato.toString());
             transformar = enumeracion;
-        } else if(atributo.getType().getSimpleName().equalsIgnoreCase("Boolean")){
+        } 
+        else if(atributo.getType().getSimpleName().equalsIgnoreCase("Boolean")){
             transformar =  Boolean.parseBoolean(dato);
         }
         else{
@@ -153,20 +155,26 @@ public class Utiles {
 
                     if ((suma % 10 == 0) && (suma % 10 == verificador)) {
                         cedulaCorrecta = true;
-                    } else if ((10 - (suma % 10)) == verificador) {
+                    } 
+                    else if ((10 - (suma % 10)) == verificador) {
                         cedulaCorrecta = true;
-                    } else {
+                    } 
+                    else {
                         cedulaCorrecta = false;
                     }
-                } else {
+                } 
+                else {
                     cedulaCorrecta = false;
                 }
-            } else {
+            } 
+            else {
                 cedulaCorrecta = false;
             }
-        } catch (NumberFormatException nfe) {
+        } 
+        catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
-        } catch (Exception err) {
+        } 
+        catch (Exception err) {
             System.out.println("Una excepcion ocurrio en el proceso de validadcion");
             cedulaCorrecta = false;
         }

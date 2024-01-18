@@ -42,7 +42,7 @@ public class GrafoNoDirigido extends GrafoDirigido{
             f.insertar_arista(1, 6, 3.0);
 
             
-            PaintGraph p = new PaintGraph();
+            DibujarGrafo p = new DibujarGrafo();
             p.updateFile(f);
             Utiles.abrirNavegadorPredeterminadorWindows("d3/grafo.html");
         } 
