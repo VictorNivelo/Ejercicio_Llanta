@@ -5,6 +5,7 @@
 package Controlador.TDA.Grafos;
 
 import Controlador.TDA.Grafos.Excepcion.VerticeException;
+import Controlador.Utiles.Utiles;
 
 /**
  *
@@ -28,6 +29,37 @@ public class GrafoNoDirigidoEtiquetado<E> extends GradoDirigidoEtiquetado<E>{
             throw new VerticeException();
         }
     }
+    
+//    public static void main(String[] args) {
+//        
+//        GrafoNoDirigidoEtiquetado<String> ged = new GrafoNoDirigidoEtiquetado<>(6, String.class);
+//        
+//
+////        Grafo f = new GrafoNoDirigido(3);
+//        
+//        try {
+//            ged.insertar_arista(1, 2, 25.0);
+//            ged.insertEdgeE("a", "b", 30.0);
+//            ged.insertar_arista(5, 6, 35.0);
+//            
+//            ged.etiquetarVertice(1, "Estefania");
+//            ged.etiquetarVertice(2, "Luna");
+//            
+////            f.insertar_arista(1, 2, 50.0);
+////            f.insertar_arista(2, 3, 50.0);
+////            f.insertar_arista(3, 4, 10.0);
+////            f.insertar_arista(1, 5, 10.0);
+////            f.insertar_arista(1, 6, 3.0);
+//
+//            
+//            DibujarGrafo p = new DibujarGrafo();
+//            p.updateFile(ged);
+//            Utiles.abrirNavegadorPredeterminadorWindows("d3/grafo.html");
+//        } 
+//        catch (Exception ex) {
+//            System.out.println("Error " + ex);
+//        }
+//    }
 
 //    @Override
 //    public String toString() {

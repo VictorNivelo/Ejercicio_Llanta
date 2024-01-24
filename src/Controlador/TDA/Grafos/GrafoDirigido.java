@@ -122,17 +122,17 @@ public class GrafoDirigido extends Grafo{
         this.numeroAristas = numeroAristas;
     }
 
-    public static void main(String[] args) {
-        Grafo f = new GrafoDirigido(6);
-        System.out.println(f);
-        try {
-            f.insertar_arista(1, 3, 50.0);
-            f.insertar_arista(4, 5, 10.0);
-            System.out.println(f);
-        } 
-        catch (Exception ex) {
-            System.out.println("Error " + ex);
-        }
-    }
+//    public static void main(String[] args) {
+//        Grafo f = new GrafoDirigido(6);
+//        System.out.println(f);
+//        try {
+//            f.insertar_arista(1, 3, 50.0);
+//            f.insertar_arista(4, 5, 10.0);
+//            System.out.println(f);
+//        } 
+//        catch (Exception ex) {
+//            System.out.println("Error " + ex);
+//        }
+//    }
 
 }

@@ -30,26 +30,26 @@ public class GrafoNoDirigido extends GrafoDirigido{
 //        dibujarGrafo.updateFile(this);
     }
     
-    public static void main(String[] args) {
-
-        Grafo f = new GrafoNoDirigido(6);
-        
-        try {
-            f.insertar_arista(1, 2, 50.0);
-            f.insertar_arista(2, 3, 50.0);
-            f.insertar_arista(3, 4, 10.0);
-            f.insertar_arista(1, 5, 10.0);
-            f.insertar_arista(1, 6, 3.0);
-
-            
-            DibujarGrafo p = new DibujarGrafo();
-            p.updateFile(f);
-            Utiles.abrirNavegadorPredeterminadorWindows("d3/grafo.html");
-        } 
-        catch (Exception ex) {
-            System.out.println("Error " + ex);
-        }
-    }
+//    public static void main(String[] args) {
+//
+//        Grafo f = new GrafoNoDirigido(3);
+//        
+//        try {
+//            f.insertar_arista(1, 2, 50.0);
+//            f.insertar_arista(2, 3, 50.0);
+////            f.insertar_arista(3, 4, 10.0);
+////            f.insertar_arista(1, 5, 10.0);
+////            f.insertar_arista(1, 6, 3.0);
+//
+//            
+//            DibujarGrafo p = new DibujarGrafo();
+//            p.updateFile(f);
+//            Utiles.abrirNavegadorPredeterminadorWindows("d3/grafo.html");
+//        } 
+//        catch (Exception ex) {
+//            System.out.println("Error " + ex);
+//        }
+//    }
 }
 //        Grafo f = new GrafoNoDirigido(6);
 //        System.out.println(f);
