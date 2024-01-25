@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package Vista;
 
 import Controlador.Dao.GrafosEjemplo.EscuelaDao;
@@ -19,7 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Victor
  */
-public class VistaEscuela extends javax.swing.JFrame {
+public class VistaRegistroEscuela extends javax.swing.JFrame {
+
     ModeloTablaEscuela mte = new ModeloTablaEscuela();
     EscuelaDao escuelaControlDao = new EscuelaDao();
     ListaDinamica<Escuela> listaE = new ListaDinamica<>();
@@ -29,9 +33,9 @@ public class VistaEscuela extends javax.swing.JFrame {
     private String rutaImagenGuardadaEscudo;
 
     /**
-     * Creates new form vISTA
+     * Creates new form VistaRegistroEscuela
      */
-    public VistaEscuela() {
+    public VistaRegistroEscuela() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -168,6 +172,7 @@ public class VistaEscuela extends javax.swing.JFrame {
             Limpiar();
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -312,7 +317,7 @@ public class VistaEscuela extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -358,7 +363,7 @@ public class VistaEscuela extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtLatitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 70, Short.MAX_VALUE))
+                        .addGap(18, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,62 +385,6 @@ public class VistaEscuela extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPActionPerformed
-        // TODO add your handling code here:
-        try {
-            Fportada = CargarFoto();
-            if (Fportada != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                String nombreUnico = "imagen_" + sdf.format(new Date()) + "." + extension(Fportada.getName());
-
-                File destino = new File("Foto/" + nombreUnico);
-                copiarArchivo(Fportada, destino);
-
-                rutaImagenGuardadaPortada = destino.getAbsolutePath();
-
-                txtPortada.setText(rutaImagenGuardadaPortada);
-
-                //sicidsf
-//                txtPortada.setText(Fportada.getAbsolutePath());
-//
-//                File destino = new File("Foto/x.jpg");
-//                copiarArchivo(Fportada, destino);
-//                
-//                rutaImagenGuardada = destino.getAbsolutePath();
-//                txtPortada.setText(rutaImagenGuardada);
-//codigo antui
-//            Fportada = CargarFoto();
-//            if(Fportada != null){
-//                txtPortada.setText(Fportada.getAbsolutePath());
-            }
-        }
-        catch (Exception e) {
-            System.out.println("error");
-        }
-    }//GEN-LAST:event_btnCargarPActionPerformed
-
-    private void btnCargarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarEActionPerformed
-        // TODO add your handling code here:
-        try {
-            Fescudo = CargarFoto();
-            if (Fescudo != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                String nombreUnico = "imagen_" + sdf.format(new Date()) + "." + extension(Fescudo.getName());
-
-                File destino = new File("Foto/" + nombreUnico);
-                copiarArchivo(Fescudo, destino);
-
-                rutaImagenGuardadaEscudo = destino.getAbsolutePath();
-
-                txtEscudo.setText(rutaImagenGuardadaEscudo);
-
-            }
-        }
-        catch (Exception e) {
-            System.out.println("error");
-        }
-    }//GEN-LAST:event_btnCargarEActionPerformed
 
     private void txtPortadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPortadaMouseClicked
         // TODO add your handling code here:
@@ -475,9 +424,65 @@ public class VistaEscuela extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Porfavor ingrese la latitud de la escuela");
         }
         else{
-            
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnCargarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarEActionPerformed
+        // TODO add your handling code here:
+        try {
+            Fescudo = CargarFoto();
+            if (Fescudo != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                String nombreUnico = "imagen_" + sdf.format(new Date()) + "." + extension(Fescudo.getName());
+
+                File destino = new File("Foto/" + nombreUnico);
+                copiarArchivo(Fescudo, destino);
+
+                rutaImagenGuardadaEscudo = destino.getAbsolutePath();
+
+                txtEscudo.setText(rutaImagenGuardadaEscudo);
+
+            }
+        }
+        catch (Exception e) {
+            System.out.println("error");
+        }
+    }//GEN-LAST:event_btnCargarEActionPerformed
+
+    private void btnCargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarPActionPerformed
+        // TODO add your handling code here:
+        try {
+            Fportada = CargarFoto();
+            if (Fportada != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                String nombreUnico = "imagen_" + sdf.format(new Date()) + "." + extension(Fportada.getName());
+
+                File destino = new File("Foto/" + nombreUnico);
+                copiarArchivo(Fportada, destino);
+
+                rutaImagenGuardadaPortada = destino.getAbsolutePath();
+
+                txtPortada.setText(rutaImagenGuardadaPortada);
+
+                //sicidsf
+                //                txtPortada.setText(Fportada.getAbsolutePath());
+                //
+                //                File destino = new File("Foto/x.jpg");
+                //                copiarArchivo(Fportada, destino);
+                //
+                //                rutaImagenGuardada = destino.getAbsolutePath();
+                //                txtPortada.setText(rutaImagenGuardada);
+                //codigo antui
+                //            Fportada = CargarFoto();
+                //            if(Fportada != null){
+                    //                txtPortada.setText(Fportada.getAbsolutePath());
+                }
+            }
+            catch (Exception e) {
+                System.out.println("error");
+            }
+    }//GEN-LAST:event_btnCargarPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,21 +501,20 @@ public class VistaEscuela extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistroEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistroEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistroEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistroEscuela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaEscuela().setVisible(true);
+                new VistaRegistroEscuela().setVisible(true);
             }
         });
     }
