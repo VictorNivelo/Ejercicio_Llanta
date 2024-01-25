@@ -41,5 +41,8 @@ public class EscuelaDao extends DaoImplement<Escuela>{
         this.escuelaDao = escuelaDao;
     }
     
-    
+    public Boolean Persist(){
+        escuelaDao.setId(all().getLongitud()+1);
+        return Persist(escuelaDao);
+    }
 }

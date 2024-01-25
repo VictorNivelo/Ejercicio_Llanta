@@ -1,11 +1,20 @@
 
 package Vista;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.plaf.metal.MetalIconFactory;
+
 /**
  *
  * @author Victor
  */
 public class Foto extends javax.swing.JFrame {
+    private JLabel lblImagen;
 
     /**
      * Creates new form Foto
@@ -13,8 +22,33 @@ public class Foto extends javax.swing.JFrame {
     public Foto() {
         initComponents();
         this.setLocationRelativeTo(null);
-//        panelImage1.setIcon("");
+        lblImagen = new javax.swing.JLabel();
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagen.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblImagen, java.awt.BorderLayout.CENTER);        
+        pack();
+//        mostrarImagenEnPanel();
+//        ImageIcon imageIcon = new ImageIcon("Foto/e.png");
+//        PanelPresentarImagen.setIcon(imageIcon);
     }
+    
+    public void mostrarImagen(String rutaImagen) {
+        ImageIcon imagenIcon = new ImageIcon(rutaImagen);
+        PresentarImagen.setIcon(imagenIcon);
+    }
+    
+//    private void mostrarImagenEnPanel() {
+//        try {
+//            BufferedImage imagen = ImageIO.read(imagenFile);
+//            ImageIcon icono = new ImageIcon(imagen);
+//            PanelPresentarImagen.setIcon(icono); // Reemplaza "PanelPresentarImagen" con el nombre de tu PanelImagen en la segunda vista
+//        } catch (Exception ex) {
+//            System.out.println("Error al cargar la bendita en el panel");
+//        }
+//    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,30 +60,46 @@ public class Foto extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
+        PresentarImagen = new org.edisoncor.gui.panel.PanelImage();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
-        panelImage1.setLayout(panelImage1Layout);
-        panelImage1Layout.setHorizontalGroup(
-            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PresentarImagenLayout = new javax.swing.GroupLayout(PresentarImagen);
+        PresentarImagen.setLayout(PresentarImagenLayout);
+        PresentarImagenLayout.setHorizontalGroup(
+            PresentarImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 368, Short.MAX_VALUE)
         );
-        panelImage1Layout.setVerticalGroup(
-            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+        PresentarImagenLayout.setVerticalGroup(
+            PresentarImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
+
+        jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PresentarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(PresentarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -66,43 +116,30 @@ public class Foto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        VistaEscuela ve = new VistaEscuela();
+//        ve.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Foto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Foto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Foto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Foto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    /* ... (código anterior) ... */
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+    /* Create and display the form with a default image */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
                 new Foto().setVisible(true);
-            }
-        });
-    }
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static org.edisoncor.gui.panel.PanelImage PresentarImagen;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private org.edisoncor.gui.panel.PanelImage panelImage1;
     // End of variables declaration//GEN-END:variables
 }
