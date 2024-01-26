@@ -4,17 +4,22 @@
  */
 package Vista;
 
-import Controlador.Dao.GrafosEjemplo.EscuelaDao;
+import Controlador.Dao.GrafosEjemplo.escuelaDaoE;
+import Controlador.Persona.EscuelaDao;
+import Controlador.TDA.Grafos.Modelo.Coordenada;
 import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.Exepcion.ListaVacia;
 import Controlador.TDA.Lista.ListaDinamica;
 import Vista.Arreglos.Tabla.ModeloTablaEscuela;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -27,6 +32,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
     ModeloTablaEscuela mte = new ModeloTablaEscuela();
     EscuelaDao escuelaControlDao = new EscuelaDao();
     ListaDinamica<Escuela> listaE = new ListaDinamica<>();
+    
     private File Fportada;
     private File Fescudo;
     private String rutaImagenGuardadaPortada;
@@ -38,6 +44,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
     public VistaRegistroEscuela() {
         initComponents();
         this.setLocationRelativeTo(null);
+        CargarTabla();
     }
     
     private File CargarFoto() throws Exception{
@@ -51,10 +58,10 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         Integer resp = choosser.showOpenDialog(this);
         if(resp == JFileChooser.APPROVE_OPTION){
             obj = choosser.getSelectedFile();
-            System.out.println("ok");
+            System.out.println("ok foto cargada");
         }
         else{
-            System.out.println("no");
+            System.out.println("no se cargo la foto");
         }
         return obj;
     }
@@ -92,8 +99,23 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         return distancia;
     }
 
+    private void mostrarImagenEnVentana(String rutaImagen) {
+        try {
+            if (rutaImagen != null && !rutaImagen.isEmpty()) {
+                Foto f = new Foto();
+                f.mostrarImagen(rutaImagen);
+                f.setVisible(true);
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al mostrar la imagen", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
     private void CargarTabla() {
-        mte.setEscuela(escuelaControlDao.getLista());
+        mte.setEscuela(escuelaControlDao.getListaEscuela());
         tblEscuela.setModel(mte);
         tblEscuela.updateUI();
     }
@@ -104,7 +126,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         txtPortada.setText("");
         txtLongitud.setText("");
         txtLatitud.setText("");
-        escuelaControlDao.setEscuelaDao(null);
+        escuelaControlDao.setEscuelas(null);
         CargarTabla();
     }
     
@@ -115,14 +137,16 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         }
         else{
             try {
-                escuelaControlDao.setEscuelaDao(mte.getEscuela().getInfo(fila));
+                escuelaControlDao.setEscuelas(mte.getEscuela().getInfo(fila));
                 
-                txtNombre.setText(escuelaControlDao.getEscuelaDao().getNombre());
-                txtEscudo.setText(escuelaControlDao.getEscuelaDao().getEscudo());
-                txtPortada.setText(escuelaControlDao.getEscuelaDao().getPortada());
-                txtLongitud.setText(escuelaControlDao.getEscuelaDao().getCordenadaEscuela().getLongitud().toString());
-                txtLatitud.setText(escuelaControlDao.getEscuelaDao().getCordenadaEscuela().getLatitud().toString());
+                txtNombre.setText(escuelaControlDao.getEscuelas().getNombre());
+                txtEscudo.setText(escuelaControlDao.getEscuelas().getEscudo());
+                txtPortada.setText(escuelaControlDao.getEscuelas().getPortada());
+                txtLongitud.setText(escuelaControlDao.getEscuelas().getCordenadaEscuela().getLongitud().toString());
+                txtLatitud.setText(escuelaControlDao.getEscuelas().getCordenadaEscuela().getLatitud().toString());
                 
+                
+
             } 
             catch (Exception e) {
                 
@@ -148,23 +172,53 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Porfavor ingrese la latitud de la escuela");
         }
         else{
-            //Datos de meteria
-            Integer IdPersona = listaE.getLongitud() + 1;
-            String NombreAsignatura = txtNombre.getText();
+            
+            Integer IdEscuela = listaE.getLongitud() + 1;
+            String NombreEscuela = txtNombre.getText();
             String Escudo = txtEscudo.getText();
             String Portada = txtPortada.getText();
-            String Longitud = txtPortada.getText();
-            String Latitud = txtPortada.getText();
+
+            // Datos de coordenada
+            Integer IdCoordenada = IdEscuela; // Asignar el mismo ID para escuela y coordenada (puedes ajustar esto según tus necesidades)
+            Double Longitud = Double.valueOf(txtLongitud.getText());
+            Double Latitud = Double.valueOf(txtLatitud.getText());
+
+            // Crear instancias de las clases Escuela y Coordenada
+            Escuela nuevaEscuela = new Escuela();
+            nuevaEscuela.setId(IdEscuela);
+            nuevaEscuela.setNombre(NombreEscuela);
+            nuevaEscuela.setEscudo(Escudo);
+            nuevaEscuela.setPortada(Portada);
+
+            Coordenada nuevaCoordenada = new Coordenada();
+            nuevaCoordenada.setId(IdCoordenada);
+            nuevaCoordenada.setLongitud(Longitud);
+            nuevaCoordenada.setLatitud(Latitud);
+
+            nuevaEscuela.setCordenadaEscuela(nuevaCoordenada);
+            escuelaControlDao.setEscuelas(nuevaEscuela);
             
-            escuelaControlDao.getEscuelaDao().setId(IdPersona);
-            escuelaControlDao.getEscuelaDao().setNombre(NombreAsignatura);
-            escuelaControlDao.getEscuelaDao().setEscudo(Escudo);
-            escuelaControlDao.getEscuelaDao().setPortada(Portada);
+            
+            //Datos de meteria
+//            Integer IdPersona = listaE.getLongitud() + 1;
+//            String NombreAsignatura = txtNombre.getText();
+//            String Escudo = txtEscudo.getText();
+//            String Portada = txtPortada.getText();
+//            Double Longitud = Double.valueOf(txtPortada.getText());
+//            Double Latitud = Double.valueOf(txtPortada.getText());
+//            
+//            escuelaControlDao.getEscuelaDao().setId(IdPersona);
+//            escuelaControlDao.getEscuelaDao().setNombre(NombreAsignatura);
+//            escuelaControlDao.getEscuelaDao().setEscudo(Escudo);
+//            escuelaControlDao.getEscuelaDao().setPortada(Portada);
+//            escuelaControlDao.getEscuelaDao().getCordenadaEscuela().setId(IdPersona);
+//            escuelaControlDao.getEscuelaDao().getCordenadaEscuela().setLongitud(Longitud);
+//            escuelaControlDao.getEscuelaDao().getCordenadaEscuela().setLatitud(Latitud);
 //            escuelaControlDao.getEscuelaDao().setHorarioMateria(UtilVista.obtenerHorarioControl(cbxHorario));
             
             if (escuelaControlDao.Persist()) {
                 JOptionPane.showMessageDialog(null, "ESCUELA GUARDADA EXISTOSAMENTE", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
-                escuelaControlDao.setEscuelaDao(null);
+                escuelaControlDao.setEscuelas(null);
             } 
             else {
                 JOptionPane.showMessageDialog(null, "NO SE PUEDE GUARDAR", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
@@ -195,13 +249,15 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtLongitud = new javax.swing.JTextField();
         txtLatitud = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnCargarE = new javax.swing.JButton();
         btnCargarP = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEscuela = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -237,10 +293,10 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
 
         jLabel7.setText("Latitud");
 
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("GUARDAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -270,10 +326,24 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
 
             }
         ));
+        tblEscuela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEscuelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblEscuela);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("LISTA  DE ESCUELAS");
+
+        jButton1.setText("MODIFICAR");
+
+        jButton2.setText("LIMPIAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -324,7 +394,11 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnGuardar))
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -368,7 +442,10 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -387,26 +464,45 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPortadaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPortadaMouseClicked
-        // TODO add your handling code here:
-        if(evt.getClickCount() >= 2){
-            Foto f = new Foto();
-            f.mostrarImagen(rutaImagenGuardadaPortada);
-            f.setVisible(true);
-
+        
+        if (evt.getClickCount() >= 2) {
+            if (escuelaControlDao.getEscuelas()!= null && escuelaControlDao.getEscuelas().getPortada() != null) {
+                mostrarImagenEnVentana(escuelaControlDao.getEscuelas().getPortada());
+            } 
+            else {
+                mostrarImagenEnVentana(rutaImagenGuardadaPortada);
+            }
         }
+//        if(evt.getClickCount() >= 2){
+//            Foto f = new Foto();
+//            f.mostrarImagen(rutaImagenGuardadaPortada);
+//            mostrarImagenEnVentana(txtPortada.getText());
+//            f.setVisible(true);
+//
+//        }
     }//GEN-LAST:event_txtPortadaMouseClicked
 
     private void txtEscudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEscudoMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount() >= 2){
-            Foto f = new Foto();
-            f.mostrarImagen(rutaImagenGuardadaEscudo);
-            f.setVisible(true);
-
+        
+        if (evt.getClickCount() >= 2) {
+            if (escuelaControlDao.getEscuelas()!= null && escuelaControlDao.getEscuelas().getEscudo()!= null) {
+                mostrarImagenEnVentana(escuelaControlDao.getEscuelas().getEscudo());
+            } 
+            else {
+                mostrarImagenEnVentana(rutaImagenGuardadaEscudo);
+            }
         }
+//        if(evt.getClickCount() >= 2){
+//            Foto f = new Foto();
+//            f.mostrarImagen(rutaImagenGuardadaEscudo);
+//            mostrarImagenEnVentana(txtEscudo.getText());
+//            f.setVisible(true);
+//
+//        }
     }//GEN-LAST:event_txtEscudoMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         if (txtNombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Porfavor ingrese el nombre de la escuela");
@@ -424,9 +520,14 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Porfavor ingrese la latitud de la escuela");
         }
         else{
-
+            try {
+                Guardar();
+            } 
+            catch (Exception e) {
+                System.out.println("No se guarda");
+            }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCargarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarEActionPerformed
         // TODO add your handling code here:
@@ -484,6 +585,21 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btnCargarPActionPerformed
 
+    private void tblEscuelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEscuelaMouseClicked
+        // TODO add your handling code here:
+        Seleccionar();
+    }//GEN-LAST:event_tblEscuelaMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Limpiar();
+        } 
+        catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -522,7 +638,9 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargarE;
     private javax.swing.JButton btnCargarP;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

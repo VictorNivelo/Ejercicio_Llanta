@@ -14,7 +14,7 @@ import javax.swing.plaf.metal.MetalIconFactory;
  * @author Victor
  */
 public class Foto extends javax.swing.JFrame {
-    private JLabel lblImagen;
+    public JLabel lblImagen;
 
     /**
      * Creates new form Foto
