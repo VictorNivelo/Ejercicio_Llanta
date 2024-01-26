@@ -58,7 +58,22 @@ public class Vistagrafo extends javax.swing.JFrame {
 //        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
     }
     
-    
+    private void guardarGrafo(){
+        try {
+            int i = JOptionPane.showConfirmDialog(null, "SI O NO PANA ","rAPIDO,", JOptionPane.OK_CANCEL_OPTION);
+            if(i == JOptionPane.OK_OPTION){
+            
+        }
+            if(ed.GrafoEscuelaDao() != null){
+                ed.guardarGrafo();
+                JOptionPane.showMessageDialog(null, "si se puede mi pana");
+            }else{
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se guarda mi pana");
+        }
+    }
     
     private void Adyacencia(){
         //Aqui se crean las adyancencias de los grafos
