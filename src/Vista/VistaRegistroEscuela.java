@@ -4,22 +4,18 @@
  */
 package Vista;
 
-import Controlador.Dao.GrafosEjemplo.escuelaDaoE;
 import Controlador.Persona.EscuelaDao;
 import Controlador.TDA.Grafos.Modelo.Coordenada;
 import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.Exepcion.ListaVacia;
 import Controlador.TDA.Lista.ListaDinamica;
 import Vista.Arreglos.Tabla.ModeloTablaEscuela;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -45,28 +41,6 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         CargarTabla();
-    }
-    
-    private File CargarFoto() throws Exception{
-        File obj = null;
-        JFileChooser choosser = new JFileChooser();
-        
-        String downloadsPath = System.getProperty("user.home") + File.separator + "Downloads";
-        choosser.setCurrentDirectory(new File(downloadsPath));
-
-        choosser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagenes", "jpg", "png", "jpeg");
-        choosser.addChoosableFileFilter(filter);
-
-        Integer resp = choosser.showOpenDialog(this);
-        if(resp == JFileChooser.APPROVE_OPTION){
-            obj = choosser.getSelectedFile();
-            System.out.println("ok foto cargada");
-        }
-        else{
-            System.out.println("no se cargo la foto");
-        }
-        return obj;
     }
     
     public static void copiarArchivo(File origen, File destino) throws Exception {
@@ -101,6 +75,30 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
 
         return distancia;
     }
+    
+    private File CargarFoto() throws Exception{
+        File obj = null;
+        JFileChooser choosser = new JFileChooser();
+        
+        String downloadsPath = System.getProperty("user.home") + File.separator + "Downloads";
+        choosser.setCurrentDirectory(new File(downloadsPath));
+
+        choosser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagenes", "jpg", "png", "jpeg");
+        choosser.addChoosableFileFilter(filter);
+
+        Integer resp = choosser.showOpenDialog(this);
+        if(resp == JFileChooser.APPROVE_OPTION){
+            obj = choosser.getSelectedFile();
+            System.out.println("ok foto cargada");
+        }
+        else{
+            System.out.println("no se cargo la foto");
+        }
+        return obj;
+    }
+    
+    
 
     private void mostrarImagenEnVentana(String rutaImagen) {
         try {
@@ -261,6 +259,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -348,6 +347,13 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -397,6 +403,8 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1)
@@ -448,7 +456,8 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -603,6 +612,18 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int fila = tblEscuela.getSelectedRow();
+        if (fila < 0) {
+            JOptionPane.showMessageDialog(null, "Escoga un registro","REGISTRO NO SELECCIONADO",JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            escuelaControlDao.Eliminar(fila);
+            CargarTabla();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -644,6 +665,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

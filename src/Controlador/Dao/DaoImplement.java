@@ -9,8 +9,7 @@ import Controlador.TDA.Lista.ListaDinamica;
 import com.thoughtworks.xstream.XStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 /**
@@ -28,8 +27,6 @@ public class DaoImplement<T> implements DaoInterface<T>{
         URL = Bridge.URL + clazz.getSimpleName() + ".json";
     }
     
-    
-    
     @Override
     public Boolean Persist(T dato) {
         ListaDinamica<T> ld = all();
@@ -42,7 +39,6 @@ public class DaoImplement<T> implements DaoInterface<T>{
         catch (Exception e) {
             return false;
         }
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     @Override
@@ -53,10 +49,9 @@ public class DaoImplement<T> implements DaoInterface<T>{
             try {
                 ListaModificar.modificarPosicion(data, indice);
             } 
-            catch (PosicionNoEncontrada ex) {
-                Logger.getLogger(DaoImplement.class.getName()).log(Level.SEVERE, null, ex);
+            catch (Exception e) {
+                
             }
-
             try {
                 conection.toXML(ListaModificar, new FileWriter(URL));
                 return true;
@@ -69,12 +64,6 @@ public class DaoImplement<T> implements DaoInterface<T>{
             return false;
         }
     }
-    
-//    @Override
-//    public Boolean Merge(T data, Integer index) {
-//        
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
 
     @Override
     public ListaDinamica<T> all() {
@@ -86,12 +75,43 @@ public class DaoImplement<T> implements DaoInterface<T>{
             
         }
         return dl;
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public T get(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        ListaDinamica<T> lista = all();
+
+        for (int i = 0; i < lista.getLongitud(); i++) {
+            
+            try {
+                T elemento = lista.getInfo(i);
+                Integer elementoId = (Integer) elemento.getClass().getMethod("getId").invoke(elemento);
+
+                if (elementoId.equals(id)) {
+                    return elemento;
+                }
+            } 
+            catch (Exception e) {
+                
+            }
+        }
+        return null;
+        
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public Boolean Eliminar(Integer index) {
+        ListaDinamica<T> listaActualizada = all();
+
+        try {
+            listaActualizada.eliminar(index);
+            conection.toXML(listaActualizada, new FileWriter(URL));
+            return true;
+        } 
+        catch (Exception e) {
+            return false;
+        }
     }
     
 //    public void modificar(T dato, Integer pos) throws FileNotFoundException, JAXBException{
