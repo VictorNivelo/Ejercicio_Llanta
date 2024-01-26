@@ -13,8 +13,6 @@ import Vista.Arreglos.Tabla.ModeloTablaEscuela;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -99,8 +97,6 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         return obj;
     }
     
-    
-
     private void mostrarImagenEnVentana(String rutaImagen) {
         try {
             if (rutaImagen != null && !rutaImagen.isEmpty()) {
