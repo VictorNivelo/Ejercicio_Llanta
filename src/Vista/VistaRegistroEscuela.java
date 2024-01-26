@@ -50,6 +50,9 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
     private File CargarFoto() throws Exception{
         File obj = null;
         JFileChooser choosser = new JFileChooser();
+        
+        String downloadsPath = System.getProperty("user.home") + File.separator + "Downloads";
+        choosser.setCurrentDirectory(new File(downloadsPath));
 
         choosser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagenes", "jpg", "png", "jpeg");
