@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -546,8 +547,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         try {
             Fescudo = CargarFoto();
             if (Fescudo != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                String nombreUnico = "imagen_" + sdf.format(new Date()) + "." + extension(Fescudo.getName());
+                String nombreUnico = UUID.randomUUID().toString() + "." + extension(Fescudo.getName());
 
                 File destino = new File("Foto/" + nombreUnico);
                 copiarArchivo(Fescudo, destino);
@@ -559,7 +559,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
             }
         }
         catch (Exception e) {
-            System.out.println("error");
+            System.out.println("error al asignar nobmre");
         }
     }//GEN-LAST:event_btnCargarEActionPerformed
 
@@ -568,8 +568,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
         try {
             Fportada = CargarFoto();
             if (Fportada != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                String nombreUnico = "imagen_" + sdf.format(new Date()) + "." + extension(Fportada.getName());
+                String nombreUnico = UUID.randomUUID().toString() + "." + extension(Fportada.getName());
 
                 File destino = new File("Foto/" + nombreUnico);
                 copiarArchivo(Fportada, destino);
@@ -593,7 +592,7 @@ public class VistaRegistroEscuela extends javax.swing.JFrame {
                 }
             }
             catch (Exception e) {
-                System.out.println("error");
+                System.out.println("error al asignar nombre");
             }
     }//GEN-LAST:event_btnCargarPActionPerformed
 
