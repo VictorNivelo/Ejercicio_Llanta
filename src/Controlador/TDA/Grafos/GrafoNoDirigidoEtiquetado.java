@@ -29,7 +29,7 @@ public class GrafoNoDirigidoEtiquetado<E> extends GradoDirigidoEtiquetado<E>{
             throw new VerticeException();
         }
     }
-    
+}
 //    public static void main(String[] args) {
 //        
 //        GrafoNoDirigidoEtiquetado<String> ged = new GrafoNoDirigidoEtiquetado<>(6, String.class);
@@ -66,4 +66,4 @@ public class GrafoNoDirigidoEtiquetado<E> extends GradoDirigidoEtiquetado<E>{
 //        return super.getEtiquetasString();
 //    }
 
-}
+//}

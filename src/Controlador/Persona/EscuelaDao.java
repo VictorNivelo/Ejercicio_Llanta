@@ -5,6 +5,7 @@
 package Controlador.Persona;
 
 import Controlador.Dao.DaoImplement;
+import Controlador.TDA.Grafos.GrafoNoDirigidoEtiquetado;
 import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.ListaDinamica;
 
@@ -15,6 +16,11 @@ import Controlador.TDA.Lista.ListaDinamica;
 public class EscuelaDao extends DaoImplement<Escuela>{
     private ListaDinamica<Escuela> listaEscuela = new ListaDinamica<>();
     private Escuela escuelas;
+     private GrafoNoDirigidoEtiquetado<Escuela> grafoEscuela;
+     
+//     for( int i = 0; i <= grafoEscuela.get ;i++{
+//    
+//}
     
     public EscuelaDao(){
         super (Escuela.class);
@@ -39,7 +45,36 @@ public class EscuelaDao extends DaoImplement<Escuela>{
     public void setEscuelas(Escuela escuelas) {
         this.escuelas = escuelas;
     }
+    
+    public GrafoNoDirigidoEtiquetado<Escuela> GrafoEscuelaDao() throws Exception {
+        if (grafoEscuela == null) {
+            ListaDinamica<Escuela> list = getListaEscuela();
+            if (!list.EstaVacio()) {
+                grafoEscuela = new GrafoNoDirigidoEtiquetado<>(list.getLongitud() + 1, Escuela.class);
+                for (int i = 0; i < grafoEscuela.num_vertice(); i++) {
+                    grafoEscuela.etiquetarVertice((i + 1), list.getInfo(i));
+                }
+            }
+            System.out.println("Presenta grafo");
+        }
+        return grafoEscuela;
+    }
 
+//    public GrafoNoDirigidoEtiquetado<Escuela> getGrafoEscuela() {
+//        if(grafoEscuela == null){
+//            ListaDinamica<Escuela> listE = getListaEscuela();
+//            grafoEscuela = new GrafoNoDirigidoEtiquetado<>(listE.getLongitud(), );
+//            for(int i = 0; i <= listE.getLongitud(); i++){
+//                grafoEscuela.getEtiquetaE(i+1), getListaEscuela().getInfo(i);
+//            }
+//        }
+//        return grafoEscuela;
+//    }
+
+    public void setGrafoEscuela(GrafoNoDirigidoEtiquetado<Escuela> grafoEscuela) {
+        this.grafoEscuela = grafoEscuela;
+    }
+    
     public Boolean Persist(){
         escuelas.setId(all().getLongitud()+1);
         return Persist(escuelas);

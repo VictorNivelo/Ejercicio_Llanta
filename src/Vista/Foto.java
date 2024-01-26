@@ -61,19 +61,30 @@ public class Foto extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         PresentarImagen = new org.edisoncor.gui.panel.PanelImage();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("IMAGEN");
 
         javax.swing.GroupLayout PresentarImagenLayout = new javax.swing.GroupLayout(PresentarImagen);
         PresentarImagen.setLayout(PresentarImagenLayout);
         PresentarImagenLayout.setHorizontalGroup(
             PresentarImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGroup(PresentarImagenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         PresentarImagenLayout.setVerticalGroup(
             PresentarImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGroup(PresentarImagenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(406, Short.MAX_VALUE))
         );
 
         jButton1.setText("REGRESAR");
@@ -91,7 +102,7 @@ public class Foto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +151,7 @@ public class Foto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static org.edisoncor.gui.panel.PanelImage PresentarImagen;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

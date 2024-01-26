@@ -113,7 +113,7 @@ public class DaoImplement<T> implements DaoInterface<T>{
             return false;
         }
     }
-    
+}
 //    public void modificar(T dato, Integer pos) throws FileNotFoundException, JAXBException{
 //        ListaDinamica<T> lista = listar();
 //        try {
@@ -170,4 +170,4 @@ public class DaoImplement<T> implements DaoInterface<T>{
 //    public T obtener(Integer id) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-}
+//}
