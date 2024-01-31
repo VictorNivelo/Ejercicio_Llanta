@@ -5,7 +5,10 @@
 package Vista;
 
 import Controlador.Persona.EscuelaDao;
+import Controlador.TDA.Grafos.DibujarGrafo;
 import Controlador.TDA.Lista.Exepcion.ListaVacia;
+import Controlador.Utiles.Utiles;
+import Vista.Arreglos.Tabla.mODELOadySAFASD;
 import Vista.utilidades.UtilesVista;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Vistagrafo extends javax.swing.JFrame {
     private EscuelaDao ed = new EscuelaDao();
+    private mODELOadySAFASD mtae = new mODELOadySAFASD();
 
     /**
      * Creates new form Vistagrafo
@@ -39,11 +43,16 @@ public class Vistagrafo extends javax.swing.JFrame {
     }
     
     private void mostrarGrafo() throws Exception{
+        
+        DibujarGrafo p = new DibujarGrafo();
+        p.updateFile(ed.GrafoEscuelaDao());
+        String url = "d3/grafo.html";
+        Utiles.abrirNavegadorPredeterminadorWindows(url);
         //Tiene que cargar el mapa
         //Consultar como abrir navegador en java
-        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
-        Runtime rt = Runtime.getRuntime();
-        rt.exec("urs/bin/brave-browser -new-windows mapas/index.html");
+//        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
+//        Runtime rt = Runtime.getRuntime();
+//        rt.exec("urs/bin/brave-browser -new-windows mapas/index.html");
 //        String url = "mapas/index.html";
 //        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
     }
@@ -60,41 +69,88 @@ public class Vistagrafo extends javax.swing.JFrame {
     
     private void guardarGrafo(){
         try {
-            int i = JOptionPane.showConfirmDialog(null, "SI O NO PANA ","rAPIDO,", JOptionPane.OK_CANCEL_OPTION);
-            if(i == JOptionPane.OK_OPTION){
-            
-        }
-            if(ed.GrafoEscuelaDao() != null){
-                ed.guardarGrafo();
-                JOptionPane.showMessageDialog(null, "si se puede mi pana");
-            }else{
-                
+            int i = JOptionPane
+                    .showConfirmDialog(null, "¿Estas seguro de guardar?", "ADVERTENCIA", JOptionPane.OK_CANCEL_OPTION);
+            if (i == JOptionPane.OK_OPTION) {
+                if (ed.GrafoEscuelaDao()!= null) {
+                    ed.GrafoEscuelaDao();
+                    JOptionPane.showMessageDialog(null, "Grafo guardado", "GUARDADO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se puede guardar un grafo vacio", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se guarda mi pana");
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
+//        try {
+//            int i = JOptionPane.showConfirmDialog(null, "SI O NO PANA ","rAPIDO,", JOptionPane.OK_CANCEL_OPTION);
+//            if(i == JOptionPane.OK_OPTION){
+//            
+//        }
+//            if(ed.GrafoEscuelaDao() != null){
+//                ed.guardarGrafo();
+//                JOptionPane.showMessageDialog(null, "si se puede mi pana");
+//            }else{
+//                
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "No se guarda mi pana");
+//        }
     }
     
     private void Adyacencia(){
-        //Aqui se crean las adyancencias de los grafos
+        
         try {
             Integer o = cbxOrigen.getSelectedIndex();
-            Integer d = cbxOrigen.getSelectedIndex();
-            if(o.intValue() == d. intValue()){
-                JOptionPane.showMessageDialog(null, "No se puede mi pana");
+            Integer d = cbxDestino.getSelectedIndex();
+            if (o.intValue() == d.intValue()) {
+                JOptionPane.showMessageDialog(null, "Escoja escuelas diferentes", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            else{
+            else {
                 Double dist = UtilesVista.CalcularDistanciaE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d));
-                Double re = UtilesVista.redondear(dist);
-                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d), re);
-//                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(d), dist); 
-//                ed.GrafoEscuelaDao().insertEdgeE(o, d, Double.NaN);
-                JOptionPane.showMessageDialog(null, "REGISTRADO");
+                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d), dist);
             }
-        }
+        } 
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "tampoco sirve");
         }
+        
+        //Aqui se crean las adyancencias de los grafos
+//        try {
+//            Integer o = cbxOrigen.getSelectedIndex();
+//            Integer d = cbxOrigen.getSelectedIndex();
+//            if(o.intValue() == d. intValue()){
+//                JOptionPane.showMessageDialog(null, "No se puede mi pana");
+//            }
+//            else{
+//                Double dist = UtilesVista.CalcularDistanciaE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d));
+//                Double re = UtilesVista.redondear(dist);
+//                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d), re);
+////                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(d), dist); 
+////                ed.GrafoEscuelaDao().insertEdgeE(o, d, Double.NaN);
+//                JOptionPane.showMessageDialog(null, "REGISTRADO");
+//            }
+//        }
+//        catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "tampoco sirve");
+//        }
+    }
+    
+    private void mostrarMapa() throws Exception {
+        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
+//        Runtime rt = Runtime.getRuntime();
+//        rt.exec("")
+        String url = "mapas\\index.html";
+        Utiles.abrirNavegadorPredeterminadorWindows(url);
+//        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+    }
+    
+    private void cargarTabla() throws Exception {
+        mtae.setGrafo(ed.GrafoEscuelaDao());
+        mtae.fireTableDataChanged();
+        tblTabla.setModel(mtae);
+        tblTabla.updateUI();
     }
 
     /**
@@ -112,7 +168,7 @@ public class Vistagrafo extends javax.swing.JFrame {
         cbxOrigen = new javax.swing.JComboBox<>();
         cbxDestino = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTabla = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -125,12 +181,17 @@ public class Vistagrafo extends javax.swing.JFrame {
         });
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         cbxOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cbxDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -141,7 +202,7 @@ public class Vistagrafo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblTabla);
 
         jButton3.setText("GREGEAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +280,16 @@ public class Vistagrafo extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        Adyacencia();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            cargarTabla();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +338,6 @@ public class Vistagrafo extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblTabla;
     // End of variables declaration//GEN-END:variables
 }

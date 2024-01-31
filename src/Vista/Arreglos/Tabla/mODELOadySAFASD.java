@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Vista.Arreglos.Tabla;
 
 
@@ -18,6 +15,14 @@ import javax.swing.table.AbstractTableModel;
  */
 public class mODELOadySAFASD  extends AbstractTableModel {
     private GradoDirigidoEtiquetado<Escuela> grafo;
+
+    public GradoDirigidoEtiquetado<Escuela> getGrafo() {
+        return grafo;
+    }
+
+    public void setGrafo(GradoDirigidoEtiquetado<Escuela> grafo) {
+        this.grafo = grafo;
+    }
 
 
     @Override
@@ -37,21 +42,22 @@ public class mODELOadySAFASD  extends AbstractTableModel {
     public Object getValueAt(int i, int i1) {
         try {
             if (i1 == 0) {
-
                 return grafo.getEtiquetaE(i + 1).toString();
-
-            } else {
+            }
+            else {
                 Escuela o = grafo.getEtiquetaE(i + 1);
                 Escuela d = grafo.getEtiquetaE(i1);
-                if (grafo.insertEdgeE(o, d)) {
-                    return UtilesVista.redondear(grafo.peso_arista(i + 1).toString);
-                } else {
-                    return "";
+                if (grafo.isEdgeE(o, d)) {
+                    return UtilesVista.redondear(grafo.peso_arista(i + 1, i1)).toString();
+                }
+                else {
+                    return "--";
                 }
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
+            return "";
         }
-        return null;
     }
 //
 //        try {
@@ -85,16 +91,29 @@ public class mODELOadySAFASD  extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        if(column == 0){
-            return "Escuelas";
-        }
-        else{
+        
+        if (column == 0) {
+            return "ESCUELA";
+        } 
+        else {
             try {
-                return grafo.getetiqeuta(column.toString);
-            } catch (Exception e) {
+                return grafo.getEtiquetaE(column).toString();
+            } 
+            catch (Exception e) {
                 return "";
             }
         }
+        
+//        if(column == 0){
+//            return "Escuelas";
+//        }
+//        else{
+//            try {
+//                return grafo.getetiqeuta(column.toString);
+//            } catch (Exception e) {
+//                return "";
+//            }
+//        }
 //        switch (column) {
 //            case 0: 
 //                return "#";
@@ -114,4 +133,4 @@ public class mODELOadySAFASD  extends AbstractTableModel {
 
         }
     }
-}
+
