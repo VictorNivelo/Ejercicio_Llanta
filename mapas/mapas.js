@@ -6,11 +6,9 @@ var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map); + 
-L.marker([-4.000909466384655, -79.20067374875437]).addTo(map)
-.bindPopup('Miguel Riofrio')
-.openPopup();L.marker([-4.000761536787824, -79.19850826224676]).addTo(map)
-.bindPopup('18 de Noviembre')
-.openPopup();L.marker([-4.009908, -79.2155779]).addTo(map)
-.bindPopup('Pio Jaramillo ')
-.openPopup();
+            }).addTo(map);L.marker([102.0,11.0]).addTo(map)
+.bindPopup('Controlador.TDA.Grafos.Modelo.Escuela@324b61ff')´)
+,.openPopup();
+L.marker([-79.2015,-4.045]).addTo(map)
+.bindPopup('Controlador.TDA.Grafos.Modelo.Escuela@3723bbf8')´)
+,.openPopup();

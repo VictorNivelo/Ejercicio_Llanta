@@ -4,6 +4,7 @@
  */
 package Controlador.Utiles;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 /**
@@ -85,7 +86,14 @@ public class Utiles {
     }
     
     public static void abrirNavegadorPredeterminadorWindows(String url) throws Exception{
-        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+        
+        try {
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "start", url);
+            builder.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
     }
     
     public static void abrirNavegadorPredeterminadorLinux(String url) throws Exception{

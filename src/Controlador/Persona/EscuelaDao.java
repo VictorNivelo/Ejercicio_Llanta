@@ -4,10 +4,12 @@
  */
 package Controlador.Persona;
 
+import static Controlador.Dao.Bridge.getConection;
 import Controlador.Dao.DaoImplement;
 import Controlador.TDA.Grafos.GrafoNoDirigidoEtiquetado;
 import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.ListaDinamica;
+import java.io.FileWriter;
 
 /**
  *
@@ -27,7 +29,9 @@ public class EscuelaDao extends DaoImplement<Escuela>{
     }
 
     public ListaDinamica<Escuela> getListaEscuela() {
-        listaEscuela = all();
+        if (listaEscuela.EstaVacio()) {
+            listaEscuela = all();
+        }
         return listaEscuela;
     }
 
@@ -44,6 +48,10 @@ public class EscuelaDao extends DaoImplement<Escuela>{
 
     public void setEscuelas(Escuela escuelas) {
         this.escuelas = escuelas;
+    }
+    
+    public void guardarGrafo() throws Exception{
+        getConection().toXML(grafoEscuela, new FileWriter("files/grafo.json"));
     }
     
     public GrafoNoDirigidoEtiquetado<Escuela> GrafoEscuelaDao() throws Exception {
