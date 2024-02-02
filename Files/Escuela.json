@@ -1,1 +1,36 @@
-{"Controlador.TDA.Lista.ListaDinamica":{"cabezera":{"info":{"@class":"Controlador.TDA.Grafos.Modelo.Escuela","id":1,"Nombre":"Primera escuela","Portada":"C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\98b0ed1b-1cb6-4dff-bcff-7cd06f68ce81.jpg","Escudo":"C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\b3c08270-abcf-4796-b1be-9e0a29a7edf1.png","cordenadaEscuela":{"id":1,"Longitud":11,"Latitud":102}},"Siguiente":{"info":{"@class":"Controlador.TDA.Grafos.Modelo.Escuela","id":2,"Nombre":"Primera escuela","Portada":"C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\98b0ed1b-1cb6-4dff-bcff-7cd06f68ce81.jpg","Escudo":"C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\b3c08270-abcf-4796-b1be-9e0a29a7edf1.png","cordenadaEscuela":{"id":1,"Longitud":-4.045,"Latitud":-79.2015}}}},"ultimo":{"@reference":"..\/cabezera\/Siguiente"},"Longitud":2}}
+{
+    "Controlador.TDA.Lista.ListaDinamica": {
+        "cabezera": {
+            "info": {
+                "@class": "Controlador.TDA.Grafos.Modelo.Escuela",
+                "id": 1,
+                "Nombre": "Primera escuela",
+                "Portada": "C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\98b0ed1b-1cb6-4dff-bcff-7cd06f68ce81.jpg",
+                "Escudo": "C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\b3c08270-abcf-4796-b1be-9e0a29a7edf1.png",
+                "cordenadaEscuela": {
+                    "id": 1,
+                    "Longitud": 11,
+                    "Latitud": 102
+                }
+            },
+            "Siguiente": {
+                "info": {
+                    "@class": "Controlador.TDA.Grafos.Modelo.Escuela",
+                    "id": 2,
+                    "Nombre": "Segunda escuela",
+                    "Portada": "C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\98b0ed1b-1cb6-4dff-bcff-7cd06f68ce81.jpg",
+                    "Escudo": "C:\\Users\\Victor.DESKTOP-7SLD65R\\Documents\\NetBeansProjects\\Ejercicio_Llantas_Duplicado\\Foto\\b3c08270-abcf-4796-b1be-9e0a29a7edf1.png",
+                    "cordenadaEscuela": {
+                        "id": 1,
+                        "Longitud": -4.045,
+                        "Latitud": -79.2015
+                    }
+                }
+            }
+        },
+        "ultimo": {
+            "@reference": "..\/cabezera\/Siguiente"
+        },
+        "Longitud": 2
+    }
+}

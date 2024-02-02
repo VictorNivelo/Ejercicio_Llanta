@@ -7,8 +7,8 @@ var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);L.marker([102.0,11.0]).addTo(map)
-.bindPopup('Controlador.TDA.Grafos.Modelo.Escuela@324b61ff')´)
+.bindPopup('Primera escuela')´)
 ,.openPopup();
 L.marker([-79.2015,-4.045]).addTo(map)
-.bindPopup('Controlador.TDA.Grafos.Modelo.Escuela@3723bbf8')´)
+.bindPopup('Segunda escuela')´)
 ,.openPopup();

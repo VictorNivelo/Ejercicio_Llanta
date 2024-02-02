@@ -18,20 +18,18 @@ public class GrafoDirigido extends Grafo{
         this.numeroVertices = num_vertices;
         this.numeroAristas = 0;
         ListaAdyacencia = new ListaDinamica[num_vertices + 1];
-        for (int i = 1; i <= this.numeroVertices; i++) {
+        for (int i = 0; i <= this.numeroVertices; i++) {
             ListaAdyacencia[i] = new ListaDinamica<>();
         }
     }
     
     @Override
     public Integer num_vertice() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return numeroVertices;
     }
 
     @Override
     public Integer num_aristas() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return numeroAristas;
     }
 

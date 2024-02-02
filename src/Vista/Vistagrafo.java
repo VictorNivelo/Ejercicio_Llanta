@@ -8,7 +8,7 @@ import Controlador.Persona.EscuelaDao;
 import Controlador.TDA.Grafos.DibujarGrafo;
 import Controlador.TDA.Lista.Exepcion.ListaVacia;
 import Controlador.Utiles.Utiles;
-import Vista.Arreglos.Tabla.mODELOadySAFASD;
+import Vista.Arreglos.Tabla.ModeloAdyancencia;
 import Vista.utilidades.UtilesVista;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,11 +19,13 @@ import javax.swing.JOptionPane;
  * @author Victor
  */
 public class Vistagrafo extends javax.swing.JFrame {
+
     private EscuelaDao ed = new EscuelaDao();
-    private mODELOadySAFASD mtae = new mODELOadySAFASD();
+    private ModeloAdyancencia mtae = new ModeloAdyancencia();
 
     /**
      * Creates new form Vistagrafo
+     *
      * @throws Controlador.TDA.Lista.Exepcion.ListaVacia
      */
     public Vistagrafo() throws ListaVacia {
@@ -31,7 +33,7 @@ public class Vistagrafo extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         limpiar();
     }
-    
+
     private void limpiar() throws ListaVacia {
         try {
             UtilesVista.CargarComboEscuela(cbxOrigen);
@@ -42,41 +44,35 @@ public class Vistagrafo extends javax.swing.JFrame {
 
         }
     }
-    
-    private void mostrarGrafo() throws Exception{
-        
+
+    private void mostrarGrafo() throws Exception {
         DibujarGrafo p = new DibujarGrafo();
         p.updateFile(ed.GrafoEscuelaDao());
-//        String url = "d3/grafo.html";
         Utiles.abrirNavegadorPredeterminadorWindows("d3/grafo.html");
-        //Tiene que cargar el mapa
-        //Consultar como abrir navegador en java
-//        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
-//        Runtime rt = Runtime.getRuntime();
-//        rt.exec("urs/bin/brave-browser -new-windows mapas/index.html");
-//        String url = "mapas/index.html";
-//        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
     }
-    
-    private void dibujarGrafo() throws Exception{
-        //tiene que cargar el grafo
-        
+
+    private void mostrarMapa() throws Exception {
+        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
+        Runtime rt = Runtime.getRuntime();
+        Utiles.abrirNavegadorPredeterminadorWindows("mapas/index.html");
+    }
+
+    private void dibujarGrafo() throws Exception {
         UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
         Runtime rt = Runtime.getRuntime();
         rt.exec("urs/bin/brave-browser -new-windows mapas/index.html");
-//        String url = "mapas/index.html";
-//        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
     }
-    
-    private void guardarGrafo(){
+
+    private void guardarGrafo() {
         try {
             int i = JOptionPane
                     .showConfirmDialog(null, "¿Estas seguro de guardar?", "ADVERTENCIA", JOptionPane.OK_CANCEL_OPTION);
             if (i == JOptionPane.OK_OPTION) {
-                if (ed.GrafoEscuelaDao()!= null) {
+                if (ed.GrafoEscuelaDao() != null) {
                     ed.GrafoEscuelaDao();
                     JOptionPane.showMessageDialog(null, "Grafo guardado", "GUARDADO", JOptionPane.INFORMATION_MESSAGE);
-                } else {
+                } 
+                else {
                     JOptionPane.showMessageDialog(null, "No se puede guardar un grafo vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -84,92 +80,27 @@ public class Vistagrafo extends javax.swing.JFrame {
         catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-//        try {
-//            int i = JOptionPane.showConfirmDialog(null, "SI O NO PANA ","rAPIDO,", JOptionPane.OK_CANCEL_OPTION);
-//            if(i == JOptionPane.OK_OPTION){
-//            
-//        }
-//            if(ed.GrafoEscuelaDao() != null){
-//                ed.guardarGrafo();
-//                JOptionPane.showMessageDialog(null, "si se puede mi pana");
-//            }else{
-//                
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "No se guarda mi pana");
-//        }
+
     }
-    
-    private void Adyacencia(){
-        
+
+    private void Adyacencia() {
+
         try {
             Integer o = cbxOrigen.getSelectedIndex();
             Integer d = cbxDestino.getSelectedIndex();
             if (o.intValue() == d.intValue()) {
                 JOptionPane.showMessageDialog(null, "Escoja escuelas diferentes", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            } 
             else {
                 Double dist = UtilesVista.CalcularDistanciaE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d));
                 ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d), dist);
             }
         } 
         catch (Exception e) {
+            
         }
-        
-        //Aqui se crean las adyancencias de los grafos
-//        try {
-//            Integer o = cbxOrigen.getSelectedIndex();
-//            Integer d = cbxOrigen.getSelectedIndex();
-//            if(o.intValue() == d. intValue()){
-//                JOptionPane.showMessageDialog(null, "No se puede mi pana");
-//            }
-//            else{
-//                Double dist = UtilesVista.CalcularDistanciaE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d));
-//                Double re = UtilesVista.redondear(dist);
-//                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d), re);
-////                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(d), dist); 
-////                ed.GrafoEscuelaDao().insertEdgeE(o, d, Double.NaN);
-//                JOptionPane.showMessageDialog(null, "REGISTRADO");
-//            }
-//        }
-//        catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "tampoco sirve");
-//        }
     }
-    
-    private void mostrarMapa() throws Exception {
-        
-        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
-//        Runtime rt = Runtime.getRuntime();
-//        rt.exec("")
-        Runtime rt=Runtime.getRuntime();
-        Utiles.abrirNavegadorPredeterminadorWindows("mapas/index.html");
-//        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
-////        Runtime rt = Runtime.getRuntime();
-////        rt.exec("")
-//        String url = "mapas\\index.html";
-//        Utiles.abrirNavegadorPredeterminadorWindows(url);
-//        java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-    }
-    
-//    public void guardarGrafo() {
-//        try {
-//            int i = JOptionPane
-//                    .showConfirmDialog(null, "¿Estas seguro de guardar?", "ADVERTENCIA", JOptionPane.OK_CANCEL_OPTION);
-//            if (i == JOptionPane.OK_OPTION) {
-//                if (ed.GrafoEscuelaDao()!= null) {
-//                    ed.GrafoEscuelaDao();
-//                    JOptionPane.showMessageDialog(null, "Grafo guardado", "GUARDADO", JOptionPane.INFORMATION_MESSAGE);
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "No se puede guardar un grafo vacio", "Error", JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
-    
+
     private void cargarTabla() throws Exception {
         mtae.setGrafo(ed.GrafoEscuelaDao());
         mtae.fireTableDataChanged();
@@ -219,13 +150,10 @@ public class Vistagrafo extends javax.swing.JFrame {
 
         tblTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(tblTabla);

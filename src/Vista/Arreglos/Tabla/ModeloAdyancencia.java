@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Victor
  */
-public class mODELOadySAFASD  extends AbstractTableModel {
+public class ModeloAdyancencia  extends AbstractTableModel {
     private GradoDirigidoEtiquetado<Escuela> grafo;
 
     public GradoDirigidoEtiquetado<Escuela> getGrafo() {

@@ -57,6 +57,12 @@ public class Escuela {
     public void setCordenadaEscuela(Coordenada cordenadaEscuela) {
         this.cordenadaEscuela = cordenadaEscuela;
     }
+
+    @Override
+    public String toString() {
+        return Nombre;
+    }
+    
     
     
 }

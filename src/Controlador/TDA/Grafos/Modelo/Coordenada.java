@@ -39,8 +39,7 @@ public class Coordenada {
 
     @Override
     public String toString() {
-        
-        return super.toString(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return "lon: " + Longitud + " lat: " + Latitud; 
     }
     
     
