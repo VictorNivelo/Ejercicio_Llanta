@@ -47,18 +47,18 @@ public class Vistagrafo extends javax.swing.JFrame {
 
     private void mostrarGrafo() throws Exception {
         DibujarGrafo p = new DibujarGrafo();
-        p.updateFile(ed.GrafoEscuelaDao());
+        p.updateFile(ed.getGrafoEscuelaDao());
         Utiles.abrirNavegadorPredeterminadorWindows("d3/grafo.html");
     }
 
     private void mostrarMapa() throws Exception {
-        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
+        UtilesVista.crearMapaEscuela(ed.getGrafoEscuelaDao());
         Runtime rt = Runtime.getRuntime();
         Utiles.abrirNavegadorPredeterminadorWindows("mapas/index.html");
     }
 
     private void dibujarGrafo() throws Exception {
-        UtilesVista.crearMapaEscuela(ed.GrafoEscuelaDao());
+        UtilesVista.crearMapaEscuela(ed.getGrafoEscuelaDao());
         Runtime rt = Runtime.getRuntime();
         rt.exec("urs/bin/brave-browser -new-windows mapas/index.html");
     }
@@ -68,8 +68,8 @@ public class Vistagrafo extends javax.swing.JFrame {
             int i = JOptionPane
                     .showConfirmDialog(null, "¿Estas seguro de guardar?", "ADVERTENCIA", JOptionPane.OK_CANCEL_OPTION);
             if (i == JOptionPane.OK_OPTION) {
-                if (ed.GrafoEscuelaDao() != null) {
-                    ed.GrafoEscuelaDao();
+                if (ed.getGrafoEscuelaDao() != null) {
+                    ed.getGrafoEscuelaDao();
                     JOptionPane.showMessageDialog(null, "Grafo guardado", "GUARDADO", JOptionPane.INFORMATION_MESSAGE);
                 } 
                 else {
@@ -93,7 +93,7 @@ public class Vistagrafo extends javax.swing.JFrame {
             } 
             else {
                 Double dist = UtilesVista.CalcularDistanciaE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d));
-                ed.GrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d), dist);
+                ed.getGrafoEscuelaDao().insertEdgeE(ed.getListaEscuela().getInfo(o), ed.getListaEscuela().getInfo(d), dist);
             }
         } 
         catch (Exception e) {
@@ -102,7 +102,7 @@ public class Vistagrafo extends javax.swing.JFrame {
     }
 
     private void cargarTabla() throws Exception {
-        mtae.setGrafo(ed.GrafoEscuelaDao());
+        mtae.setGrafo(ed.getGrafoEscuelaDao());
         mtae.fireTableDataChanged();
         tblTabla.setModel(mtae);
         tblTabla.updateUI();
@@ -178,46 +178,42 @@ public class Vistagrafo extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cbxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))
-                        .addContainerGap())
+                        .addComponent(cbxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cbxOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(14, 14, 14))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                        .addComponent(jButton2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5))

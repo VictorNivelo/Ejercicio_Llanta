@@ -54,7 +54,7 @@ public class EscuelaDao extends DaoImplement<Escuela>{
         getConection().toXML(grafoEscuela, new FileWriter("files/grafo.json"));
     }
     
-    public GrafoNoDirigidoEtiquetado<Escuela> GrafoEscuelaDao() throws Exception {
+    public GrafoNoDirigidoEtiquetado<Escuela> getGrafoEscuelaDao() throws Exception {
         if (grafoEscuela == null) {
             ListaDinamica<Escuela> list = getListaEscuela();
             if (!list.EstaVacio()) {

@@ -6,7 +6,7 @@ package Vista.utilidades;
 
 import Controlador.Persona.EscuelaDao;
 import Controlador.TDA.Grafos.Excepcion.VerticeException;
-import Controlador.TDA.Grafos.GradoDirigidoEtiquetado;
+import Controlador.TDA.Grafos.GrafoDirigidoEtiquetado;
 import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.Exepcion.ListaVacia;
 import Controlador.TDA.Lista.ListaDinamica;
@@ -20,7 +20,7 @@ import javax.swing.JComboBox;
  */
 public class UtilesVista {
     
-    public static void crearMapaEscuela(GradoDirigidoEtiquetado<Escuela> ge) throws VerticeException, IOException, Exception {
+    public static void crearMapaEscuela(GrafoDirigidoEtiquetado<Escuela> ge) throws VerticeException, IOException, Exception {
         String maps = "var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',\n"
                 + "                    osmAttrib = '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors',\n"
                 + "                    osm = L.tileLayer(osmUrl, {maxZoom: 15, attribution: osmAttrib});\n"
@@ -34,9 +34,9 @@ public class UtilesVista {
         for (int i = 1; i < ge.num_vertice(); i++) {
             Escuela ec = ge.getEtiquetaE(i);
 
-            maps += "L.marker([" + ec.getCordenadaEscuela().getLatitud() + "," + ec.getCordenadaEscuela().getLongitud() + "]).addTo(map)\n";
+            maps += "L.marker([" + ec.getCordenadaEscuela().getLongitud()+ "," + ec.getCordenadaEscuela().getLatitud()+ "]).addTo(map)\n";
             maps += ".bindPopup('" + ec.toString() + "')" + "´)\n";
-            maps += ",.openPopup();" + "\n";
+            maps += ",.openPopup();";
 
         }
         FileWriter file = new FileWriter("mapas/mapas.js");
@@ -76,7 +76,8 @@ public class UtilesVista {
     }
     
     public static Double redondear(Double x){
-        return Math.round(x * 100.0)/100.0;
+        Double d = Math.round(x *100.0)/100.0;
+        return d;
     }
     
     public static Double CalcularDistanciaE(Escuela Origen, Escuela Destino){

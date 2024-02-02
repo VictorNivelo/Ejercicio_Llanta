@@ -83,42 +83,61 @@ public class GrafoDirigido extends Grafo{
             throw new VerticeException();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+    public ListaDinamica<Adyacencia>[] getListaAdyacencia() {
+        return ListaAdyacencia;
+    }
+    
     @Override
     public void insertar_arista(Integer v1, Integer v2) throws Exception{
         insertar_arista(v1, v2, Double.NaN);
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public void setNum_aristas(Integer num_aristas) {
+        this.numeroAristas = num_aristas;
+    }
+
+    public void setListaAdyacencias(ListaDinamica<Adyacencia>[] listaAdyacencias) {
+        this.ListaAdyacencia = listaAdyacencias;
+    }
+    
     @Override
     public ListaDinamica<Adyacencia> adycentes(Integer v1) throws Exception{
         return ListaAdyacencia[v1];
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public ListaDinamica<Adyacencia>[] getListaAdyacencia() {
-        return ListaAdyacencia;
-    }
+//    @Override
+//    public void insertar_arista(Integer v1, Integer v2) throws Exception{
+//        insertar_arista(v1, v2, Double.NaN);
+////        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 
-    public void setListaAdyacencia(ListaDinamica<Adyacencia>[] ListaAdyacencia) {
-        this.ListaAdyacencia = ListaAdyacencia;
-    }
+    
 
-    public Integer getNumeroVertices() {
-        return numeroVertices;
-    }
-
-    public void setNumeroVertices(Integer numeroVertices) {
-        this.numeroVertices = numeroVertices;
-    }
-
-    public Integer getNumeroAristas() {
-        return numeroAristas;
-    }
-
-    public void setNumeroAristas(Integer numeroAristas) {
-        this.numeroAristas = numeroAristas;
-    }
+    
+//
+//    public void setListaAdyacencia(ListaDinamica<Adyacencia>[] ListaAdyacencia) {
+//        this.ListaAdyacencia = ListaAdyacencia;
+//    }
+//
+//    public Integer getNumeroVertices() {
+//        return numeroVertices;
+//    }
+//
+//    public void setNumeroVertices(Integer numeroVertices) {
+//        this.numeroVertices = numeroVertices;
+//    }
+//
+//    public Integer getNumeroAristas() {
+//        return numeroAristas;
+//    }
+//
+//    public void setNumeroAristas(Integer numeroAristas) {
+//        this.numeroAristas = numeroAristas;
+//    }
+    
+    
 
 //    public static void main(String[] args) {
 //        Grafo f = new GrafoDirigido(6);

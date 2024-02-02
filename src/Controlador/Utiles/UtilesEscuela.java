@@ -5,7 +5,7 @@
 package Controlador.Utiles;
 
 import Controlador.Persona.EscuelaDao;
-import Controlador.TDA.Grafos.GradoDirigidoEtiquetado;
+import Controlador.TDA.Grafos.GrafoDirigidoEtiquetado;
 import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.ListaDinamica;
 import java.io.FileWriter;
@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
  * @author Victor
  */
 public class UtilesEscuela {
-    public static void crearMapaEscuela(GradoDirigidoEtiquetado<Escuela> ge) throws Exception {
+    public static void crearMapaEscuela(GrafoDirigidoEtiquetado<Escuela> ge) throws Exception {
         String maps = "var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',\n"
                 + "                    osmAttrib = '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors',\n"
                 + "                    osm = L.tileLayer(osmUrl, {maxZoom: 15, attribution: osmAttrib});\n"
