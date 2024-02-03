@@ -100,56 +100,15 @@ public class GrafoDirigido extends Grafo{
     public void setListaAdyacencias(ListaDinamica<Adyacencia>[] listaAdyacencias) {
         this.ListaAdyacencia = listaAdyacencias;
     }
+
+    public void adyacencia(Integer v1, Integer v2) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     @Override
     public ListaDinamica<Adyacencia> adycentes(Integer v1) throws Exception{
         return ListaAdyacencia[v1];
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-//    @Override
-//    public void insertar_arista(Integer v1, Integer v2) throws Exception{
-//        insertar_arista(v1, v2, Double.NaN);
-////        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
-
-    
-
-    
-//
-//    public void setListaAdyacencia(ListaDinamica<Adyacencia>[] ListaAdyacencia) {
-//        this.ListaAdyacencia = ListaAdyacencia;
-//    }
-//
-//    public Integer getNumeroVertices() {
-//        return numeroVertices;
-//    }
-//
-//    public void setNumeroVertices(Integer numeroVertices) {
-//        this.numeroVertices = numeroVertices;
-//    }
-//
-//    public Integer getNumeroAristas() {
-//        return numeroAristas;
-//    }
-//
-//    public void setNumeroAristas(Integer numeroAristas) {
-//        this.numeroAristas = numeroAristas;
-//    }
-    
-    
-
-//    public static void main(String[] args) {
-//        Grafo f = new GrafoDirigido(6);
-//        System.out.println(f);
-//        try {
-//            f.insertar_arista(1, 3, 50.0);
-//            f.insertar_arista(4, 5, 10.0);
-//            System.out.println(f);
-//        } 
-//        catch (Exception ex) {
-//            System.out.println("Error " + ex);
-//        }
-//    }
 
 }

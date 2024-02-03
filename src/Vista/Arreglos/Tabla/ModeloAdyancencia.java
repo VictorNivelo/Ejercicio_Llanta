@@ -16,12 +16,12 @@ public class ModeloAdyancencia  extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return grafo.num_vertice()-1;
+        return grafo.num_vertice();
     }
 
     @Override
     public int getColumnCount() {
-        return grafo.num_vertice();
+        return grafo.num_vertice()+1;
     }
     
     @Override

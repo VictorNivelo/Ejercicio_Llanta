@@ -4,8 +4,11 @@
  */
 package Controlador.Utiles;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 /**
  *
@@ -214,4 +217,20 @@ public class Utiles {
         return distancia;
     }
     
+    
+    public static void copiarArchivo(File origen, File destino) throws Exception {
+        Files.copy(origen.toPath(),(destino).toPath(),StandardCopyOption.REPLACE_EXISTING);
+    }
+    
+    public static String extension(String fileName) {
+        String extension = "";
+
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i + 1);
+        }
+        return extension;
+    }
+    
+
 }

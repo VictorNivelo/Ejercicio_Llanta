@@ -5,11 +5,11 @@
 package Controlador.TDA.Grafos;
 
 import Controlador.TDA.Grafos.Excepcion.VerticeException;
-import Controlador.Utiles.Utiles;
 
 /**
  *
  * @author Victor
+ * @param <E>
  */
 public class GrafoNoDirigidoEtiquetado<E> extends GrafoDirigidoEtiquetado<E>{
     

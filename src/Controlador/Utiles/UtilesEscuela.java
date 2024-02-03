@@ -5,6 +5,7 @@
 package Controlador.Utiles;
 
 import Controlador.Persona.EscuelaDao;
+import Controlador.TDA.Grafos.Excepcion.VerticeException;
 import Controlador.TDA.Grafos.GrafoDirigidoEtiquetado;
 import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.ListaDinamica;
@@ -16,8 +17,8 @@ import javax.swing.JComboBox;
  * @author Victor
  */
 public class UtilesEscuela {
-    public static void crearMapaEscuela(GrafoDirigidoEtiquetado<Escuela> ge) throws Exception {
-        String maps = "var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',\n"
+    public static void crearMapaEscuela(GrafoDirigidoEtiquetado<Escuela> ge) throws VerticeException , Exception {
+         String maps = "var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',\n"
                 + "                    osmAttrib = '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors',\n"
                 + "                    osm = L.tileLayer(osmUrl, {maxZoom: 15, attribution: osmAttrib});\n"
                 + "\n"
@@ -25,26 +26,22 @@ public class UtilesEscuela {
                 + "\n"
                 + "            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\n"
                 + "                attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n"
-                + "            }).addTo(map); + \n";
-
+                + "            }).addTo(map);" + "\n";
         for (int i = 1; i <= ge.num_vertice(); i++) {
             Escuela ec = ge.getEtiquetaE(i);
-            maps += "L.marker([" + ec.getCordenadaEscuela().getLongitud()+ ", " + ec.getCordenadaEscuela().getLatitud()+ "]).addTo(map)\n";
-            maps += ".bindPopup('" + ec.toString() + "')\n";
-            maps += ".openPopup();";
+            maps += "L.marker([" + ec.getCordenadaEscuela().getLatitud() + ", " + ec.getCordenadaEscuela().getLongitud() + "]).addTo(map)" + "\n";
+            maps += ".bindPopup(\"" + ec.toString() + "\")" + "\n";
+            maps += ".openPopup();" + "\n";
         }
         FileWriter file = new FileWriter("mapas/mapa.js");
         file.write(maps);
         file.close();
 
-//        L.marker([-4.045, -79.2015]).addTo(map)
-//                    .bindPopup('1.')
-//                    .openPopup();
     }
 
     public static void cargarComboEscuela(JComboBox cbx) throws Exception {
         cbx.removeAllItems();
-        ListaDinamica<Escuela> list = new EscuelaDao().getListaEscuela();
+        ListaDinamica<Escuela> list = new EscuelaDao().getListaEscuelas();
         for (int i = 0; i < list.getLongitud(); i++) {
             cbx.addItem(list.getInfo(i));
         }

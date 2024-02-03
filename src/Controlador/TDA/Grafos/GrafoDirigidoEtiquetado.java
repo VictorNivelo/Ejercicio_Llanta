@@ -99,7 +99,7 @@ public class GrafoDirigidoEtiquetado<E> extends GrafoDirigido{
 
     public Boolean isAllLabelsGraph() {
         Boolean band = true;
-        for (int i = 1; i <= etiquetas.length; i++) {
+        for (int i = 1; i < etiquetas.length; i++) {
             if (etiquetas[i] == null) {
                 band = false;
                 break;

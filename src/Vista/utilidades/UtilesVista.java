@@ -11,7 +11,6 @@ import Controlador.TDA.Grafos.Modelo.Escuela;
 import Controlador.TDA.Lista.Exepcion.ListaVacia;
 import Controlador.TDA.Lista.ListaDinamica;
 import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.JComboBox;
 
 /**
@@ -20,7 +19,7 @@ import javax.swing.JComboBox;
  */
 public class UtilesVista {
     
-    public static void crearMapaEscuela(GrafoDirigidoEtiquetado<Escuela> ge) throws VerticeException, IOException, Exception {
+    public static void crearMapaEscuela(GrafoDirigidoEtiquetado<Escuela> ge) throws VerticeException, Exception {
         String maps = "var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',\n"
                 + "                    osmAttrib = '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors',\n"
                 + "                    osm = L.tileLayer(osmUrl, {maxZoom: 15, attribution: osmAttrib});\n"
@@ -29,28 +28,21 @@ public class UtilesVista {
                 + "\n"
                 + "            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\n"
                 + "                attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n"
-                + "            }).addTo(map);";
-
-        for (int i = 1; i < ge.num_vertice(); i++) {
+                + "            }).addTo(map);" + "\n";
+        for (int i = 1; i <= ge.num_vertice(); i++) {
             Escuela ec = ge.getEtiquetaE(i);
-
-            maps += "L.marker([" + ec.getCordenadaEscuela().getLongitud()+ "," + ec.getCordenadaEscuela().getLatitud()+ "]).addTo(map)\n";
-            maps += ".bindPopup('" + ec.toString() + "')" + "´)\n";
-            maps += ",.openPopup();";
-
+            maps += "L.marker([" + ec.getCordenadaEscuela().getLatitud() + ", " + ec.getCordenadaEscuela().getLongitud() + "]).addTo(map)";
+            maps += ".bindPopup(\"" + ec.toString() + "\")" + "\n";
+            maps += ".openPopup();" + "\n";
         }
-        FileWriter file = new FileWriter("mapas/mapas.js");
+        FileWriter file = new FileWriter("mapas/mapa.js");
         file.write(maps);
         file.close();
-
-        /*L.marker([-4.045, -79.2015]).addTo(map)
-                    .bindPopup('1.')
-                    .openPopup();*/
     }
     
     public static void CargarComboEscuela(JComboBox cbx) throws ListaVacia{
         cbx.removeAllItems();
-        ListaDinamica<Escuela> listE = new EscuelaDao().getListaEscuela();
+        ListaDinamica<Escuela> listE = new EscuelaDao().getListaEscuelas();
         for(int i = 0 ; i< listE.getLongitud(); i++){
             cbx.addItem(listE.getInfo(i));
         }
@@ -81,29 +73,9 @@ public class UtilesVista {
     }
     
     public static Double CalcularDistanciaE(Escuela Origen, Escuela Destino){
-        Double dist = coordGpsToKm(Origen.getCordenadaEscuela().getLatitud(), Origen.getCordenadaEscuela().getLongitud(),
+        Double dist = UtilesVista.coordGpsToKm(Origen.getCordenadaEscuela().getLatitud(), Origen.getCordenadaEscuela().getLongitud(),
                 Destino.getCordenadaEscuela().getLatitud(), Destino.getCordenadaEscuela().getLongitud());
         return dist;
     }
-
-//    public static void CrearMapaEscuela(GradoDirigidoEtiquetado<Escuela> GrafoEscuela) {
-//        String Mapas = "var osmUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',\n"
-//                + "                    osmAttrib = '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors',\n"
-//                + "                    osm = L.tileLayer(osmUrl, {maxZoom: 15, attribution: osmAttrib});\n"
-//                + "\n"
-//                + "            var map = L.map('map').setView([-4.036, -79.201], 15);\n"
-//                + "\n"
-//                + "            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\n"
-//                + "                attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n"
-//                + "            }).addTo(map);";
-//        try {
-//            for(int i = 1 ;i <= GrafoEscuela.num_vertice(); i++){
-//                Escuela eg = GrafoEscuela.getEtiquetaE(i);
-//                maps+= "L.marker({"GrafoEscuela.getCordenadaEscuela().getLongitud()+"," + GrafoEscuela.getCordenadaEscuela().getLatitud();
-//                maps+= ".bindPopup("
-//            }
-//        } catch (Exception e) {
-//        }
-//    }
     
 }
