@@ -102,6 +102,7 @@ public class ArbolEntero {
     public static void main(String[] args) {
         try {
             /*
+            para mañana graficar el arbol
             insertar valores al arbol
             cada uno de sus valores
             */
